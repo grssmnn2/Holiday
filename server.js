@@ -14,6 +14,13 @@ app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-app.listen(PORT, function() {
+const io=require("socket.io").listen(app.listen(PORT, function() {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
-});
+}));
+
+io.on("connection",socket=>{
+  console.log("socket is on "+socket.id)
+  socket.on("SEND_MESSAGE", (data) =>{
+    io.sockets.emit("RECEIVE_MESSAGE", data)
+  })
+})
