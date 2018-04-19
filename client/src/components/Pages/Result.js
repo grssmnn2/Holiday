@@ -1,9 +1,10 @@
 import React, {Component} from "react";
 
+//  other dependencies go here -both dynamic and static 
+
 import Header from "../components/Header"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Navbar"
-//  other dependencies go here -both dynamic and static 
  
 // using class method bc it's stateful 
 
