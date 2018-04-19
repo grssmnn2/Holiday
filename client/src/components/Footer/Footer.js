@@ -1,5 +1,6 @@
 import React from "react"; 
-import "./Footer.css"
+//	commenting that out until the CSS styling for footer is done 
+// import "./Footer.css"
 
 const Footer = () => (
     <footer className="footer-area section-gap">
@@ -16,9 +17,9 @@ const Footer = () => (
 						
 					</div>
 					<div className="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						{/* <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> */}
 						<p className="footer-text m-0">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i className="fa fa-heart-o colorlib" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" id="colorlib">Colorlib</a></p>
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						{/* <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> */}
 					</div>
 				</div>
 

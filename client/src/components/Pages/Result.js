@@ -25,6 +25,8 @@ class Result extends Component {
 
 //  start render 
 //  components that are required above go here 
+//  return a div that contains search results on one side and map on the other 
+//  div and then a column component or something that allows to show both of those things 
 
 render() {
     return (
