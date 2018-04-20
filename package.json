@@ -20,7 +20,7 @@
   "dependencies": {
     "express": "^4.16.3",
     "path": "^0.12.7",
-    "react-dropzone": "^4.2.9",
+    "react-s3-uploader": "^4.8.0",
     "socket.io": "^2.1.0"
   }
 }
