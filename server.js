@@ -3,23 +3,11 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
 const users={};
-const aws=require("aws-sdk");
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-// Send every request to the React app
-// Define any API routes before this runs
-app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
-// app.use('/s3', require('react-dropzone-s3-uploader/s3router')({
-//   bucket: 'holidayimage',                           // required
-//   region: 'us-east-1',                            // optional
-//   headers: {'Access-Control-Allow-Origin': '*'},  // optional
-//   ACL: 'private',                                 // this is the default - set to `public-read` to let anyone view uploads
-// }));
 const getTime = (date)=>{
 	return `${date.getHours()}:${("0"+date.getMinutes()).slice(-2)}`
 }
@@ -44,5 +32,10 @@ io.on("connection",socket=>{
     }
     users[data.receiver].emit("RECEIVE_MESSAGE", msgObj)
     users[data.sender].emit("RECEIVE_MESSAGE",msgObj)
+  })
+  socket.on("disconnect",data =>{
+    if(!socket.name) return;
+    delete users[socket.name];
+    console.log(users)
   })
 })
