@@ -3,6 +3,7 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
 const users={};
+const aws=require("aws-sdk");
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -13,14 +14,12 @@ if (process.env.NODE_ENV === "production") {
 app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
-app.use('/s3', require('react-s3-uploader/s3router')({
-  bucket: "holidayimage",
-  // region: 'us-east-1', //optional
-  signatureVersion: 'v4', //optional (use for some amazon regions: frankfurt and others)
-  headers: {'Access-Control-Allow-Origin': '*'}, // optional
-  ACL: 'public', // this is default
-  uniquePrefix: true // (4.0.2 and above) default is true, setting the attribute to false preserves the original filename in S3
-}));
+// app.use('/s3', require('react-dropzone-s3-uploader/s3router')({
+//   bucket: 'holidayimage',                           // required
+//   region: 'us-east-1',                            // optional
+//   headers: {'Access-Control-Allow-Origin': '*'},  // optional
+//   ACL: 'private',                                 // this is the default - set to `public-read` to let anyone view uploads
+// }));
 const getTime = (date)=>{
 	return `${date.getHours()}:${("0"+date.getMinutes()).slice(-2)}`
 }
@@ -36,8 +35,10 @@ io.on("connection",socket=>{
   })
   socket.on("SEND_MESSAGE", (data) =>{
     console.log(data.sender)
+    console.log(data.receiver)
     const msgObj={
-      name:data.sender, 
+      name:data.sender,
+      receiver:data.receiver, 
       messages:data.messages,
       time:getTime(new Date(Date.now()))
     }

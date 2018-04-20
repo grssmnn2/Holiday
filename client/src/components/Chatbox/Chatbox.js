@@ -7,34 +7,25 @@ class Chatbox extends Component {
     message: "",
     messages: [],
     socket: null,
-    disabled:null,
     receiver:""
-    
   };
-  handleStart=()=>{
-    this.setState({
-      disabled:false
-    })
-  }
-  handleStop =() =>{
-  
-    this.setState({
-        disabled:true
-      })
-   
-  }
   componentWillMount(){
     this.initSocket();
   }
   componentDidMount() {
-    const { socket } = this.state;
+    const { socket,sender} = this.state;
     socket.on("RECEIVE_MESSAGE",data =>{
       console.log(data)
-      this.setState({
-        messages: [...this.state.messages,data]
-      },()=>{
-        console.log(this.state.messages)
-      })
+      if(data.receiver===sender){
+        this.setState({
+          receiver:data.name,
+          messages: [...this.state.messages,data]
+        })
+      }else if(data.name===sender){
+        this.setState({
+          messages: [...this.state.messages,data]
+        })
+      }
     })
   }
   initSocket = () => {
