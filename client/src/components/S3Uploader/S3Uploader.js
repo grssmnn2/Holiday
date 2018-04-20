@@ -10,7 +10,7 @@ class S3Uploader extends Component {
 
   render() {
     const uploadOptions = {
-      server: 'http://localhost:3000',
+      server: 'http://localhost:3001',
       signingUrlQueryParams: {uploadType: 'avatar'},
     }
     const s3Url = 'https://holidayimage.s3.amazonaws.com'

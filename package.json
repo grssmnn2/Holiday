@@ -6,7 +6,7 @@
   "scripts": {
     "server": "node server.js",
     "client": "cd client && npm run start",
-    "start": "./node_modules/.bin/concurrently \"./node_modules/.bin/nodemon\" \"npm run client\"",
+    "start": "concurrently \"./node_modules/.bin/nodemon\" \"npm run client\"",
     "build": "cd client && npm run build",
     "deploy": "yarn build && git add . && git commit -m \"Building for production\" && git push heroku master",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,9 +18,19 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "bcrypt": "^2.0.0",
     "express": "^4.16.3",
+    "mongoose": "^5.0.15",
     "path": "^0.12.7",
     "react-s3-uploader": "^4.8.0",
     "socket.io": "^2.1.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grssmnn2/Holiday.git"
+  },
+  "bugs": {
+    "url": "https://github.com/grssmnn2/Holiday/issues"
+  },
+  "homepage": "https://github.com/grssmnn2/Holiday#readme"
 }
