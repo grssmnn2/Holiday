@@ -21,6 +21,7 @@ class App extends Component {
      <body>
       {/* <Chatbox></Chatbox>
       <Imageuploader></Imageuploader> */}
+      <Map />
       </body>
     );
   }
