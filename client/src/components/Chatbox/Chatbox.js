@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import io from "socket.io-client";
+import {Link} from "react-router-dom";
 import "./Chatbox.css";
 class Chatbox extends Component {
   state = {
     sender:"",
+
     message: "",
     messages: [],
     socket: null,
@@ -168,9 +170,9 @@ class Chatbox extends Component {
                 </span>
               </div>
               <span className="uk-input-group-addon">
-                <a onClick={this.sendMessage} href="#">
+                <Link to={"/api/message/"} onClick={this.sendMessage} href="#">
                   <i className="glyphicon glyphicon-send" />
-                </a>
+                </Link>
               </span>
             </div>
           </div>

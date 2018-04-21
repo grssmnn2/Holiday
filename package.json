@@ -11,20 +11,24 @@
     "deploy": "yarn build && git add . && git commit -m \"Building for production\" && git push heroku master",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Aditi Mishra <asmishra93@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^3.5.0",
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+<<<<<<< HEAD
     "bcrypt": "^2.0.0",
+=======
+    "body-parser": "^1.18.2",
+>>>>>>> master
     "express": "^4.16.3",
     "mongoose": "^5.0.15",
     "path": "^0.12.7",
-    "react-s3-uploader": "^4.8.0",
     "socket.io": "^2.1.0"
   },
+<<<<<<< HEAD
   "repository": {
     "type": "git",
     "url": "git+https://github.com/grssmnn2/Holiday.git"
@@ -33,4 +37,7 @@
     "url": "https://github.com/grssmnn2/Holiday/issues"
   },
   "homepage": "https://github.com/grssmnn2/Holiday#readme"
+=======
+  "repository": "https://github.com/grssmnn2/Holiday.git"
+>>>>>>> master
 }
