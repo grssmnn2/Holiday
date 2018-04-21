@@ -170,9 +170,9 @@ class Chatbox extends Component {
                 </span>
               </div>
               <span className="uk-input-group-addon">
-                <Link to={"/api/message/"} onClick={this.sendMessage} href="#">
+                {/* <Link to={"/api/message/"} onClick={this.sendMessage} href="#">
                   <i className="glyphicon glyphicon-send" />
-                </Link>
+                </Link> */}
               </span>
             </div>
           </div>

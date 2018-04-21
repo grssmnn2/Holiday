@@ -1561,7 +1561,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .primary-checkbox input:checked + label {
-  /* background: url(../img/elements/primary-check.png) no-repeat center center/cover; */
+  background: url(../img/elements/primary-check.png) no-repeat center center/cover;
   border: none;
 }
 
@@ -1599,7 +1599,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .confirm-checkbox input:checked + label {
-  /* background: url(../img/elements/success-check.png) no-repeat center center/cover; */
+  background: url(../img/elements/success-check.png) no-repeat center center/cover;
   border: none;
 }
 
@@ -1642,7 +1642,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .disabled-checkbox input:checked + label {
-  /* background: url(../img/elements/disabled-check.png) no-repeat center center/cover; */
+  background: url(../img/elements/disabled-check.png) no-repeat center center/cover;
   border: none;
 }
 
@@ -1680,7 +1680,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .primary-radio input:checked + label {
-  /* background: url(../img/elements/primary-radio.png) no-repeat center center/cover; */
+  background: url(../img/elements/primary-radio.png) no-repeat center center/cover;
   border: none;
 }
 
@@ -1718,7 +1718,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .confirm-radio input:checked + label {
-  /* background: url(../img/elements/success-radio.png) no-repeat center center/cover; */
+  background: url(../img/elements/success-radio.png) no-repeat center center/cover;
   border: none;
 }
 
@@ -1761,7 +1761,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .disabled-radio input:checked + label {
-  /* background: url(../img/elements/disabled-radio.png) no-repeat center center/cover; */
+  background: url(../img/elements/disabled-radio.png) no-repeat center center/cover;
   border: none;
 }
 
@@ -2172,7 +2172,7 @@ text-transform:uppercase .menutop-wrap .menu-top .list li:hover a {
 }
 
 .banner-area {
-  /* background: url(../img/header-bg.jpg) no-repeat center center/cover; */
+  background: url(../img/header-bg.jpg) no-repeat center center/cover;
 }
 
 .banner-content {
@@ -2406,7 +2406,7 @@ text-transform:uppercase .menutop-wrap .menu-top .list li:hover a {
 }
 
 .property-area {
-  /* background: url(../img/service-bg.jpg) no-repeat center center/cover; */
+  background: url(../img/service-bg.jpg) no-repeat center center/cover;
 }
 
 .property-area .header-text {
