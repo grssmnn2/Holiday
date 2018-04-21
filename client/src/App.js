@@ -1,32 +1,35 @@
 import React, { Component } from "react";
 import Chatbox from "./components/Chatbox"
-<<<<<<< HEAD
+
 import S3Uploader from "./components/S3Uploader"
-import Home from "./components/Home"
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
-
-=======
-
 
 // import Result from "./components/pages/Result"
 //  other static components go here too
 import "./App.css";
-
-
-
-
 import Imageuploader from "./components/Imageuploder"
 import Navbar from "./components/Navbar"
->>>>>>> master
+
+import Home from "./components/Pages/Home"
+
 import "./App.css";
 import "./css/bootstrap.css"
 import "./css/main.css"
+import "./css/availability-calendar.css"
+// import "./css/font-awesome.min.css"
+import "./css/ion.rangeSlider.css"
+// import "./css/ion.rangeSlider.skinFlat.css"
+import "./css/jquerysctipttop.css"
+// import "./css/linearicons.css"
+import "./css/magnific-popup.css"
+import "./css/nice-select.css"
+// import "./css/owl.carousel.css"
+
 
 class App extends Component {
   render() {
     return (
-<<<<<<< HEAD
+
       <div>
         <Router>
           <div>
@@ -35,12 +38,12 @@ class App extends Component {
         </Router>
 
       </div>
-=======
      <body>
+       <Home></Home>  
       {/* <Chatbox></Chatbox>
       <Imageuploader></Imageuploader> */}
       </body>
->>>>>>> master
+
     );
   }
 }
