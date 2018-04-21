@@ -36,25 +36,32 @@ class Imageuploder extends Component {
       .getDownloadURL()
       .then(url => this.setState({ avatarURL:[...this.state.avatarURL,url] }));
   };
+  
 
   render() {
     return (
       <div>
         <form>
-          <label>Username:</label>
-          <input
+        <label style={{backgroundColor: 'steelblue', color: 'white', border: 'black', padding: 10, margin: 5, borderRadius: 4}}>
+            Username:
+          
+          <input style={{color: 'black'}}
             type="text"
             value={this.state.username}
             name="username"
             onChange={this.handleChangeUsername}
           />
-          <label>Avatar:</label>
+          </label>
+        <label style={{backgroundColor: 'steelblue', color: 'white', border: 'black', padding: 10, margin: 5, borderRadius: 4, pointer: 'cursor'}}>
+            Avatar:
           {this.state.isUploading && <p>Progress: {this.state.progress} %</p>}
           {/* {this.state.avatarURL && <img src={this.state.avatarURL} />} */}
           {this.state.avatarURL.map((url,i) =>{
             return (<img alt="" key={i} style={{width:100+'px', height:110+'px'}} src={url}/>)
           })}
+          
           <FileUploader
+            // hidden
             accept="image/*"
             name="avatar"
             multiple={true}
@@ -65,6 +72,7 @@ class Imageuploder extends Component {
             onUploadSuccess={this.handleUploadSuccess}
             onProgress={this.handleProgress}
           />
+          </label>
         </form>
       </div>
     );
