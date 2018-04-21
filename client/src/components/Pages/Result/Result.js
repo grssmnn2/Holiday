@@ -3,9 +3,10 @@ import React, {Component} from "react";
 //  other dependencies go here -both dynamic and static 
 import React, { Component} from "react";
 import { Col, Row, Container} from "../components/Grid"
-//  figure out exactly 
+
 import Card from "../components/Card"
 //  import google maps  component here 
+// import Map from "../components/Map"
 
  
 // using class method bc it's stateful 
