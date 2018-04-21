@@ -3,8 +3,9 @@ import React, {Component} from "react";
 //  other dependencies go here -both dynamic and static 
 import React, { Component} from "react";
 import { Col, Row, Container} from "../components/Grid"
-
-//  import google maps 
+//  figure out exactly 
+import Card from "../components/Card"
+//  import google maps  component here 
 
  
 // using class method bc it's stateful 
@@ -45,7 +46,9 @@ render() {
         <div>
             render result here 
         </div>
+        //  testing this in the app file for now, for the first iteration 
         //  array function here to cycle thru all elements that were returned 
+        //  map thru array that is equal to matches.length 
 
         // <Card />
 

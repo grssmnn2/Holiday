@@ -13,8 +13,6 @@ class App extends Component {
     return (
       <div>
       <Chatbox></Chatbox>
-      <Card />
-      <Card />
       </div>
     );
   }
