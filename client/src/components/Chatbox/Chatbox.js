@@ -29,7 +29,7 @@ class Chatbox extends Component {
     })
   }
   initSocket = () => {
-    const socket = io("http://localhost:3001");
+    const socket = io("http://localhost:3000");
     const name=["eddie","megan","a","b","c","d"];
     let num=Math.floor(Math.random()*name.length)
     this.setState({ 

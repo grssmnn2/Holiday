@@ -16,8 +16,7 @@ class App extends Component {
             <Route exact path="/login" component={Home} />
           </div>
         </Router>
-        {/* <Chatbox></Chatbox>
-        <S3Uploader></S3Uploader> */}
+
       </div>
     );
   }
