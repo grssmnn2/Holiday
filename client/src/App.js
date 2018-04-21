@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Chatbox from "./components/Chatbox"
+import Card from "./components/Card"
 
 // import Result from "./components/pages/Result"
 //  other static components go here too
@@ -12,6 +13,8 @@ class App extends Component {
     return (
       <div>
       <Chatbox></Chatbox>
+      <Card />
+      <Card />
       </div>
     );
   }
