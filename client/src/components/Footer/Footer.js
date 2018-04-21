@@ -1,6 +1,6 @@
 import React from "react"; 
 //	commenting that out until the CSS styling for footer is done 
-// import "./Footer.css"
+import "./Footer.css"
 
 const Footer = () => (
     <footer className="footer-area section-gap">
