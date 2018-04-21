@@ -5,6 +5,7 @@ import "./Chatbox.css";
 class Chatbox extends Component {
   state = {
     sender:"",
+
     message: "",
     messages: [],
     socket: null,
