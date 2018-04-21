@@ -28,12 +28,13 @@ loadResults = () => {
     API.getResults()
     .then(res =>
         //  based on DB schema and state from above 
-    this.setState({results: res.data, title:"", details:"", review:""})
+        //  these get passed as props to the card whwere we show results 
+    this.setState({results: res.data, title:"", details:"", review:"", image:""})
 ).catch(err => console.log(err));
 };
 
 //  methods for handling clicks/toggles/input changes 
-
+//  i.e. it'd be nice to enlarge the photo on hover, idk
 
 //  start render 
 //  components that are required above go here 
@@ -42,10 +43,15 @@ loadResults = () => {
 
 render() {
     return (
-        <div> 
-
+        <div>
+            render result here 
         </div>
-    )
+        //  array function here to cycle thru all elements that were returned 
+
+        // <Card />
+
+        // <Map /> 
+    );
  }
 
 };
