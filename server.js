@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === "production") {
 }
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(routes);
+// app.use(routes);
 const getTime = (date)=>{
 	return `${date.getHours()}:${("0"+date.getMinutes()).slice(-2)}`
 }
