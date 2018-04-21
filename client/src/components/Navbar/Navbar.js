@@ -2,11 +2,11 @@ import React, { Component } from "react";
 class Navbar extends Component {
   render() {
     return (
-      <header class="default-header">
-        <div class="menutop-wrap">
-          <div class="menu-top container">
-            <div class="d-flex justify-content-end align-items-center">
-              <ul class="list">
+      <header className="default-header">
+        <div className="menutop-wrap">
+          <div className="menu-top container">
+            <div className="d-flex justify-content-end align-items-center">
+              <ul className="list">
                 <li>
                   <a href="#">Search For A Swap</a>
                 </li>
@@ -18,11 +18,11 @@ class Navbar extends Component {
           </div>
         </div>
 
-        <nav class="navbar navbar-expand-lg  navbar-light bg-light">
-          <div class="container">
-            <a class="navbar-brand" href="index.html" />
+        <nav className="navbar navbar-expand-lg  navbar-light bg-light">
+          <div className="container">
+            <a className="navbar-brand" href="index.html" />
             <button
-              class="navbar-toggler"
+              className="navbar-toggler"
               type="button"
               data-toggle="collapse"
               data-target="#navbarSupportedContent"
@@ -30,14 +30,14 @@ class Navbar extends Component {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span class="navbar-toggler-icon" />
+              <span className="navbar-toggler-icon" />
             </button>
 
             <div
-              class="collapse navbar-collapse justify-content-end align-items-center"
+              className="collapse navbar-collapse justify-content-end align-items-center"
               id="navbarSupportedContent"
             >
-              <ul class="navbar-nav">
+              <ul className="navbar-nav">
                 <li>
                   <a href="#home">Home</a>
                 </li>
