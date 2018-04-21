@@ -6,6 +6,11 @@ const app = express();
 const routes=require("./routes")
 const mongoose = require('mongoose');
 const users={};
+<<<<<<< HEAD
+const aws=require("aws-sdk");
+const mongoose = require("mongoose");
+=======
+>>>>>>> master
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -65,3 +70,12 @@ io.on("connection",socket=>{
     console.log(users)
   })
 })
+
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/logindb";
+
+// Set mongoose to leverage built in JavaScript ES6 Promises
+// Connect to the Mongo DB
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI, {
+});
