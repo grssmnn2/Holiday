@@ -18,26 +18,19 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
-<<<<<<< HEAD
+    "@blueprintjs/core": "^2.2.1",
+    "aws-sdk": "^2.226.1",
     "bcrypt": "^2.0.0",
-=======
-    "body-parser": "^1.18.2",
->>>>>>> master
+    "create-react-class": "^15.6.3",
     "express": "^4.16.3",
     "mongoose": "^5.0.15",
     "path": "^0.12.7",
+    "re-base": "^3.2.2",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-rebase": "^1.0.5",
+    "react-transition-group": "^2.3.1",
     "socket.io": "^2.1.0"
   },
-<<<<<<< HEAD
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/grssmnn2/Holiday.git"
-  },
-  "bugs": {
-    "url": "https://github.com/grssmnn2/Holiday/issues"
-  },
-  "homepage": "https://github.com/grssmnn2/Holiday#readme"
-=======
   "repository": "https://github.com/grssmnn2/Holiday.git"
->>>>>>> master
 }

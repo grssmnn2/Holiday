@@ -1,3 +1,3 @@
 module.exports={
-    messages:require("./messages")
+    messages:require("./messages"),
 }
