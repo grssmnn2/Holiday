@@ -1,4 +1,8 @@
 const db = require("../models");
+<<<<<<< HEAD
+=======
+const update = { expire: new Date() };
+>>>>>>> master
 const options = { upsert: true, new: true, setDefaultsOnInsert: true };
 module.exports = {
   update: (req, res) => {

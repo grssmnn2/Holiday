@@ -6,7 +6,6 @@ const app = express();
 const routes=require("./routes")
 const mongoose = require('mongoose');
 const users={};
-
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
@@ -16,28 +15,9 @@ app.use(routes);
 const getTime = (date)=>{
 	return `${date.getHours()}:${("0"+date.getMinutes()).slice(-2)}`
 }
-const io=require("socket.io").listen(app.listen(PORT, function() {
+  const io=require("socket.io").listen(app.listen(PORT, function() {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
 }));
-
-// --- Database configuration with Mongoose ---
-var databaseUri = 'mongodb://localhost/holiday';
-
-if (process.env.MONGODB_URI) {
-  mongoose.connect(process.env.MONGODB_URI);
-} else {
-  mongoose.connect(databaseUri);
-}
-
-var db = mongoose.connection;
-
-db.on('error', function(err) {
-  console.log('Mongoose Error: ' + err);
-});
-
-db.once('open', function() {
-  console.log('Mongoose connection successful 🎉');
-});
 
 
 io.on("connection",socket=>{
@@ -66,11 +46,13 @@ io.on("connection",socket=>{
   })
 })
 
-// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-// const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/logindb";
+
+// // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/holiday";
+
 
 // // Set mongoose to leverage built in JavaScript ES6 Promises
 // // Connect to the Mongo DB
-// mongoose.Promise = Promise;
-// mongoose.connect(MONGODB_URI, {
-// });
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI, {
+});

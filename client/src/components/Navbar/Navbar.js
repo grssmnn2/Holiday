@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
+
 class Navbar extends Component {
   render() {
     return (
@@ -8,10 +10,22 @@ class Navbar extends Component {
             <div className="d-flex justify-content-end align-items-center">
               <ul className="list">
                 <li>
-                  <a href="#">Search For A Swap</a>
+                  <a href="/search">Search For A Swap</a>
                 </li>
                 <li>
-                  <a href="#">login / register</a>
+                {
+          this.props.authenticated
+            ? (
+              <div className="pt-navbar-group pt-align-right">
+                <Link className="pt-button pt-minimal pt-icon-log-out" to="/logout" aria-label="Log Out">Log Out</Link>
+              </div>
+            )
+            : (
+              <div className="pt-navbar-group pt-align-right">
+                <Link className="pt-button pt-intent-primary" to="/login">Register/Log In</Link>
+              </div>
+            )
+        }
                 </li>
               </ul>
             </div>
@@ -20,7 +34,7 @@ class Navbar extends Component {
 
         <nav className="navbar navbar-expand-lg  navbar-light bg-light">
           <div className="container">
-            <a className="navbar-brand" href="index.html" />
+            <a className="navbar-brand" to="/index" />
             <button
               className="navbar-toggler"
               type="button"
@@ -39,13 +53,13 @@ class Navbar extends Component {
             >
               <ul className="navbar-nav">
                 <li>
-                  <a href="#home">Home</a>
+                  <a href="/index">Home</a>
                 </li>
                 <li>
-                  <a href="#contact">Messages</a>
+                  <a href="/chat">Messages</a>
                 </li>
                 <li>
-                  <a href="profile.html">Profile</a>
+                  <a href="/profile">Profile</a>
                 </li>
               </ul>
             </div>
