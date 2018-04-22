@@ -1,5 +1,5 @@
 const router = require("express").Router();
 const messageController= require("../controllers/messageController")
-router.post("/message/:id",messageController.update)
-
+router.post("/message/",messageController.update)
+router.get("/historymessage/:sender/:receiver",messageController.findAll)
 module.exports=router;

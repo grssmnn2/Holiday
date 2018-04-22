@@ -1,4 +1,9 @@
 import React, { Component } from "react";
+import Chatbox from "./components/Chatbox"
+import Home from "./components/Home"
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
+
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Redirect } from 'react-router'
 import { Spinner, Card } from '@blueprintjs/core';
@@ -14,6 +19,10 @@ import Home from "./components/Pages/Home"
 import { app, base } from './base'
 import Chatbox from "./components/Chatbox"
 import "./App.css";
+import Imageuploader from "./components/Imageuploder"
+import Navbar from "./components/Navbar"
+import "./css/bootstrap.css"
+import "./css/main.css"
 import "./css/bootstrap.css"
 import "./css/main.css"
 import "./css/availability-calendar.css"
@@ -96,6 +105,7 @@ componentWillUnmount() {
       )
     }
     return (
+
       <div style={{maxWidth: "1160px", margin: "0 auto"}}>
         <Router>
           <div>
