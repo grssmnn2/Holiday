@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import io from "socket.io-client";
-import {Link} from "react-router-dom";
+import API from "../../utils/API";
 import "./Chatbox.css";
 class Chatbox extends Component {
   state = {
     sender:"",
-
     message: "",
     messages: [],
     socket: null,
@@ -38,7 +37,6 @@ class Chatbox extends Component {
       socket:socket,
       sender:name[num]
     });
-
     socket.emit("NEW_USERS", {sender:name[num]})
   };
   sendMessage = () => {
@@ -47,12 +45,32 @@ class Chatbox extends Component {
       sender: sender,
       receiver:receiver,
       messages: this.state.message
-    });
- 
+    },(data)=>{
+      console.log(data)
+      this.saveMessage({sender:data.name,receiver:data.receiver,message:data.messages})
+    }); 
   };
+  saveMessage =(message)=>{
+    API.storeMessage(message)
+    .then(res=>{
+      console.log("hello")
+    }).catch(err => console.log(err));
+  }
+  displayHistoryMessage = ()=>{
+    API.findhistoryMessage(this.state.sender,this.state.receiver)
+    .then(res =>{
+      let obj=[];
+      res.data.forEach(element => {
+          obj=[...obj,{name:element.sender, receiver:element.receiver,messages:element.message,time:element.created}]
+      });
+      this.obj
+      this.setState({
+        messages:obj
+      })
+    }).catch(err => console.log(err))
+  }
   render() {
     return (
-
         <aside
           id="sidebar_secondary"
           className="tabbed_sidebar ng-scope chat_sidebar dragme"
@@ -170,10 +188,11 @@ class Chatbox extends Component {
                 </span>
               </div>
               <span className="uk-input-group-addon">
-                <Link to={"/api/message/"} onClick={this.sendMessage} href="#">
+                <a onClick={this.sendMessage} href="#">
                   <i className="glyphicon glyphicon-send" />
-                </Link>
+                </a>
               </span>
+              <a onClick={this.displayHistoryMessage}>click this</a>
             </div>
           </div>
         </aside>

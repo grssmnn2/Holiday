@@ -102,23 +102,23 @@ class Home extends Component {
         email: signUpEmail,
         password: signUpPassword,
       }),
-    }).then(res => res.json())
-      .then(json => {
-        console.log('json', json);
-        if (json.success) {
-          this.setState({
-            signUpError: json.message,
-            isLoading: false,
-            signUpEmail: '',
-            signUpPassword: '',
-          });
-        } else {
-          this.setState({
-            signUpError: json.message,
-            isLoading: false,
-          });
-        }
-      });
+    }).then(res => console.log(res))
+      // .then(json => {
+      //   console.log('json', json);
+      //   if (json.success) {
+      //     this.setState({
+      //       signUpError: json.message,
+      //       isLoading: false,
+      //       signUpEmail: '',
+      //       signUpPassword: '',
+      //     });
+      //   } else {
+      //     this.setState({
+      //       signUpError: json.message,
+      //       isLoading: false,
+      //     });
+      //   }
+      // });
   }
 
   onSignIn() {
