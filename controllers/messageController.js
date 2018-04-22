@@ -1,4 +1,4 @@
-const db = require("../model");
+const db = require("../models");
 const update = { expire: new Date() };
 const options = { upsert: true, new: true, setDefaultsOnInsert: true };
 module.exports = {
