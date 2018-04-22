@@ -19,12 +19,14 @@ class Result extends Component {
 
     };
 
-    //  lifecycle method  - when component is mounted 
-    componentDidMount() {
-        console.log("component loaded successfully")
-        this.loadResults();
 
-    }
+    //  lifecylce mthod - axios req to DB 
+    //  to load search results before they
+    //  are rendered to the page 
+componentWillMount() {
+    this._loadResults();
+}
+
 
 loadResults = () => {
     API.getResults()
@@ -35,11 +37,20 @@ loadResults = () => {
 ).catch(err => console.log(err));
 };
 
+
+    //  lifecycle methods  - when component is mounted 
+    componentDidMount() {
+        console.log("component loaded successfully")
+        this.loadResults();
+
+    }
+
+
 //  methods for handling clicks/toggles/input changes 
 //  i.e. it'd be nice to enlarge the photo on hover, idk
 
 //  start render 
-//  components that are required above go here 
+
 //  return a div that contains search results on one side and map on the other 
 
 render() {
