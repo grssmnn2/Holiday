@@ -4,15 +4,12 @@
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
+    "@blueprintjs/core": "^2.2.1",
+    "antd": "^3.4.2",
     "axios": "^0.18.0",
     "firebase": "^4.13.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-<<<<<<< HEAD
-=======
-    "react-draggable": "^3.0.5",
-    "react-dropzone-s3-uploader": "^1.1.0",
->>>>>>> master
     "react-firebase-file-uploader": "^2.4.1",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.14",

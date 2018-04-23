@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import io from "socket.io-client";
 import API from "../../utils/API";
+import { Avatar } from 'antd';
+import 'antd/dist/antd.css';
 import "./Chatbox.css";
 class Chatbox extends Component {
   state = {
@@ -111,9 +113,11 @@ class Chatbox extends Component {
               {this.state.messages.map((mes, i) => {
                 return (
                   <div key={i} className={`chat_message_wrapper ${mes.name===this.state.sender?null:"chat_message_right"}` }>
+                    <Avatar style={{float:mes.name===this.state.sender?"left":"right"}}>{mes.name}</Avatar>
                     <div className="chat_user_avatar" />
                     <ul className="chat_message">
                       <li>
+                      
                         <p>
                           {mes.messages}
                           <span className="chat_message_time">{mes.time}</span>
@@ -143,6 +147,11 @@ class Chatbox extends Component {
                 <span className="uk-input-group-addon">
                   <a href="#">
                     <i className="fa fa-smile-o" />
+                  </a>
+                </span>
+                <span className="uk-input-group-addon">
+                  <a>
+                    <i className="fa fa-camera" />
                   </a>
                 </span>
                 <input
@@ -181,22 +190,11 @@ class Chatbox extends Component {
                     this.setState({ message: event.target.value })
                   }
                 />
-                <span className="uk-input-group-addon">
-                  <a href="#">
-                    <i className="fa fa-camera" />
-                  </a>
-                </span>
               </div>
               <span className="uk-input-group-addon">
-<<<<<<< HEAD
                 <a onClick={this.sendMessage} href="#">
                   <i className="glyphicon glyphicon-send" />
                 </a>
-=======
-                {/* <Link to={"/api/message/"} onClick={this.sendMessage} href="#">
-                  <i className="glyphicon glyphicon-send" />
-                </Link> */}
->>>>>>> master
               </span>
               <a onClick={this.displayHistoryMessage}>click this</a>
             </div>
