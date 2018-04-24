@@ -1,8 +1,10 @@
 //  external dependencies 
-import GoogleMapReact from 'google-map-react'
+import {withScriptjs, withGoogleMap, GoogleMap, Marker} from 'react-google-maps'
+
+import React, { Component } from 'react'
 //  code dependencies 
-// import default from '../Pages/Result/Result';
-import "./Map.css";
+// import {default} from '../Pages/Result/Result';
+// import "./Map.css"; commenting this out for now snce onload has some styles 
 
 //  map  goes here
     //  default props (dbl check exactly how this is set up)
@@ -13,18 +15,16 @@ import "./Map.css";
 //  then we return that match 
 //  then we just set state, rather than pass around props 
 //  we are just returning address and pins - that's it 
-class Map extends Component {
-    state = {
-        //  things go in state here 
-    }
 
-    render() {
-        return (
-            <div className='map'>
-            </div>
-        )
-    }
-}
+const MyMapComponent = withScriptjs(withGoogleMap((props) => 
+<GoogleMap 
+    defaultZoom={8}
+    defaultCenter={{lat: -34.297, lng: 150.644}} 
+>
+    {props.isMarkerShown && <Marker position={{lat: -34.397, lng: 150.644}} />}
+    </GoogleMap>
+))
+
 
 //  ok so the coordinates are going to be props that are passed down from the result component 
 //  and they would match the location / details that are provided in the card results 
@@ -35,5 +35,9 @@ class Map extends Component {
 //  initially thinking it's prolly from address 
 //  Js library that converts address into lat/lgn or maybe there is something easier there 
 
+//  and also determine where this would be rendered - I believe it would in the result page component. 
+//  so export here and export there? 
 
 
+
+export default Map;
