@@ -6,7 +6,7 @@ import { Col, Row, Container} from "../components/Grid"
 
 import Card from "../components/Card"
 //  import google maps  component here 
-// import Map from "../components/Map"
+import Map from "../components/Map"
 
  
 // using class method bc it's stateful 
