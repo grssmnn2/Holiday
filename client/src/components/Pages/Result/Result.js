@@ -23,6 +23,9 @@ class Result extends Component {
     //  lifecylce mthod - axios req to DB 
     //  to load search results before they
     //  are rendered to the page 
+    //  actually do this instead - loop thru array of lat and lng from 
+// the api calls from the databse (this is in result.js)
+//  and render the markers on the screen 
 componentWillMount() {
     this._loadResults();
 }
