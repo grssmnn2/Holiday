@@ -55,7 +55,7 @@ loadResults = () => {
 //  start render 
 
 //  return a div that contains search results on one side and map on the other 
-
+//  do the array.map here 
 render() {
     return (
         <div>
@@ -65,17 +65,17 @@ render() {
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={<div style={{ height: `400px` }} />}
             mapElement={<div style={{ height: `100%` }} />}
+
+            {...state.results.map(result=> (
+                <Card 
+                id={result.id}
+                key={result.id}
+                image={result.image}
+                />
+            ))}
             />
+           
         </div>
-        //  testing this in the app file for now, for the first iteration 
-        //  array function here to cycle thru all elements that were returned 
-        //  map thru array that is equal to matches.length 
-
-        // <Card />
-
-        // <Map /> 
-
-        //  then render that map 
     );
  }
 
