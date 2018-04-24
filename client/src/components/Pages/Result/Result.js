@@ -57,6 +57,12 @@ render() {
     return (
         <div>
             render result here 
+            <Map isMarkerShown
+            googleMapURL="https://maps.googleapis.com/maps/api/js?key=leavingBlankFoNow&v=3.exp&libraries=geometry,drawing,places"
+            loadingElement={<div style={{ height: `100%` }} />}
+            containerElement={<div style={{ height: `400px` }} />}
+            mapElement={<div style={{ height: `100%` }} />}
+            />
         </div>
         //  testing this in the app file for now, for the first iteration 
         //  array function here to cycle thru all elements that were returned 
