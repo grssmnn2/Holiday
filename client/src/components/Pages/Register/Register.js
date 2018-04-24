@@ -1,11 +1,16 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
+
+import Navbar from "../../Navbar"
+import Footer from "../../Footer"
+
 
 class Register extends Component {
     render() {
         return (
             <div>
-                <div className="container">
+                <Navbar/>
+            
+                <div className="container" style={{padding: '130px'}}>
                     <div className="row main"></div>
                     <div className="panel-heading"></div>
                     <div className="panel-title text-center">
@@ -75,6 +80,8 @@ class Register extends Component {
                 </form>
             </div>
             </div >
+
+            <Footer/>
             </div >
        
         )
