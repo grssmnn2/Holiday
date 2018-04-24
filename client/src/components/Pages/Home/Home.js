@@ -1,8 +1,14 @@
 import React, { Component } from "react";
+
+import Navbar from "../../Navbar"
+import Footer from "../../Footer"
+
+
 class Home extends Component {
     render() {
         return (
             <div>
+				<Navbar />
             <section className="banner-area relative" id="home">
                 <div className="overlay overlay-bg"></div>
                 <div className="container">
@@ -239,7 +245,7 @@ class Home extends Component {
 						 </div>
 						</div>	
 			</section>
-
+			<Footer/>
             </div>
         );
     }
