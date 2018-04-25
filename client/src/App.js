@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import Chatbox from "./components/Chatbox"
+import Chatbox from "./components/Chatbox"
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Redirect } from 'react-router'
 import { Spinner, Card } from '@blueprintjs/core';
@@ -7,7 +7,7 @@ import Login from "./components/Login"
 import Logout from "./components/Logout"
 import Footer from "./components/Footer"
 import Header from "./components/Header"
-import Result from "./components/Pages/Result"
+// import Result from "./components/Pages/Result"
 //  other static components go here too
 import { app, base } from './base'
 import "./App.css";
@@ -108,6 +108,8 @@ componentWillUnmount() {
                   return <Login setCurrentUser={this.setCurrentUser} {...props} />
                 }} />
                 <Route exact path="/logout" component={Logout} />
+                <Imageuploader />
+            <Chatbox />
                 <AuthenticatedRoute
                   exact
                   path="/chatbox"
