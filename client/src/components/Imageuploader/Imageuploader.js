@@ -13,7 +13,7 @@ const config = {
   messagingSenderId: "47685239684"
 };
 firebase.initializeApp(config);
-class Imageuploder extends Component {
+class Imageuploader extends Component {
   state = {
     username: "",
     avatar: "",
@@ -83,4 +83,4 @@ class Imageuploder extends Component {
   }
 }
 
-export default Imageuploder;
+export default Imageuploader;
