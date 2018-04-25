@@ -97,8 +97,13 @@ class App extends Component {
       )
     }
     return (
+<<<<<<< HEAD
 
       <div style={{ maxWidth: "1160px", margin: "0 auto" }}>
+=======
+      <div style={{maxWidth: "1160px", margin: "0 auto"}}>
+      <div>Testing for Deployment</div>
+>>>>>>> 11ffff39e77b69743a3836fda9845eb5487cfeba
         <Router>
           <div>
             <Navbar addSong={this.addSong} authenticated={this.state.authenticated} />
