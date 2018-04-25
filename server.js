@@ -37,7 +37,10 @@ io.on("connection",socket=>{
       time:getTime(new Date(Date.now()))
     }
     callback(msgObj)
-    users[data.receiver].emit("RECEIVE_MESSAGE", msgObj)
+    if(data.receiver in users){
+      users[data.receiver].emit("RECEIVE_MESSAGE", msgObj)
+    }
+    
     users[data.sender].emit("RECEIVE_MESSAGE",msgObj)
   })
   socket.on("disconnect",data =>{

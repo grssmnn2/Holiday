@@ -1,7 +1,4 @@
 module.exports={
     messages:require("./messages"),
-<<<<<<< HEAD
-    User:require("./User")
-=======
->>>>>>> master
+    friendlist:require("./friendlist")
 }

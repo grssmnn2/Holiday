@@ -1,8 +1,4 @@
 const db = require("../models");
-<<<<<<< HEAD
-=======
-const update = { expire: new Date() };
->>>>>>> master
 const options = { upsert: true, new: true, setDefaultsOnInsert: true };
 module.exports = {
   update: (req, res) => {
@@ -21,5 +17,11 @@ module.exports = {
     .then(dbmessages =>{
       res.json(dbmessages)
     })
+  },
+  findFriendList:(req,res) =>{
+    db.friendlist.find()
+  },
+  addFriend: (req,res) =>{
+  
   }
 };

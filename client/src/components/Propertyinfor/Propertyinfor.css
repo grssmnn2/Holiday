@@ -1,0 +1,24 @@
+.ant-carousel .slick-slide {
+    text-align: center;
+    height: 160px;
+    line-height: 160px;
+    background: #364d79;
+    overflow: hidden;
+  }
+  
+  .ant-carousel .slick-slide h3 {
+    color: #fff;
+  }
+  .ant-layout-sider{
+      min-height: 280px;
+  }
+  .anticon-star::before{
+    color:#e8e8e8!important;
+  }
+  .ant-rate-star-full .ant-rate-star-second .anticon-star::before{
+    color:gold!important
+  }
+  .ant-card-body{
+    min-height: 114px;
+  }
+

@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import io from "socket.io-client";
 import API from "../../utils/API";
 import { Avatar } from 'antd';
+import IoAndroidCall from "react-icons/lib/io/android-call";
+import IoClose from "react-icons/lib/io/close"
+import MdVideoCall from "react-icons/lib/md/video-call"
 import 'antd/dist/antd.css';
 import "./Chatbox.css";
 class Chatbox extends Component {
@@ -75,7 +78,7 @@ class Chatbox extends Component {
     return (
         <aside
           id="sidebar_secondary"
-          className="tabbed_sidebar ng-scope chat_sidebar dragme"
+          className={`tabbed_sidebar ng-scope chat_sidebar dragme ${this.props.name}`}
         >
           <div className="popup-head">
             <div className="popup-head-left pull-left">
@@ -83,10 +86,10 @@ class Chatbox extends Component {
             </div>
             <div className="popup-head-right pull-right">
               <button className="chat-header-button" type="button">
-                <i className="glyphicon glyphicon-facetime-video" />
+                <MdVideoCall style={{fontSize:25}}></MdVideoCall>
               </button>
               <button className="chat-header-button" type="button">
-                <i className="glyphicon glyphicon-earphone" />
+                <IoAndroidCall style={{fontSize:20}}></IoAndroidCall>
               </button>
 
               <button
@@ -95,7 +98,7 @@ class Chatbox extends Component {
                 className="chat-header-button pull-right"
                 type="button"
               >
-                <i className="glyphicon glyphicon-remove" />
+                <IoClose onClick={this.props.click} style={{fontSize:20}}></IoClose>
               </button>
             </div>
           </div>
@@ -113,7 +116,7 @@ class Chatbox extends Component {
               {this.state.messages.map((mes, i) => {
                 return (
                   <div key={i} className={`chat_message_wrapper ${mes.name===this.state.sender?null:"chat_message_right"}` }>
-                    <Avatar style={{float:mes.name===this.state.sender?"left":"right"}}>{mes.name}</Avatar>
+                    <Avatar style={{float:mes.name===this.state.sender?"left":"right"}}>{mes.name.charAt(0)}</Avatar>
                     <div className="chat_user_avatar" />
                     <ul className="chat_message">
                       <li>

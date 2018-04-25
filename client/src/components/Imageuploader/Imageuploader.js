@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import { Progress } from 'antd';
+import 'antd/dist/antd.css';
 import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
+import { CIRCLE } from "@blueprintjs/icons/lib/esm/generated/iconNames";
 const config = {
   apiKey: "AIzaSyBu2cINM-nJKIbpBhhz4s0lN9-54kCsRqo",
   authDomain: "holiday-b82f4.firebaseapp.com",
@@ -10,7 +13,7 @@ const config = {
   messagingSenderId: "47685239684"
 };
 firebase.initializeApp(config);
-class Imageuploader extends Component {
+class Imageuploder extends Component {
   state = {
     username: "",
     avatar: "",
@@ -42,6 +45,7 @@ class Imageuploader extends Component {
     return (
       <div>
         <form>
+          
         <label style={{backgroundColor: 'steelblue', color: 'white', border: 'black', padding: 10, margin: 5, borderRadius: 4}}>
             Username:
           
@@ -54,7 +58,7 @@ class Imageuploader extends Component {
           </label>
         <label style={{backgroundColor: 'steelblue', color: 'white', border: 'black', padding: 10, margin: 5, borderRadius: 4, pointer: 'cursor'}}>
             Avatar:
-          {this.state.isUploading && <p>Progress: {this.state.progress} %</p>}
+          {this.state.isUploading && <Progress width={50} percent={this.state.progress} type={CIRCLE}></Progress>}
           {/* {this.state.avatarURL && <img src={this.state.avatarURL} />} */}
           {this.state.avatarURL.map((url,i) =>{
             return (<img alt="" key={i} style={{width:100+'px', height:110+'px'}} src={url}/>)
@@ -79,4 +83,4 @@ class Imageuploader extends Component {
   }
 }
 
-export default Imageuploader;
+export default Imageuploder;
