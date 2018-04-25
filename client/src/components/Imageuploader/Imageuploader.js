@@ -4,15 +4,7 @@ import 'antd/dist/antd.css';
 import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
 import { CIRCLE } from "@blueprintjs/icons/lib/esm/generated/iconNames";
-const config = {
-  apiKey: "AIzaSyBu2cINM-nJKIbpBhhz4s0lN9-54kCsRqo",
-  authDomain: "holiday-b82f4.firebaseapp.com",
-  databaseURL: "https://holiday-b82f4.firebaseio.com",
-  projectId: "holiday-b82f4",
-  storageBucket: "holiday-b82f4.appspot.com",
-  messagingSenderId: "47685239684"
-};
-firebase.initializeApp(config);
+import {app, base} from "../../base"
 class Imageuploder extends Component {
   state = {
     username: "",
