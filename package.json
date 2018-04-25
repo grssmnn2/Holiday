@@ -24,6 +24,7 @@
     "google-map-react": "^0.34.0",
     "mongoose": "^5.0.15",
     "path": "^0.12.7",
+    "react-google-maps": "^9.4.5",
     "socket.io": "^2.1.0"
   },
   "repository": "https://github.com/grssmnn2/Holiday.git"

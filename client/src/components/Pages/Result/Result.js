@@ -27,22 +27,22 @@ class Result extends Component {
     this._loadResults()
   }
 
-  loadResults = () => {
-    API.getResults()
-      .then(res =>
-        //  based on DB schema and state from above
-        //  these get passed as props to the card whwere we show results
-        this.setState({
-          results: res.data,
-          title: "",
-          details: "",
-          review: "",
-          image: "",
+  // loadResults = () => {
+  //   API.getResults()
+  //     .then(res =>
+  //       //  based on DB schema and state from above
+  //       //  these get passed as props to the card whwere we show results
+  //       this.setState({
+  //         results: res.data,
+  //         title: "",
+  //         details: "",
+  //         review: "",
+  //         image: "",
 
-        })
-      )
-      .catch(err => console.log(err))
-  }
+  //       })
+  //     )
+  //     .catch(err => console.log(err))
+  // }
 
   //  lifecycle methods  - when component is mounted
   componentDidMount() {
@@ -61,15 +61,14 @@ class Result extends Component {
   render() {
     return (
       <div>
-        <Map
-          isMarkerShown
-          googleMapURL="https://maps.googleapis.com/maps/api/js?key=leavingBlankFoNow&v=3.exp&libraries=geometry,drawing,places"
+        < MyMapComponent isMarkerShown
+          googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZ0UrBlp4cZvjyvOfJthUB1jPyj1X4pn4&v=3.exp&libraries=geometry,drawing,places"
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `400px` }} />}
           mapElement={<div style={{ height: `100%` }} />}
-          {...state.results.map(result => (
-            <Card id={result.id} key={result.id} image={result.image} />
-          ))}
+          // {...state.results.map(result => (
+          //   <Card id={result.id} key={result.id} image={result.image} />
+          // ))}
         />
       </div>
     )
