@@ -30,7 +30,6 @@
     "react-transition-group": "^2.3.1",
     "socket.io": "^2.1.0"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/grssmnn2/Holiday.git"
