@@ -1,25 +1,17 @@
 import React, { Component } from "react";
-import Chatbox from "./components/Chatbox"
-import Home from "./components/Home"
-import { BrowserRouter as Router, Route } from "react-router-dom";
-
-
+// import Chatbox from "./components/Chatbox"
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Redirect } from 'react-router'
 import { Spinner, Card } from '@blueprintjs/core';
 import Login from "./components/Login"
 import Logout from "./components/Logout"
-import Navbar from "./components/Navbar"
-// import Imageuploader from "./components/Imageuploder"
 import Footer from "./components/Footer"
-import Home from "./components/Pages/Home"
-// import Header from "./components/Header"
-// import Result from "./components/pages/Result"
+import Header from "./components/Header"
+import Result from "./components/Pages/Result"
 //  other static components go here too
 import { app, base } from './base'
-import Chatbox from "./components/Chatbox"
 import "./App.css";
-import Imageuploader from "./components/Imageuploder"
+import Imageuploader from "./components/Imageuploader"
 import Navbar from "./components/Navbar"
 import "./css/bootstrap.css"
 import "./css/main.css"
@@ -122,7 +114,7 @@ componentWillUnmount() {
                   authenticated={this.state.authenticated}
                   component={Card}
                   cards={this.state.card} />
-                <ShowRoute
+                {/* <ShowRoute
                   path="/chatbox"
                   component={Chatbox}
                   authenticated={this.state.authenticated}
@@ -130,7 +122,7 @@ componentWillUnmount() {
                   param=""
                   // updateSong={this.updateSong}
                   // items={this.state.songs} 
-                  />
+                  /> */}
               </div>
             </div>
           </div>
