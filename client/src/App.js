@@ -28,30 +28,30 @@ import "./css/nice-select.css"
 import "./css/owl.carousel.css"
 import { truncate } from "fs";
 
-function AuthenticatedRoute({component: Component, authenticated, ...rest}) {
+function AuthenticatedRoute({ component: Component, authenticated, ...rest }) {
   return (
     <Route
       {...rest}
       render={(props) => authenticated === true
-          ? <Component {...props} {...rest} />
-          : <Redirect to={{pathname: '/login', state: {from: props.location}}} /> } />
+        ? <Component {...props} {...rest} />
+        : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />} />
   )
 }
 
-function ShowRoute({component: Component, items, param, ...rest}) {
+function ShowRoute({ component: Component, items, param, ...rest }) {
   return (
     <Route
       {...rest}
-      render={({match, ...props}) => {
+      render={({ match, ...props }) => {
         if (rest.requireAuth === true && !rest.authenticated) {
           return (
-            <Redirect to={{pathname: '/login', state: {from: props.location}}} />
+            <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
           )
         }
 
         const item = items[match.params[param]]
         if (item) {
-          return <Component item={item} {...props} match={match} {...rest}/>
+          return <Component item={item} {...props} match={match} {...rest} />
         } else {
           return <h1>Not Found</h1>
         }
@@ -61,55 +61,55 @@ function ShowRoute({component: Component, items, param, ...rest}) {
 }
 
 class App extends Component {
-constructor(){
-  super();
-  this.state = {
-    authenticated: false,
-    loading: true
-  }
-}
-componentWillMount() {
-  this.removeAuthListener = app.auth().onAuthStateChanged((user) => {
-    if (user) {
-      this.setState({
-        authenticated: true,
-        loading: false
-      })
-    } else {
-      this.setState({
-        authenticated: false,
-        loading: false
-      })
+  constructor() {
+    super();
+    this.state = {
+      authenticated: false,
+      loading: true
     }
-  })
-}
-componentWillUnmount() {
-  this.removeAuthListener();
-}
+  }
+  componentWillMount() {
+    this.removeAuthListener = app.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({
+          authenticated: true,
+          loading: false
+        })
+      } else {
+        this.setState({
+          authenticated: false,
+          loading: false
+        })
+      }
+    })
+  }
+  componentWillUnmount() {
+    this.removeAuthListener();
+  }
 
   render() {
-    if (this.state.loading === true){
-      return(
-        <div style = {{ textAlign: "center", position: "absolute", top: "25%", left: "50%"}}>
+    if (this.state.loading === true) {
+      return (
+        <div style={{ textAlign: "center", position: "absolute", top: "25%", left: "50%" }}>
           <h3> Loading</h3>
           <Spinner />
-          </div>
+        </div>
       )
     }
     return (
-
       <div style={{maxWidth: "1160px", margin: "0 auto"}}>
+      <div>Testing for Deployment</div>
         <Router>
           <div>
             <Navbar addSong={this.addSong} authenticated={this.state.authenticated} />
-            <div className="main-content" style={{padding: "1em"}}>
+            <div className="main-content" style={{ padding: "1em" }}>
               <div className="workspace">
                 <Route exact path="/login" render={(props) => {
                   return <Login setCurrentUser={this.setCurrentUser} {...props} />
                 }} />
                 <Route exact path="/logout" component={Logout} />
                 <Imageuploader />
-            <Chatbox />
+                {/* <Chatbox /> */}
                 <AuthenticatedRoute
                   exact
                   path="/chatbox"

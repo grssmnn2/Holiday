@@ -4,6 +4,8 @@ import Navbar from "../../Navbar"
 import Footer from "../../Footer"
 // import Imageuploader from "../../ImageUploader"
 
+// import Imageuploader from "../../ImageUploader"
+
 
 class Register extends Component {
     render() {
@@ -69,8 +71,58 @@ class Register extends Component {
                                 <span className="input-group-addon"><i className="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                                 <input type="address" className="form-control" name="confirm" id="confirm" placeholder="Enter Your Address" />
                             </div>
+
+                        </div>
+
+                    <div className="form-group">
+                         <label for="confirm" className="cols-sm-2 control-label">Pets</label>
+                         <div className="cols-sm-10">
+                         <div className="input-group">
+                             <span className="input-group-addon"><i className="fa fa-bug fa-lg" aria-hidden="true"></i></span>
+                             <select className="form-control">
+                                <option>None</option>
+                                 <option>Dog</option>
+                                 <option>Cat</option>
+                                  <option>Small Furry</option>
+                                 <option>Reptile</option>
+                                 <option>Bird</option>
+                             </select>
+                         </div>
+                         </div>
+                   </div>
+
+                    <div className="form-group">
+                      <label for="confirm" className="cols-sm-2 control-label">Number of Bathrooms</label>
+                      <div className="cols-sm-10">
+                       <div className="input-group">
+                             <span className="input-group-addon"><i className="fa fa-bath fa-lg" aria-hidden="true"></i></span>
+                            <select class="form-control">
+                                <option>0</option>
+                                <option>1</option>
+                                 <option>2</option>
+                                 <option>3+</option>
+                             </select>
+                      </div>
+                     </div>
+                    </div>
+
+                    <div className="form-group">
+                     <label for="confirm" className="cols-sm-2 control-label">Wifi?</label>
+                     <div className="cols-sm-10">
+                        <div className="input-group">
+                        <span className="input-group-addon"><i className="fa fa-wifi fa-lg" aria-hidden="true"></i></span>
+                         <select class="form-control">
+                            <option>Yes</option>
+                            <option>No</option>
+                         </select>
                         </div>
                     </div>
+                    </div>
+
+                
+
+
+                    {/* <Imageuploader/> */}
 
                         <div className="form-group">
                          <label for="confirm" className="cols-sm-2 control-label">Address 2</label>
