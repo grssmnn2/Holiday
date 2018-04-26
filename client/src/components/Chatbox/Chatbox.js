@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import io from "socket.io-client";
-import {Link} from "react-router-dom";
+import API from "../../utils/API";
+import { Avatar } from 'antd';
+import IoAndroidCall from "react-icons/lib/io/android-call";
+import IoClose from "react-icons/lib/io/close"
+import MdVideoCall from "react-icons/lib/md/video-call"
+import 'antd/dist/antd.css';
 import "./Chatbox.css";
 class Chatbox extends Component {
   state = {
     sender:"",
-
     message: "",
     messages: [],
     socket: null,
@@ -38,7 +42,6 @@ class Chatbox extends Component {
       socket:socket,
       sender:name[num]
     });
-
     socket.emit("NEW_USERS", {sender:name[num]})
   };
   sendMessage = () => {
@@ -47,15 +50,35 @@ class Chatbox extends Component {
       sender: sender,
       receiver:receiver,
       messages: this.state.message
-    });
- 
+    },(data)=>{
+      console.log(data)
+      this.saveMessage({sender:data.name,receiver:data.receiver,message:data.messages})
+    }); 
   };
+  saveMessage =(message)=>{
+    API.storeMessage(message)
+    .then(res=>{
+      console.log("hello")
+    }).catch(err => console.log(err));
+  }
+  displayHistoryMessage = ()=>{
+    API.findhistoryMessage(this.state.sender,this.state.receiver)
+    .then(res =>{
+      let obj=[];
+      res.data.forEach(element => {
+          obj=[...obj,{name:element.sender, receiver:element.receiver,messages:element.message,time:element.created}]
+      });
+      this.obj
+      this.setState({
+        messages:obj
+      })
+    }).catch(err => console.log(err))
+  }
   render() {
     return (
-
         <aside
           id="sidebar_secondary"
-          className="tabbed_sidebar ng-scope chat_sidebar dragme"
+          className={`tabbed_sidebar ng-scope chat_sidebar dragme ${this.props.name}`}
         >
           <div className="popup-head">
             <div className="popup-head-left pull-left">
@@ -63,10 +86,10 @@ class Chatbox extends Component {
             </div>
             <div className="popup-head-right pull-right">
               <button className="chat-header-button" type="button">
-                <i className="glyphicon glyphicon-facetime-video" />
+                <MdVideoCall style={{fontSize:25}}></MdVideoCall>
               </button>
               <button className="chat-header-button" type="button">
-                <i className="glyphicon glyphicon-earphone" />
+                <IoAndroidCall style={{fontSize:20}}></IoAndroidCall>
               </button>
 
               <button
@@ -75,7 +98,7 @@ class Chatbox extends Component {
                 className="chat-header-button pull-right"
                 type="button"
               >
-                <i className="glyphicon glyphicon-remove" />
+                <IoClose onClick={this.props.click} style={{fontSize:20}}></IoClose>
               </button>
             </div>
           </div>
@@ -93,9 +116,11 @@ class Chatbox extends Component {
               {this.state.messages.map((mes, i) => {
                 return (
                   <div key={i} className={`chat_message_wrapper ${mes.name===this.state.sender?null:"chat_message_right"}` }>
+                    <Avatar style={{float:mes.name===this.state.sender?"left":"right"}}>{mes.name.charAt(0)}</Avatar>
                     <div className="chat_user_avatar" />
                     <ul className="chat_message">
                       <li>
+                      
                         <p>
                           {mes.messages}
                           <span className="chat_message_time">{mes.time}</span>
@@ -125,6 +150,11 @@ class Chatbox extends Component {
                 <span className="uk-input-group-addon">
                   <a href="#">
                     <i className="fa fa-smile-o" />
+                  </a>
+                </span>
+                <span className="uk-input-group-addon">
+                  <a>
+                    <i className="fa fa-camera" />
                   </a>
                 </span>
                 <input
@@ -163,17 +193,13 @@ class Chatbox extends Component {
                     this.setState({ message: event.target.value })
                   }
                 />
-                <span className="uk-input-group-addon">
-                  <a href="#">
-                    <i className="fa fa-camera" />
-                  </a>
-                </span>
               </div>
               <span className="uk-input-group-addon">
-                {/* <Link to={"/api/message/"} onClick={this.sendMessage} href="#">
+                <a onClick={this.sendMessage} href="#">
                   <i className="glyphicon glyphicon-send" />
-                </Link> */}
+                </a>
               </span>
+              <a onClick={this.displayHistoryMessage}>click this</a>
             </div>
           </div>
         </aside>

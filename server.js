@@ -6,9 +6,6 @@ const app = express();
 const routes=require("./routes")
 const mongoose = require('mongoose');
 const users={};
-const aws=require("aws-sdk");
-console.log(process.env.PORT)
-// Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
@@ -29,7 +26,8 @@ io.on("connection",socket=>{
     socket.name=data.sender
     users[socket.name]=socket
   })
-  socket.on("SEND_MESSAGE", (data) =>{
+  socket.on("SEND_MESSAGE", (data,callback) =>{
+   
     console.log(data.sender)
     console.log(data.receiver)
     const msgObj={
@@ -38,25 +36,26 @@ io.on("connection",socket=>{
       messages:data.messages,
       time:getTime(new Date(Date.now()))
     }
-    users[data.receiver].emit("RECEIVE_MESSAGE", msgObj)
+    callback(msgObj)
+    if(data.receiver in users){
+      users[data.receiver].emit("RECEIVE_MESSAGE", msgObj)
+    }
+    
     users[data.sender].emit("RECEIVE_MESSAGE",msgObj)
   })
   socket.on("disconnect",data =>{
     if(!socket.name) return;
     delete users[socket.name];
-    console.log(users)
   })
 })
 
 
-
 // // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-// const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/holiday";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/holiday";
+
 
 // // Set mongoose to leverage built in JavaScript ES6 Promises
 // // Connect to the Mongo DB
-// mongoose.Promise = Promise;
-// mongoose.connect(MONGODB_URI, {
-// });
-
-
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI, {
+});

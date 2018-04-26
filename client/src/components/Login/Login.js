@@ -7,10 +7,10 @@ import { app } from '../../base'
 const loginStyles = {
     width: "90%",
     maxWidth: "315px",
-    margin: "20px auto",
+    margin: "130px auto",
     border: "1px solid #ddd",
     borderRadius: "5px",
-    padding: "10px"
+    padding: "90px"
 };
 
 class Login extends Component {

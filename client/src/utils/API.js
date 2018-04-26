@@ -1,5 +1,7 @@
-import axios from "aixos";
+import axios from "axios";
 
 export default {
-    storeMessage: (message,id) => axios.post("/api/message/"+id,message)
+    storeMessage: (message) => axios.post("/api/message/",message),
+    findhistoryMessage:(sender,receiver) => axios.get("/api/historymessage/"+sender+"/"+receiver),
+    retrieveFriendList:(user) => axios.get("api/friendlist/"+user)
 }

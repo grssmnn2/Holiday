@@ -2,16 +2,19 @@ import React, { Component } from "react";
 
 import Navbar from "../../Navbar"
 import Footer from "../../Footer"
+
 // import Imageuploader from "../../ImageUploader"
 
 
 class Register extends Component {
     render() {
         return (
-         <div>
-             {/* <Navbar/> */}
+
+            <div>
+                <Navbar/>
             
-         <div className="container" style={{padding: '130px'}}>
+                <div className="container" style={{padding: '130px'}}>
+
                     <div className="row main"></div>
                     <div className="panel-heading"></div>
                     <div className="panel-title text-center">

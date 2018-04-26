@@ -120,7 +120,7 @@
     height: 466px;
     z-index: 9999;
     position: fixed;
-    right: 70px;
+    right: 50%;
     width: 300px;
     font-family: 'Open Sans', sans-serif;
   }
