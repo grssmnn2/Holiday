@@ -21,4 +21,6 @@
   .ant-card-body{
     min-height: 114px;
   }
-
+ .ant-calendar-picker-icon{
+  right:1px;
+}

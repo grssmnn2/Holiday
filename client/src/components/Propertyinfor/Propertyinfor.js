@@ -10,11 +10,18 @@ import MdHotTub from "react-icons/lib/md/hot-tub";
 import IoAndroidPeople from "react-icons/lib/io/android-people";
 import MdTv from "react-icons/lib/md/tv";
 import IoIosTelephone from "react-icons/lib/io/ios-telephone";
+import IoAndroidCheckmarkCircle from  "react-icons/lib/io/android-checkmark-circle";
+import GoLightBulb from "react-icons/lib/go/light-bulb"
 import { Card, Icon, Avatar } from "antd";
 import { message, Button } from "antd";
+import { DatePicker } from 'antd';
+import moment from 'moment';
+import Billingform from "../Billingform"
 import "./Propertyinfor.css";
 const { Meta } = Card;
 const { Header, Content, Sider, Footer } = Layout;
+const { MonthPicker, RangePicker } = DatePicker;
+const dateFormat = 'YYYY/MM/DD';
 class Propertyinfor extends Component {
   state = {
     value: 3
@@ -76,6 +83,7 @@ class Propertyinfor extends Component {
                 <IoIosTelephone ></IoIosTelephone>
               ]}
             >
+              <div><a style={{fontWeight:"bold"}}>Verified User</a><IoAndroidCheckmarkCircle  style={{fontSize:30,color:"green"}}></IoAndroidCheckmarkCircle></div>
               <Meta
                 // avatar={
                 //   <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
@@ -92,7 +100,21 @@ class Propertyinfor extends Component {
           </Content>
         </Layout>
         <Layout>
-          <Content style={{ paddingLeft: 200 + "px" }}>
+          <Sider style={{border:"0.5px solid #e8e8e8",background:"white"}}>
+          <hr style={{border: "1px solid #e8e8e8",marginTop: 10+"%"}}/>
+          <div style={{textAlign:"center",marginTop: 35+"%"}}>
+            <p>Start your trip from here! <GoLightBulb style={{color:"gold", fontSize:20}}></GoLightBulb></p>
+            <RangePicker
+            defaultValue={[moment('2015/01/01', dateFormat), moment('2015/01/01', dateFormat)]}
+            format={dateFormat}
+            />
+            <Billingform ></Billingform>
+            {/* <Button style={{border:"none", backgroundColor:"#FF5A5F",marginTop: 10+"%"}} type="primary" htmlType="submit" className="login-form-button">
+              Book
+            </Button> */}
+          </div>
+          </Sider>
+          <Content>
             <div style={{ background: "#fff", padding: 24, minHeight: 280 }}>
               <IoIosPaw style={{fontSize:30}}></IoIosPaw>
               <IoWifi style={{fontSize:30}} />
