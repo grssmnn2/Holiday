@@ -1,5 +1,3 @@
-“start”: “concurrently \“./node_modules/.bin/nodemon\” \“npm run client\“”, to “concurrently \“nodemon server.js\” \“npm run client\” \“node server.js\“”
-
 {
   "name": "mern",
   "version": "1.0.0",
