@@ -22,8 +22,10 @@
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "google-map-react": "^0.34.0",
+    "lodash": "^4.17.10",
     "mongoose": "^5.0.15",
     "path": "^0.12.7",
+    "react-geocode": "^0.0.7",
     "react-google-maps": "^9.4.5",
     "socket.io": "^2.1.0"
   },
