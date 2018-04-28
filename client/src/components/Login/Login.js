@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { Toaster, Intent } from '@blueprintjs/core'
-
 import { app } from '../../base'
-
+import Register from "../Pages/Register"
+import "./login.css"
 const loginStyles = {
-    width: "90%",
-    maxWidth: "315px",
+    width: "90%",    
     margin: "130px auto",
-    border: "1px solid #ddd",
-    borderRadius: "5px",
-    padding: "90px"
 };
 
 class Login extends Component {
@@ -18,7 +14,9 @@ class Login extends Component {
         super()
         this.authWithEmailPassword = this.authWithEmailPassword.bind(this)
         this.state = {
-            redirect: false
+            redirect: false,
+            Name:"register"
+
         }
     }
 
@@ -31,7 +29,14 @@ class Login extends Component {
         app.auth().fetchProvidersForEmail(email)
             .then((providers) => {
                 if (providers.length === 0) {
-                    // create user
+                    // create user 
+                    // this.setState({
+                    //     className:"null"
+                    // })
+                    this.setState({
+                        Name:"null"
+                    })
+                    
                     return app.auth().createUserWithEmailAndPassword(email, password)
                 } else {
                     // sign user in
@@ -57,9 +62,10 @@ class Login extends Component {
         }
         return (
             <div style={loginStyles}>
+                <Register Name={this.state.Name}/>
                 <Toaster ref={(element) => { this.toaster = element }} />
                 <form onSubmit={(event) => this.authWithEmailPassword(event)}>
-                    <div style={{ marginBottom: "10px" }} className="pt-callout pt-icon-info-sign">
+                    <div className="pt-callout pt-icon-info-sign">
                         <h5>Note</h5>
                         If you don't have an account already, this form will create your account.
           </div>
