@@ -63,22 +63,42 @@ function ShowRoute({ component: Component, items, param, ...rest }) {
 class App extends Component {
   constructor() {
     super();
+    this.setCurrentUser = this.setCurrentUser.bind(this);
     this.state = {
       authenticated: false,
-      loading: true
+      loading: true,
+      currentUser: null
     }
   }
+
+  setCurrentUser(user) {
+    if (user) {
+      this.setState({
+        currentUser: user,
+        authenticated: true
+      })
+    } else {
+      this.setState({
+        currentUser: null,
+        authenticated: false
+      })
+    }
+  }
+
   componentWillMount() {
     this.removeAuthListener = app.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({
           authenticated: true,
-          loading: false
+          loading: false,
+          currentUser: user
         })
       } else {
         this.setState({
           authenticated: false,
-          loading: false
+          loading: false,
+          currentUser: null
+
         })
       }
     })
@@ -97,25 +117,24 @@ class App extends Component {
       )
     }
     return (
-      <div style={{maxWidth: "1160px", margin: "0 auto"}}>
-      <div>Testing for Deployment</div>
+      <div style={{ maxWidth: "1160px", margin: "0 auto" }}>
+        <div>Testing for Deployment</div>
         <Router>
           <div>
-            <Navbar addSong={this.addSong} authenticated={this.state.authenticated} />
-            <div className="main-content" style={{ padding: "1em" }}>
+            <Navbar authenticated={this.state.authenticated} />
+            <div className="main-content" style={{ padding: "5em" }}>
               <div className="workspace">
                 <Route exact path="/login" render={(props) => {
                   return <Login setCurrentUser={this.setCurrentUser} {...props} />
                 }} />
                 <Route exact path="/logout" component={Logout} />
-                <Imageuploader />
                 {/* <Chatbox /> */}
                 <AuthenticatedRoute
                   exact
-                  path="/chatbox"
+                  path="/home"
                   authenticated={this.state.authenticated}
-                  component={Card}
-                  cards={this.state.card} />
+                  component={Imageuploader}
+                  email={this.state.currentUser.email} />
                 {/* <ShowRoute
                   path="/chatbox"
                   component={Chatbox}
