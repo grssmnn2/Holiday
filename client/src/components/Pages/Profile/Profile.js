@@ -8,7 +8,7 @@ class Profile extends Component {
     render() {
         return (
             <div>
-                <Navbar/>
+             
 
             <div className="container pt-30">
 				<div className="row height align-items-center justify-content-center">
@@ -22,7 +22,7 @@ class Profile extends Component {
 			</div>
 
 
-            <Footer/>
+       
             </div >
        
         )
