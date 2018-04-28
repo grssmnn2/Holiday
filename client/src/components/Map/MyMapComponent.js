@@ -11,10 +11,15 @@ const markers=[{lat: -34.397, lng: 150.644},
 
     //  testing to get lat and lng from address
     //  so this console logs it - next step -render to the screen 
-    //  this is HI 21.2868645 -157.8254727
-    //this is NY 40.9949525 -72.2926543
+    //  get input from form 
+    //  pass input into that function
+    //  this is HI: 21.2868645 -157.8254727
+    //this is NY: 40.9949525 -72.2926543
 
-   Geocode.fromAddress("181 Madison St, Sag Harbor, NY").then(
+//  refactor into function that takes an object (this would be part of the component / which would be a class component )
+//  address would be from parent component / just changing this to local variable for now 
+let address = "181 Madison St, Sag Harbor, NY";
+   Geocode.fromAddress(address).then(
        response => {
            const {lat, lng} = response.results[0].geometry.location;
           console.log(lat, lng);
@@ -23,6 +28,7 @@ const markers=[{lat: -34.397, lng: 150.644},
            console.error(error);
        }
    );
+
 
 const MyMapComponent = withScriptjs(withGoogleMap((props) => 
 <GoogleMap 
