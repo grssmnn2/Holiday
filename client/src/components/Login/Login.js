@@ -15,7 +15,8 @@ class Login extends Component {
         this.authWithEmailPassword = this.authWithEmailPassword.bind(this)
         this.state = {
             redirect: false,
-            Name:"register"
+            Name:"register",
+            isLogin:true
 
         }
     }
@@ -34,7 +35,7 @@ class Login extends Component {
                     //     className:"null"
                     // })
                     this.setState({
-                        Name:"null"
+                        isLogin:false
                     })
                     
                     return app.auth().createUserWithEmailAndPassword(email, password)
@@ -56,29 +57,31 @@ class Login extends Component {
     }
     render() {
         const { from } = this.props.location.state || { from: { pathname: '/' } }
-
+        const display=this.state.isLogin?<div style={loginStyles}>
+                
+        <Toaster ref={(element) => { this.toaster = element }} />
+        <form onSubmit={(event) => this.authWithEmailPassword(event)}>
+            <div className="pt-callout pt-icon-info-sign">
+                <h5>Note</h5>
+                If you don't have an account already, this form will create your account.
+  </div>
+            <label className="pt-label">
+                Email
+    <input style={{ width: "100%" }} className="pt-input" name="email" type="email" ref={(input) => { this.emailInput = input }} placeholder="Email"></input>
+            </label>
+            <label className="pt-label">
+                Password
+    <input style={{ width: "100%" }} className="pt-input" name="password" type="password" ref={(input) => { this.passwordInput = input }} placeholder="Password"></input>
+            </label>
+            <input style={{ width: "100%" }} type="submit" className="pt-button pt-intent-primary" value="Log In"></input>
+        </form>
+    </div>:<div><Register/> <Toaster ref={(element) => { this.toaster = element }} /></div>
         if (this.state.redirect === true) {
             return <Redirect to={from} />
         }
         return (
-            <div style={loginStyles}>
-                <Register Name={this.state.Name}/>
-                <Toaster ref={(element) => { this.toaster = element }} />
-                <form onSubmit={(event) => this.authWithEmailPassword(event)}>
-                    <div className="pt-callout pt-icon-info-sign">
-                        <h5>Note</h5>
-                        If you don't have an account already, this form will create your account.
-          </div>
-                    <label className="pt-label">
-                        Email
-            <input style={{ width: "100%" }} className="pt-input" name="email" type="email" ref={(input) => { this.emailInput = input }} placeholder="Email"></input>
-                    </label>
-                    <label className="pt-label">
-                        Password
-            <input style={{ width: "100%" }} className="pt-input" name="password" type="password" ref={(input) => { this.passwordInput = input }} placeholder="Password"></input>
-                    </label>
-                    <input style={{ width: "100%" }} type="submit" className="pt-button pt-intent-primary" value="Log In"></input>
-                </form>
+            <div>
+                {display}
             </div>
         )
     }
