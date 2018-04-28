@@ -79,7 +79,7 @@ class Propertyinfor extends Component {
               }
               actions={[
                 <IoAndroidPersonAdd onClick={this.success} ></IoAndroidPersonAdd>,
-                <IoEmail></IoEmail>,
+                <a href={`mailto:eddiezhaor@gmail.com`}><IoEmail></IoEmail></a>,
                 <IoIosTelephone ></IoIosTelephone>
               ]}
             >
