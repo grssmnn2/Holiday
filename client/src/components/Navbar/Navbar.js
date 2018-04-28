@@ -5,7 +5,7 @@ class Navbar extends Component {
   render() {
     return (
       <header className="default-header">
-        <div className="menutop-wrap">
+        {/* <div className="menutop-wrap">
           <div className="menu-top container">
             <div className="d-flex justify-content-end align-items-center">
               <ul className="list">
@@ -30,7 +30,7 @@ class Navbar extends Component {
               </ul>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <nav className="navbar navbar-expand-lg  navbar-light bg-light">
           <div className="container">
@@ -52,15 +52,27 @@ class Navbar extends Component {
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav">
-                <li>
-                  <a href="/index">Home</a>
-                </li>
-                <li>
-                  <a href="/chat">Messages</a>
-                </li>
-                <li>
-                  <a href="/profile">Profile</a>
-                </li>
+                
+                  <Link to="/index">Home</Link>
+                
+                
+                  <Link to="/chLinkt">Messages</Link>
+                
+                
+                  <Link to="/profile">Profile</Link>
+                
+
+                  {this.props.authenticated
+                  ? (
+                <Link to="/logout" >Log Out</Link>
+            )
+            : (
+                <Link to="/login">Register/Log In</Link>
+            )
+        }
+                
+                  <Link to="/index">Home</Link>
+                
               </ul>
             </div>
           </div>

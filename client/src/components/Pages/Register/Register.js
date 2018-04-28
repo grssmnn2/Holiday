@@ -5,7 +5,7 @@ import Footer from "../../Footer"
 class Register extends Component {
     render() {
         return (
-         <div>
+         <div className={this.props.Name} >
              {/* <Navbar/> */}
             
          <div className="container" style={{padding: '130px'}}>
@@ -19,7 +19,7 @@ class Register extends Component {
             <div className="main-login main-center">
                 <form className="form-horizontal" method="post" action="#">
                     <div className="form-group">
-                        <label for="name" className="cols-sm-2 control-label">Your Name</label>
+                        <label htmlFor="name" className="cols-sm-2 control-label">Your Name</label>
                         <div className="cols-sm-10">
                             <div className="input-group">
                                 <span className="input-group-addon"><i className="fa fa-user fa" aria-hidden="true"></i></span>
@@ -27,8 +27,8 @@ class Register extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="form-group">
-                        <label for="email" className="cols-sm-2 control-label">Your Email</label>
+                    {/* <div className="form-group">
+                        <label htmlFor="email" className="cols-sm-2 control-label">Your Email</label>
                         <div className="cols-sm-10">
                             <div className="input-group">
                                 <span className="input-group-addon"><i className="fa fa-envelope fa" aria-hidden="true"></i></span>
@@ -37,7 +37,7 @@ class Register extends Component {
                         </div>
                     </div>
                     <div className="form-group">
-                        <label for="password" className="cols-sm-2 control-label">Password</label>
+                        <label htmlFor="password" className="cols-sm-2 control-label">Password</label>
                         <div className="cols-sm-10">
                             <div className="input-group">
                                 <span className="input-group-addon"><i className="fa fa-lock fa-lg" aria-hidden="true"></i></span>
@@ -46,16 +46,16 @@ class Register extends Component {
                         </div>
                     </div>
                     <div className="form-group">
-                        <label for="confirm" className="cols-sm-2 control-label">Confirm Password</label>
+                        <label htmlFor="confirm" className="cols-sm-2 control-label">Confirm Password</label>
                         <div className="cols-sm-10">
                             <div className="input-group">
                                 <span className="input-group-addon"><i className="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                                 <input type="password" className="form-control" name="confirm" id="confirm" placeholder="Confirm your Password" />
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="form-group">
-                        <label for="confirm" className="cols-sm-2 control-label">Address</label>
+                        <label htmlFor="confirm" className="cols-sm-2 control-label">Address</label>
                         <div className="cols-sm-10">
                             <div className="input-group">
                                 <span className="input-group-addon"><i className="fa fa-lock fa-lg" aria-hidden="true"></i></span>
@@ -64,7 +64,7 @@ class Register extends Component {
                         </div>
                     </div>
                         <div className="form-group">
-                         <label for="confirm" className="cols-sm-2 control-label">Address 2</label>
+                         <label htmlFor="confirm" className="cols-sm-2 control-label">Address 2</label>
                             <div className="cols-sm-10">
                              <div className="input-group">
                                 <span className="input-group-addon"><i className="fa fa-lock fa-lg" aria-hidden="true"></i></span>
@@ -74,20 +74,20 @@ class Register extends Component {
                         </div>
                         <div className="form-row">
                             <div className="form-group col-md-6" style={{paddingRight: '35px'}}>
-                            <label for="confirm" className="cols-sm-2 control-label">City</label>
+                            <label htmlFor="confirm" className="cols-sm-2 control-label">City</label>
                             <input type="text" className="form-control" name="confirm" placeholder="San Diego" required />
                             </div>
                             <div className="form-group col-md-4" style={{paddingRight: '35px'}}>
-                            <label for="confirm" className="cols-sm-2 control-label">State</label>
+                            <label htmlFor="confirm" className="cols-sm-2 control-label">State</label>
                             <input id="inputState" className="form-control" name="confirm" placeholder="California" required />
                             </div>
                             <div className="form-group col-md-2" style={{paddingRight: '35px'}}>
-                            <label for="confirm" className="cols-sm-2 control-label">Zip</label>
+                            <label htmlFor="confirm" className="cols-sm-2 control-label">Zip</label>
                             <input type="text" className="form-control" id="inputZip" placeholder="12345" required />
                             </div>
                         </div>
                     <div className="form-group">
-                         <label for="confirm" className="cols-sm-2 control-label">Pets</label>
+                         <label htmlFor="confirm" className="cols-sm-2 control-label">Pets</label>
                          <div className="cols-sm-10">
                          <div className="input-group">
                              <span className="input-group-addon"><i className="fa fa-bug fa-lg" aria-hidden="true"></i></span>
@@ -103,7 +103,7 @@ class Register extends Component {
                          </div>
                    </div>
                     <div className="form-group">
-                      <label for="confirm" className="cols-sm-2 control-label">Number of Bathrooms</label>
+                      <label htmlFor="confirm" className="cols-sm-2 control-label">Number of Bathrooms</label>
                       <div className="cols-sm-10">
                        <div className="input-group">
                              <span className="input-group-addon"><i className="fa fa-bath fa-lg" aria-hidden="true"></i></span>
@@ -117,7 +117,7 @@ class Register extends Component {
                      </div>
                     </div>
                     <div className="form-group">
-                     <label for="confirm" className="cols-sm-2 control-label">Wifi?</label>
+                     <label htmlFor="confirm" className="cols-sm-2 control-label">Wifi?</label>
                      <div className="cols-sm-10">
                         <div className="input-group">
                         <span className="input-group-addon"><i className="fa fa-wifi fa-lg" aria-hidden="true"></i></span>
@@ -137,7 +137,6 @@ class Register extends Component {
                 </form>
             </div>
             </div >
-            <Footer/>
             </div >
        
         )
