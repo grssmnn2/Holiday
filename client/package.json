@@ -14,6 +14,8 @@
     "react-credit-cards": "^0.7.0",
     "react-dom": "^16.0.0",
     "react-firebase-file-uploader": "^2.4.1",
+    "react-geocode": "^0.0.7",
+    "react-google-maps": "^9.4.5",
     "react-icons": "^2.2.7",
     "react-infinite-scroller": "^1.1.4",
     "react-motion": "^0.5.2",
