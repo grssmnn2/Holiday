@@ -68,22 +68,42 @@ function ShowRoute({ component: Component, items, param, ...rest }) {
 class App extends Component {
   constructor() {
     super();
+    this.setCurrentUser = this.setCurrentUser.bind(this);
     this.state = {
       authenticated: false,
-      loading: true
+      loading: true,
+      currentUser: null
     }
   }
+
+  setCurrentUser(user) {
+    if (user) {
+      this.setState({
+        currentUser: user,
+        authenticated: true
+      })
+    } else {
+      this.setState({
+        currentUser: null,
+        authenticated: false
+      })
+    }
+  }
+
   componentWillMount() {
     this.removeAuthListener = app.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({
           authenticated: true,
-          loading: false
+          loading: false,
+          currentUser: user
         })
       } else {
         this.setState({
           authenticated: false,
-          loading: false
+          loading: false,
+          currentUser: null
+
         })
       }
     })
@@ -102,25 +122,24 @@ class App extends Component {
       )
     }
     return (
+
       <div>
-      <div>Testing for Deployment</div>
         <Router>
           <div>
-            <Navbar addSong={this.addSong} authenticated={this.state.authenticated} />
-            <div className="main-content" style={{ padding: "1em" }}>
+            <Navbar authenticated={this.state.authenticated} />
+            <div className="main-content" style={{ padding: "5em" }}>
               <div className="workspace">
                 <Route exact path="/login" render={(props) => {
                   return <Login setCurrentUser={this.setCurrentUser} {...props} />
                 }} />
                 <Route exact path="/logout" component={Logout} />
-              
                 {/* <Chatbox /> */}
                 <AuthenticatedRoute
                   exact
-                  path="/chatbox"
+                  path="/home"
                   authenticated={this.state.authenticated}
-                  component={Card}
-                  cards={this.state.card} />
+                  component={Imageuploader}
+                   /> 
                   <Route exact path="/" component={Home} />
                   <Route exact path="/profile" component={Profile} />                          
                   <Route exact path="/register" component={Register} />

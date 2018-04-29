@@ -43,7 +43,7 @@ class Imageuploder extends Component {
           
           <input style={{color: 'black'}}
             type="text"
-            value={this.state.username}
+            value={this.props.email}
             name="username"
             onChange={this.handleChangeUsername}
           />
