@@ -1,50 +1,32 @@
 import React, {Component} from 'react';
+// import MyMapComponent from './Map/MyMapComponent';
 //refactor using recompose and HOC ?
 //  input is address, output is lat lng 
 //  which is then put into an array 
 //  mapped over and markers appended to the screen 
 
 //  require map here
-//  pass address to map as prop?
-
-// const SearchBox = props => (
-//     <div className= "search-Box">
-//         <input
-//             type="text"
-//             placeholder="Map your apartments!"
-//         />
-
-//     </div>
-
-// )
-
+//  pass address to map as prop? - this.handleUserInput
 
 class SearchBox extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value: ''};
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.state = {userInput: ''};
+        this.handleUserInput = this.handleUserInput.bind(this);
     }
 
-    handleChange(event) {
-        this.setState({value: event.target.value})
+    handleUserInput(e) {
+        this.setState({userInput: e.target.value})
     }
 
-    handleSubmit(event) {
-        console.log('Address was submitted:' + this.state.value)
-        event.preventDefault();
-    }
+   
         render() {
             return (
-                <form onSubmit={this.handleSubmit}>
-                <label>
-                    Search for apratment swaps:
-                    <input type="text" value={this.state.value} onChange={this.handleChange}
-                    />
-                    </label>
-                    <input type='submit' value='Submit' />
-                </form>
+                <div>
+                    <input type="text" onChange={this.handleUserInput}
+                    value={this.state.userInput} placeholder="enter address here" />
+                    <h1>{this.state.userInput} </h1>
+                </div>
             );
         }
     }

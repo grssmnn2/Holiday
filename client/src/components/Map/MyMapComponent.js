@@ -18,6 +18,8 @@ const markers=[{lat: -34.397, lng: 150.644},
 
 //  refactor into function that takes an object (this would be part of the component / which would be a class component )
 //  address would be from parent component / just changing this to local variable for now 
+// 1 let address = this.props.address 
+//  2 and also this.function as an attr somewhere 
 let address = "181 Madison St, Sag Harbor, NY";
    Geocode.fromAddress(address).then(
        response => {
