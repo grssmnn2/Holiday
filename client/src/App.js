@@ -7,6 +7,7 @@ import Login from "./components/Login"
 import Logout from "./components/Logout"
 import Profile from "./components/Pages/Profile"
 import Home from "./components/Pages/Home"
+
 import Register from "./components/Pages/Register"
 // import Home from "./components/Pages/Home"
 import Footer from "./components/Footer"
@@ -120,8 +121,8 @@ class App extends Component {
                   authenticated={this.state.authenticated}
                   component={Card}
                   cards={this.state.card} />
-                  <Route exact path="/profile" component={Profile} />
-                  <Route exact path="/home" component={Home} />
+                  <Route exact path="/" component={Home} />
+                  <Route exact path="/profile" component={Profile} />                          
                   <Route exact path="/register" component={Register} />
                 {/* <ShowRoute
                   path="/chatbox"
