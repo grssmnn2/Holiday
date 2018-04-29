@@ -1,12 +1,11 @@
 import React, { Component } from "react"
 
 //  other dependencies go here -both dynamic and static
-import React, { Component } from "react"
-import { Col, Row, Container } from "../components/Grid"
-
-import Card from "../components/Card"
+// import { Col, Row, Container } from "../components/Grid"
+// import Card from "../components/Card"
+// import SearchBox from '../../components/SearchBox'
 //  import google maps  component here
-import Map from "../components/Map"
+import MyMapComponent from "../../components/Map/MyMapComponent"
 
 // using class method bc it's stateful
 

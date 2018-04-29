@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import Chatbox from "./components/Chatbox"
 
 
-// import Result from "./components/pages/Result"
+// import Result from "./components/Pages/Result"
 //  other static components go here too
 import "./App.css";
 import MyMapComponent from './components/Map/MyMapComponent'
@@ -27,7 +27,9 @@ class App extends Component {
           mapElement={<div style={{ height: `100%` }} />}
         />
 
-        <SearchBox />
+
+      {/* <Result /> */}
+        {/* <SearchBox /> */}
 
         
 

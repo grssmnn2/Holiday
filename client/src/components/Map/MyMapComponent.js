@@ -2,6 +2,9 @@ import {compose, withProps, lifecycle} from 'recompose'
 import {withScriptjs, withGoogleMap, GoogleMap, Marker} from 'react-google-maps'
 import Geocode from 'react-geocode'
 import React, { Component } from 'react'
+import { Circle } from "react-google-maps";
+//  set lat and lng 
+//  every circle has the same radius etc 
 //  internal code dependencies 
 // import './map.css'
 //  geo coding 
