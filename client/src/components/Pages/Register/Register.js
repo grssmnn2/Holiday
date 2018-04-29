@@ -78,7 +78,7 @@ class Register extends Component {
                    </div>
                    <div className="form-row">
                     <div className="form-group" style={{paddingRight: '100px'}}>
-                      <label htmlFor="confirm" className="cols-md-4 control-label"  >Number of Bathrooms</label>
+                      <label htmlFor="confirm" className="cols-md-3 control-label"  >Number of Bathrooms</label>
                       <div className="cols-sm-10">
                        <div className="input-group">
                              <span className="input-group-addon"><i className="fa fa-bath fa-lg" aria-hidden="true"></i></span>
@@ -93,7 +93,7 @@ class Register extends Component {
                     </div>
 
                        <div className="form-group" style={{paddingRight: '100px'}}>
-                      <label htmlFor="confirm" className="cols-md-4 control-label" >Number of Bedrooms</label>
+                      <label htmlFor="confirm" className="cols-md-3 control-label" >Number of Bedrooms</label>
                       <div className="cols-sm-10">
                        <div className="input-group">
                              <span className="input-group-addon"><i className="fa fa-bed fa-lg" aria-hidden="true"></i></span>
@@ -108,7 +108,7 @@ class Register extends Component {
                     </div>
 
                        <div className="form-group" style={{paddingRight: '100px'}}>
-                      <label htmlFor="confirm" className="cols-md-4 control-label" >Number of Guests Possible</label>
+                      <label htmlFor="confirm" className="cols-md-3 control-label" >Number of Guests Possible</label>
                       <div className="cols-sm-10">
                        <div className="input-group">
                              <span className="input-group-addon"><i className="fa fa-child fa-lg" aria-hidden="true"></i></span>
@@ -121,9 +121,9 @@ class Register extends Component {
                       </div>
                      </div>
                     </div>
-                    </div>
-                    <div className="form-group">
-                     <label htmlFor="confirm" className="cols-sm-2 control-label">Wifi?</label>
+
+                      <div className="form-group">
+                     <label htmlFor="confirm" className="cols-md-3 control-label">Wifi?</label>
                      <div className="cols-sm-10">
                         <div className="input-group">
                         <span className="input-group-addon"><i className="fa fa-wifi fa-lg" aria-hidden="true"></i></span>
@@ -134,6 +134,9 @@ class Register extends Component {
                         </div>
                     </div>
                     </div>
+
+                    </div>
+                  
                 
                     {/* <Imageuploder/> */}
                     <div className="form-group ">
