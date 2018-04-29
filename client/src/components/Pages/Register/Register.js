@@ -85,7 +85,7 @@ class Register extends Component {
                       <div className="cols-sm-10">
                        <div className="input-group">
                              <span className="input-group-addon"><i className="fa fa-bath fa-lg" aria-hidden="true"></i></span>
-                            <select class="form-control">
+                            <select className="form-control">
                                 <option>0</option>
                                 <option>1</option>
                                  <option>2</option>
@@ -100,7 +100,7 @@ class Register extends Component {
                       <div className="cols-sm-10">
                        <div className="input-group">
                              <span className="input-group-addon"><i className="fa fa-bed fa-lg" aria-hidden="true"></i></span>
-                            <select class="form-control">
+                            <select className="form-control">
                                 <option>0</option>
                                 <option>1</option>
                                  <option>2</option>
@@ -115,7 +115,7 @@ class Register extends Component {
                       <div className="cols-sm-10">
                        <div className="input-group">
                              <span className="input-group-addon"><i className="fa fa-child fa-lg" aria-hidden="true"></i></span>
-                            <select class="form-control">
+                            <select className="form-control">
                                 <option>0</option>
                                 <option>1</option>
                                  <option>2</option>
@@ -130,7 +130,7 @@ class Register extends Component {
                      <div className="cols-sm-10">
                         <div className="input-group">
                         <span className="input-group-addon"><i className="fa fa-wifi fa-lg" aria-hidden="true"></i></span>
-                         <select class="form-control">
+                         <select className="form-control">
                             <option>Yes</option>
                             <option>No</option>
                          </select>
