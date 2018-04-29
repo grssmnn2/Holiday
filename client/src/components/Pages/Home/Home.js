@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import Navbar from "../../Navbar"
 import Footer from "../../Footer"
 
@@ -16,7 +15,7 @@ class Home extends Component {
                         <div className="banner-content col-lg-12 col-md-12">
                             <h1 className="text-uppercase">
                                 HOLIDAY
-                    </h1>
+                    		</h1>
                             <div className="search-field">
                                 <form className="search-form" action="#">
                                     <div className="row">
@@ -27,7 +26,7 @@ class Home extends Component {
                                                 </div>
                                             </div>
                                             <div class="row">
-                                            <div className="col-lg-4 col-md-6 col-xs-6">
+                                            <div className="col-lg-12 col-md-12 col-xs-12">
                                                 <select name="location" className="app-select form-control" required>
                                                     <option data-display="Choose locations">Choose locations</option>
                                                     <option value="1">Chicago</option>
@@ -35,7 +34,7 @@ class Home extends Component {
 
                                                 </select>
                                             </div>
-                                            <div className="col-lg-4 col-md-6 col-xs-6">
+                                            {/* <div className="col-lg-4 col-md-6 col-xs-6">
                                                 <select name="property-type" className="app-select form-control" required>
                                                     <option data-display="Property Type">Property Type</option>
                                                     <option value="1">House</option>
@@ -51,7 +50,7 @@ class Home extends Component {
                                                     <option value="2">Two</option>
                                                     <option value="3">Three</option>
                                                 </select>
-                                            </div>
+                                            </div> */}
                                             </div>
                                             <div class="row">
                                             <div className="col-lg-12 d-flex justify-content-end">
@@ -214,36 +213,6 @@ class Home extends Component {
 						</div>																											
 					</div>
 				</div>	
-			</section>
-            {/* city area */}
-            <section className="city-area section-gap">
-				<div className="container">
-					<div className="row">
-						<div className="col-lg-6 col-md-6 mt-30">
-									<div className="content">
-									    <a href="#" target="_blank">
-									      <div className="content-overlay"></div>
-									  		 <img className="content-image img-fluid d-block mx-auto" src={require("../../../img/p3.jpg")} alt=""></img>
-									      <div className="content-details fadeIn-bottom">
-									        <h3 className="content-title">Chicago Properties</h3>
-									      </div>
-									    </a>
-									</div>
-								</div>
-								<div className="col-lg-6 col-md-6 mt-30">
-									<div className="content">
-									    <a href="#" target="_blank">
-									      <div className="content-overlay"></div>
-									  		 <img className="content-image img-fluid d-block mx-auto" src={require("../../../img/p4.jpg")} alt=""></img>
-									      <div className="content-details fadeIn-bottom">
-									        <h3 className="content-title">Hawaii Properties</h3>
-									      </div>
-									    </a>
-									</div>
-								</div>								
-					
-						 </div>
-						</div>	
 			</section>
 		
             </div>
