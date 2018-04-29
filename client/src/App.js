@@ -5,6 +5,11 @@ import { Redirect } from 'react-router'
 import { Spinner, Card } from '@blueprintjs/core';
 import Login from "./components/Login"
 import Logout from "./components/Logout"
+import Profile from "./components/Pages/Profile"
+import Home from "./components/Pages/Home"
+
+import Register from "./components/Pages/Register"
+// import Home from "./components/Pages/Home"
 import Footer from "./components/Footer"
 import Header from "./components/Header"
 // import Result from "./components/Pages/Result"
@@ -117,8 +122,8 @@ class App extends Component {
       )
     }
     return (
-      <div style={{ maxWidth: "1160px", margin: "0 auto" }}>
-        <div>Testing for Deployment</div>
+
+      <div>
         <Router>
           <div>
             <Navbar authenticated={this.state.authenticated} />
@@ -135,8 +140,9 @@ class App extends Component {
                   authenticated={this.state.authenticated}
                   component={Imageuploader}
                    /> 
-
-
+                  <Route exact path="/" component={Home} />
+                  <Route exact path="/profile" component={Profile} />                          
+                  <Route exact path="/register" component={Register} />
                 {/* <ShowRoute
                   path="/chatbox"
                   component={Chatbox}
