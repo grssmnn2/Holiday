@@ -134,7 +134,9 @@ class App extends Component {
                   path="/home"
                   authenticated={this.state.authenticated}
                   component={Imageuploader}
-                  email={this.state.currentUser.email} />
+                   /> 
+
+
                 {/* <ShowRoute
                   path="/chatbox"
                   component={Chatbox}
