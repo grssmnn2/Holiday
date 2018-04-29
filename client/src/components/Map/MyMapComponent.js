@@ -5,6 +5,7 @@ import React, { Component } from 'react'
 import { Circle } from "react-google-maps";
 //  set lat and lng 
 //  every circle has the same radius etc 
+
 //  internal code dependencies 
 // import './map.css'
 //  geo coding 
@@ -23,6 +24,7 @@ const markers=[{lat: -34.397, lng: 150.644},
 //  address would be from parent component / just changing this to local variable for now 
 // 1 let address = this.props.address 
 //  2 and also this.function as an attr somewhere 
+
 let address = "181 Madison St, Sag Harbor, NY";
    Geocode.fromAddress(address).then(
        response => {
@@ -37,11 +39,15 @@ let address = "181 Madison St, Sag Harbor, NY";
 
 const MyMapComponent = withScriptjs(withGoogleMap((props) => 
 <GoogleMap 
-    defaultZoom={8}
+    defaultZoom={12}
     defaultCenter={{lat: -34.297, lng: 150.644}} 
 >
+
 {markers.map(marker=> {
-    return props.isMarkerShown && <Marker position={{lat: marker.lat,lng:marker.lng}} />}
+    //  the unit for circle.radius is meters
+    //  so sh
+    // return props.isMarkerShown && <Marker position={{lat: marker.lat,lng:marker.lng}} />}
+   return <Circle radius={8046.72}  center={{lat: marker.lat,lng:marker.lng}} />}
 )}
     </GoogleMap>
 ))
