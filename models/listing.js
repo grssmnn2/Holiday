@@ -5,17 +5,49 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var listingSchema = new Schema ({
-    title: {
+    email: {
+        type: String,
+        required:true
+    },
+    name: {
+        type: String
+    }, 
+    address: {
         type: String
     },
-    details: {
+    city: {
         type: String
     }, 
-    username: {
+    state: {
         type: String
     }, 
-    review: {
-        type: Schema.Types.ObjectId,
-        ref: 'Review'
+    country: {
+        type: String
+    },
+    geocode:{
+        type:Object
+    },
+    zip: {
+        type: Number
+    },  
+    pets: {
+        type:Boolean
+    },
+    bathroom: {
+        type: Number
+    }, 
+    bedroom: {
+        type: Number
+    },
+    guest: {
+        type: Number
+    },  
+    wifi: {
+        type:Boolean
+    }, 
+    review:{
+        type:String
     }
 })
+var listing = mongoose.model("listing",listingSchema)
+module.exports =listing;
