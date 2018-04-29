@@ -3,8 +3,6 @@ import {withScriptjs, withGoogleMap, GoogleMap, Marker} from 'react-google-maps'
 import Geocode from 'react-geocode'
 import React, { Component } from 'react'
 import { Circle } from "react-google-maps";
-//  set lat and lng 
-//  every circle has the same radius etc 
 
 //  internal code dependencies 
 // import './map.css'
@@ -30,6 +28,7 @@ let address = "181 Madison St, Sag Harbor, NY";
        response => {
            const {lat, lng} = response.results[0].geometry.location;
           console.log(lat, lng);
+
        },
        error => {
            console.error(error);
@@ -46,7 +45,8 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
 {markers.map(marker=> {
     //  the unit for circle.radius is meters
     //  so sh
-    // return props.isMarkerShown && <Marker position={{lat: marker.lat,lng:marker.lng}} />}
+    // return
+     {props.isMarkerShown && <Marker position={{lat: marker.lat,lng:marker.lng}} />}
    return <Circle radius={8046.72}  center={{lat: marker.lat,lng:marker.lng}} />}
 )}
     </GoogleMap>
