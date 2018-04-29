@@ -40,9 +40,9 @@ class Navbar extends Component {
                 <Link to="/logout" >Log Out</Link>
             )
             : (
-                <Link to="/register">Register</Link>
+                <Link to="/login">Login/Register</Link>
             )
-        }        <Link to="/login">Login</Link>
+        }       
                 
                
                 

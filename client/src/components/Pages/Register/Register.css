@@ -1,0 +1,7 @@
+i{
+    margin-left: -3px,
+}
+
+.input-group-addon:not(:last-child) {
+    padding-right: 20px;
+}

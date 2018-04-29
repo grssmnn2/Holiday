@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import Navbar from "../../Navbar"
 import Footer from "../../Footer"
+import "./Register.css"
 // import Imageuploder from "../../ImageUploader"
+
+
 class Register extends Component {
     render() {
         return (
@@ -22,7 +25,7 @@ class Register extends Component {
                         <label htmlFor="name" className="cols-sm-2 control-label">Your Name</label>
                         <div className="cols-sm-10">
                             <div className="input-group">
-                                <span className="input-group-addon"><i className="fa fa-user fa" aria-hidden="true"></i></span>
+                                <span className="input-group-addon"><i className="fa-lg fa-user fa "  aria-hidden="true"></i></span>
                                 <input type="text" className="form-control" name="name" id="name" placeholder="Enter your Name" />
                             </div>
                         </div>
