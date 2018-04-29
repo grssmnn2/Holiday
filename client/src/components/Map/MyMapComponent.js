@@ -15,7 +15,7 @@ const markers=[{lat: -34.397, lng: 150.644},
     //  so this console logs it - next step -render to the screen 
     //  get input from form 
     //  pass input into that function
-    //  this is HI: 21.2868645 -157.8254727
+    //  this is HI: 21.2868645 -157.825472
     //this is NY: 40.9949525 -72.2926543
 
 //  refactor into function that takes an object (this would be part of the component / which would be a class component )
@@ -35,12 +35,19 @@ let address = "181 Madison St, Sag Harbor, NY";
        }
    );
 
+   <MyMapComponent isMarkerShown
+   googleMapURL="https://maps.googleapis.com/maps/api/js?key=&v=3.exp&libraries=geometry,drawing,places"
+   loadingElement={<div style={{ height: `100%` }} />}
+   containerElement={<div style={{ height: `400px` }} />}
+   mapElement={<div style={{ height: `100%` }} />}
+ />
 
 const MyMapComponent = withScriptjs(withGoogleMap((props) => 
 <GoogleMap 
     defaultZoom={12}
     defaultCenter={{lat: -34.297, lng: 150.644}} 
 >
+
 
 {markers.map(marker=> {
     //  the unit for circle.radius is meters
