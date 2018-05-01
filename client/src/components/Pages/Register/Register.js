@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Navbar from "../../Navbar"
 import Footer from "../../Footer"
 import "./Register.css"
-// import Imageuploder from "../../ImageUploader"
+import Imageuploader from "../../Imageuploader"
 
 
 class Register extends Component {
@@ -30,7 +30,7 @@ class Register extends Component {
                             </div>
                         </div>
                     </div>
-                    
+                    <Imageuploader/>
                     <div className="form-group">
                         <label htmlFor="confirm" className="cols-sm-2 control-label">Address</label>
                         <div className="cols-sm-10">
@@ -141,7 +141,7 @@ class Register extends Component {
                     </div>
                   
                 
-                    {/* <Imageuploder/> */}
+                
                     <div className="form-group ">
                         <button type="button" className="btn btn-primary btn-lg btn-block login-button">Register</button>
                     </div>
