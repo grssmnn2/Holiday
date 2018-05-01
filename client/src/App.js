@@ -140,8 +140,9 @@ class App extends Component {
                   authenticated={this.state.authenticated}
                   component={Home}
                    /> 
-                  {/* <Route exact path="/" component={Home} /> */}
-                  {/* <Route exact path="/profile" component={Profile} />                           */}
+                  <Route exact path="/" component={Home} />
+                  <Route exact path="/profile" component={Profile} />    
+                  <Route exact path="/register" component={Register} />                          
                 {/* <ShowRoute
                   path="/chatbox"
                   component={Chatbox}

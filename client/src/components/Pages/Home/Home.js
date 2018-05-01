@@ -29,7 +29,7 @@ class Home extends Component {
     render() {
         return (
             <div style={{minWidth:900+"px"}}>
-			<Friendlist email={this.props.location.state.email}></Friendlist>
+			{/* <Friendlist email={this.props.location.state.email}></Friendlist> */}
             <section className="banner-area relative" id="home">
                 <div className="overlay overlay-bg"></div>
                 <div className="container">
