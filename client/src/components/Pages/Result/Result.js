@@ -57,15 +57,6 @@ class Result extends Component {
 
     }
 
-// loadResults = () => {
-//     API.getResults()
-//     .then(res =>
-//         //  based on DB schema and state from above 
-//         //  these get passed as props to the card whwere we show results 
-//     this.setState({results: res.data, title:"", details:"", review:"", image:""})
-// ).catch(err => console.log(err));
-// };
-
 //  methods for handling clicks/toggles/input changes 
 //  i.e. it'd be nice to enlarge the photo on hover, idk
 
