@@ -9,37 +9,48 @@ import Card from "../components/Card";
 //  import google maps  component here 
 
  
-// using class method bc it's stateful 
 
 class Result extends Component {
-    state = {
-        search: "",
-        results: [],
-        error: ""
-
-    };
+    state = { 
+        address: "",
+        city: "",
+        state: "",
+        country: "",
+        zip: "",
+        pets: "",
+        bathroom: "",
+        bedroom: "",
+        guests: "",
+        wifi: "",
+        review: ""
+    }
 
     componentWillMount() {
         this.displayResults();
     }
 
-    //  lifecycle method  - when component is mounted 
     componentDidMount() {
-        console.log("component loaded successfully")
-        this.loadResults();
 
     }
 
     loadResults = () => {
         this.setState({
-            search: search,
-            results: results
+            address: listing.address,
+            city: listing.city,
+            state: listing.state,
+            country: listing.country,
+            zip: listing.zip,
+            pets: listing.pets,
+            bathroom: listing.bathroom,
+            bedroom: listing.bedroom,
+            guests: listing.guests,
+            wifi: listing.wifi,
+            review: listing.review
         });
     };
 
     displayResults = () => {
-       const {search, results, error} = this.state;
-       API.getResults(results)
+       API.getResults()
        .then(res =>{
            console.log("data req succeeded")
        }).catch(err => console.log(err))
@@ -65,13 +76,11 @@ class Result extends Component {
 render() {
     return (
         <div>
-            render result here 
+            <Card />
         </div>
         //  testing this in the app file for now, for the first iteration 
         //  array function here to cycle thru all elements that were returned 
         //  map thru array that is equal to matches.length 
-
-        // <Card />
 
         // <Map /> 
 
