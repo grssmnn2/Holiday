@@ -1,4 +1,4 @@
 module.exports={
     messages:require("./messages"),
-    friendlist:require("./friendlist")
+    listing:require("./listing")
 }

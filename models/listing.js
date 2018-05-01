@@ -12,6 +12,9 @@ var listingSchema = new Schema ({
     name: {
         type: String
     }, 
+    friendlist:[{
+        type:String
+    }],
     address: {
         type: String
     },

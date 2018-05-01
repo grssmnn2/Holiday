@@ -1,15 +1,21 @@
 .demo-infinite-container {
     border: 1px solid #e8e8e8;
     border-radius: 4px;
+    background: white;
+    margin-top: 27px;
+    margin-left: 904px;
     overflow: auto;
     padding: 8px 24px;
     height: 400px;
-    width:25%;
-    float:right;
+    width:221px;
   }
   .demo-loading-container {
     position: absolute;
     bottom: 40px;
     width: 100%;
     text-align: center;
+  }
+  .ReactCollapse--collapse{
+    position:fixed;
+    z-index:1
   }
