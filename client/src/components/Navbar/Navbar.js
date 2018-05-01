@@ -1,10 +1,37 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 class Navbar extends Component {
   render() {
     return (
       <header className="default-header">
+        {/* <div className="menutop-wrap">
+          <div className="menu-top container">
+            <div className="d-flex justify-content-end align-items-center">
+              <ul className="list">
+                <li>
+                  <a href="/search">Search For A Swap</a>
+                </li>
+                <li>
+                {
+          this.props.authenticated
+            ? (
+              <div className="pt-navbar-group pt-align-right">
+                <Link className="pt-button pt-minimal pt-icon-log-out" to="/logout" aria-label="Log Out">Log Out</Link>
+              </div>
+            )
+            : (
+              <div className="pt-navbar-group pt-align-right">
+                <Link className="pt-button pt-intent-primary" to="/login">Register/Log In</Link>
+              </div>
+            )
+        }
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div> */}
+
         <nav className="navbar navbar-expand-lg  navbar-light bg-light">
           <div className="container">
             <a className="navbar-brand" to="/index" />
@@ -25,27 +52,18 @@ class Navbar extends Component {
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav">
-                
-                  <Link to="/">Home</Link>
-                
-                
-                  <Link to="/chLinkt">Messages</Link>
-                
-                
-                  <Link to="/profile">Profile</Link>
-                
+                <Link to="/index">Home</Link>
 
-                  {this.props.authenticated
-                  ? (
-                <Link to="/logout" >Log Out</Link>
-            )
-            : (
-                <Link to="/login">Login/Register</Link>
-            )
-        }       
-                
-               
-                
+                <a onClick={this.props.display} >Messages</a>
+
+                <Link to="/profile">Profile</Link>
+
+                {this.props.authenticated ? (
+                  <Link to="/logout">Log Out</Link>
+                ) : (
+                  <Link to="/login">Register/Log In</Link>
+                )}
+
               </ul>
             </div>
           </div>

@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import Chatbox from "./components/Chatbox"
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Redirect } from 'react-router'
+import { Spin } from 'antd';
 import { Spinner, Card } from '@blueprintjs/core';
 import Login from "./components/Login"
 import Logout from "./components/Logout"
 import Profile from "./components/Pages/Profile"
 import Home from "./components/Pages/Home"
-
+import Properyinfor from "./components/Propertyinfor"
 import Register from "./components/Pages/Register"
 // import Home from "./components/Pages/Home"
 import Footer from "./components/Footer"
@@ -116,8 +117,7 @@ class App extends Component {
     if (this.state.loading === true) {
       return (
         <div style={{ textAlign: "center", position: "absolute", top: "25%", left: "50%" }}>
-          <h3> Loading</h3>
-          <Spinner />
+          <Spin size="large" />
         </div>
       )
     }
@@ -138,10 +138,10 @@ class App extends Component {
                   exact
                   path="/home"
                   authenticated={this.state.authenticated}
-                  component={Imageuploader}
+                  component={Home}
                    /> 
-                  <Route exact path="/" component={Home} />
-                  <Route exact path="/profile" component={Profile} />                          
+                  {/* <Route exact path="/" component={Home} /> */}
+                  {/* <Route exact path="/profile" component={Profile} />                           */}
                 {/* <ShowRoute
                   path="/chatbox"
                   component={Chatbox}

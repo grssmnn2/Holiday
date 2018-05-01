@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../../Navbar"
+import Friendlist from "../../Friendlist"
 import Footer from "../../Footer"
 import { Modal, Button } from 'antd';
 
@@ -27,8 +28,8 @@ class Home extends Component {
 
     render() {
         return (
-            <div>
-				<Navbar />
+            <div style={{minWidth:900+"px"}}>
+			<Friendlist email={this.props.location.state.email}></Friendlist>
             <section className="banner-area relative" id="home">
                 <div className="overlay overlay-bg"></div>
                 <div className="container">
