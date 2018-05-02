@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Navbar from "../../Navbar"
 import Footer from "../../Footer"
 import "./Register.css"
-<<<<<<< HEAD
 // import Imageuploder from "../../ImageUploader"
 import { DatePicker } from 'antd';
 const { RangePicker } = DatePicker;
@@ -10,9 +9,6 @@ const { RangePicker } = DatePicker;
 function onChange(date, dateString) {
     console.log(date, dateString);
 }
-=======
-import Imageuploader from "../../Imageuploader"
->>>>>>> 7951d168775f9d556dbb95f21b4189dcb0f644e2
 
 
 class Register extends Component {
@@ -29,7 +25,6 @@ class Register extends Component {
                             <hr />
                         </div>
                     </div>
-<<<<<<< HEAD
                     <div className="main-login main-center">
                         <form className="form-horizontal" method="post" action="#">
                             <div className="form-group">
@@ -40,15 +35,6 @@ class Register extends Component {
                                         <input type="text" className="form-control" name="name" id="name" placeholder="Enter your Name" />
                                     </div>
                                 </div>
-=======
-                    <Imageuploader/>
-                    <div className="form-group">
-                        <label htmlFor="confirm" className="cols-sm-2 control-label">Address</label>
-                        <div className="cols-sm-10">
-                            <div className="input-group">
-                                <span className="input-group-addon"><i className="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                <input type="address" className="form-control" name="confirm" id="confirm" placeholder="Enter Your Address" />
->>>>>>> 7951d168775f9d556dbb95f21b4189dcb0f644e2
                             </div>
 
                             <div className="form-group">
@@ -83,7 +69,6 @@ class Register extends Component {
                                     <input type="text" className="form-control" id="inputZip" placeholder="12345" required />
                                 </div>
                             </div>
-<<<<<<< HEAD
                             <div className="form-group">
                                 <label htmlFor="confirm" className="cols-sm-2 control-label">Pets</label>
                                 <div className="cols-sm-10">
@@ -159,112 +144,25 @@ class Register extends Component {
                                     </div>
                                 </div>
                                 <div className="form-group">
-                                <label htmlFor="confirm" className="cols-sm-2 control-label">Dates Available</label>
-                                <div className="cols-sm-10">
-                                <div>
-                                <RangePicker onChange={onChange} />
-                            </div>
+                                    <label htmlFor="confirm" className="cols-sm-2 control-label">Dates Available</label>
+                                    <div className="cols-sm-10">
+                                        <div className="input-group">
+                                            <div>
+                                                <RangePicker onChange={onChange} />
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-=======
-                        </div>
-                    <div className="form-group">
-                         <label htmlFor="confirm" className="cols-sm-2 control-label">Pets</label>
-                         <div className="cols-sm-10">
-                         <div className="input-group">
-                             <span className="input-group-addon"><i className="fa fa-bug fa-lg" aria-hidden="true"></i></span>
-                             <select className="form-control">
-                                <option>None</option>
-                                 <option>Dog</option>
-                                 <option>Cat</option>
-                                  <option>Small Furry</option>
-                                 <option>Reptile</option>
-                                 <option>Bird</option>
-                             </select>
-                         </div>
-                         </div>
-                   </div>
-                   <div className="form-row">
-                    <div className="form-group" style={{paddingRight: '100px'}}>
-                      <label htmlFor="confirm" className="cols-md-3 control-label"  >Number of Bathrooms</label>
-                      <div className="cols-sm-10">
-                       <div className="input-group">
-                             <span className="input-group-addon"><i className="fa fa-bath fa-lg" aria-hidden="true"></i></span>
-                            <select className="form-control">
-                                <option>0</option>
-                                <option>1</option>
-                                 <option>2</option>
-                                 <option>3+</option>
-                             </select>
-                      </div>
-                     </div>
-                    </div>
 
-                       <div className="form-group" style={{paddingRight: '100px'}}>
-                      <label htmlFor="confirm" className="cols-md-3 control-label" >Number of Bedrooms</label>
-                      <div className="cols-sm-10">
-                       <div className="input-group">
-                             <span className="input-group-addon"><i className="fa fa-bed fa-lg" aria-hidden="true"></i></span>
-                            <select className="form-control">
-                                <option>0</option>
-                                <option>1</option>
-                                 <option>2</option>
-                                 <option>3+</option>
-                             </select>
-                      </div>
-                     </div>
-                    </div>
-
-                       <div className="form-group" style={{paddingRight: '100px'}}>
-                      <label htmlFor="confirm" className="cols-md-3 control-label" >Number of Guests Possible</label>
-                      <div className="cols-sm-10">
-                       <div className="input-group">
-                             <span className="input-group-addon"><i className="fa fa-child fa-lg" aria-hidden="true"></i></span>
-                            <select className="form-control">
-                                <option>0</option>
-                                <option>1</option>
-                                 <option>2</option>
-                                 <option>3+</option>
-                             </select>
-                      </div>
-                     </div>
-                    </div>
-
-                      <div className="form-group">
-                     <label htmlFor="confirm" className="cols-md-3 control-label">Wifi?</label>
-                     <div className="cols-sm-10">
-                        <div className="input-group">
-                        <span className="input-group-addon"><i className="fa fa-wifi fa-lg" aria-hidden="true"></i></span>
-                         <select className="form-control">
-                            <option>Yes</option>
-                            <option>No</option>
-                         </select>
-                        </div>
-                    </div>
-                    </div>
->>>>>>> 7951d168775f9d556dbb95f21b4189dcb0f644e2
 
                             </div>
                             <div className="form-group ">
                                 <button type="button" className="btn btn-primary btn-lg btn-block login-button">Register</button>
                             </div>
-           
+
                         </form>
                     </div>
-<<<<<<< HEAD
                 </div >
-=======
-                  
-                
-                
-                    <div className="form-group ">
-                        <button type="button" className="btn btn-primary btn-lg btn-block login-button">Register</button>
-                    </div>
-                  
-                </form>
-            </div>
-            </div >
->>>>>>> 7951d168775f9d556dbb95f21b4189dcb0f644e2
             </div >
 
         )
