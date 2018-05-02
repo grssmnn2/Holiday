@@ -72,7 +72,7 @@ this.setState({
         } )
 
         } 
-         <Map />
+         {/* <Map /> */}
 
       </div>
 
