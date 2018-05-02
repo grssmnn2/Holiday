@@ -5,7 +5,7 @@ import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
 import { CIRCLE } from "@blueprintjs/icons/lib/esm/generated/iconNames";
 import {app, base} from "../../base"
-class Imageuploder extends Component {
+class Imageuploader extends Component {
   state = {
     username: "",
     avatar: "",
@@ -38,17 +38,17 @@ class Imageuploder extends Component {
       <div>
         <form>
           
-        <label style={{backgroundColor: 'steelblue', color: 'white', border: 'black', padding: 10, margin: 5, borderRadius: 4}}>
+        <label >
             Username:
           
           <input style={{color: 'black'}}
             type="text"
-            value={this.state.username}
+            // value={this.props.email}
             name="username"
             onChange={this.handleChangeUsername}
           />
           </label>
-        <label style={{backgroundColor: 'steelblue', color: 'white', border: 'black', padding: 10, margin: 5, borderRadius: 4, pointer: 'cursor'}}>
+        <label >
             Avatar:
           {this.state.isUploading && <Progress width={50} percent={this.state.progress} type={CIRCLE}></Progress>}
           {/* {this.state.avatarURL && <img src={this.state.avatarURL} />} */}
@@ -75,4 +75,4 @@ class Imageuploder extends Component {
   }
 }
 
-export default Imageuploder;
+export default Imageuploader;

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 class Navbar extends Component {
   render() {
@@ -52,27 +52,18 @@ class Navbar extends Component {
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav">
-                
-                  <Link to="/index">Home</Link>
-                
-                
-                  <Link to="/chLinkt">Messages</Link>
-                
-                
-                  <Link to="/profile">Profile</Link>
-                
+                <Link to="/index">Home</Link>
 
-                  {this.props.authenticated
-                  ? (
-                <Link to="/logout" >Log Out</Link>
-            )
-            : (
-                <Link to="/login">Register/Log In</Link>
-            )
-        }
-                
-                  <Link to="/index">Home</Link>
-                
+                <a onClick={this.props.display} >Messages</a>
+
+                <Link to="/profile">Profile</Link>
+
+                {this.props.authenticated ? (
+                  <Link to="/logout">Log Out</Link>
+                ) : (
+                  <Link to="/login">Register/Log In</Link>
+                )}
+
               </ul>
             </div>
           </div>

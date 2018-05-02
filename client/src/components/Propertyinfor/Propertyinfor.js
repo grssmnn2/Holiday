@@ -17,6 +17,7 @@ import { message, Button } from "antd";
 import { DatePicker } from 'antd';
 import moment from 'moment';
 import Billingform from "../Billingform"
+import API from "../../utils/API"
 import "./Propertyinfor.css";
 const { Meta } = Card;
 const { Header, Content, Sider, Footer } = Layout;
@@ -30,6 +31,12 @@ class Propertyinfor extends Component {
     this.setState({ value });
   };
   success = () => {
+    console.log(this.props.location.state.email)
+    API.addFriends(this.props.location.state.email,{"friendlist":"eddie"}).then(res=>{
+      console.log(res)
+    }).catch(err=>{
+      console.log(err)
+    })
     message.config({
       top: 250,
       duration: 2

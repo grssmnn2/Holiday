@@ -1,14 +1,35 @@
 import React, { Component } from "react";
-
 import Navbar from "../../Navbar"
+import Friendlist from "../../Friendlist"
 import Footer from "../../Footer"
+import { Modal, Button } from 'antd';
 
 
 class Home extends Component {
+	// code to open modal
+	state = { visible: false }
+	showModal = () => {
+	  this.setState({
+		visible: true,
+	  });
+	}
+	handleOk = (e) => {
+	  console.log(e);
+	  this.setState({
+		visible: false,
+	  });
+	}
+	handleCancel = (e) => {
+	  console.log(e);
+	  this.setState({
+		visible: false,
+	  });
+	}
+
     render() {
         return (
-            <div>
-				<Navbar />
+            <div style={{minWidth:900+"px"}}>
+			{/* <Friendlist email={this.props.location.state.email}></Friendlist> */}
             <section className="banner-area relative" id="home">
                 <div className="overlay overlay-bg"></div>
                 <div className="container">
@@ -16,7 +37,7 @@ class Home extends Component {
                         <div className="banner-content col-lg-12 col-md-12">
                             <h1 className="text-uppercase">
                                 HOLIDAY
-                    </h1>
+                    		</h1>
                             <div className="search-field">
                                 <form className="search-form" action="#">
                                     <div className="row">
@@ -26,8 +47,8 @@ class Home extends Component {
                                                     <h4 className="search-title">Find a Swap</h4>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                            <div className="col-lg-4 col-md-6 col-xs-6">
+                                            <div className="row">
+                                            <div className="col-lg-12 col-md-12 col-xs-12">
                                                 <select name="location" className="app-select form-control" required>
                                                     <option data-display="Choose locations">Choose locations</option>
                                                     <option value="1">Chicago</option>
@@ -35,33 +56,30 @@ class Home extends Component {
 
                                                 </select>
                                             </div>
-                                            <div className="col-lg-4 col-md-6 col-xs-6">
-                                                <select name="property-type" className="app-select form-control" required>
-                                                    <option data-display="Property Type">Property Type</option>
-                                                    <option value="1">House</option>
-                                                    <option value="2">Apartment</option>
 
-                                                </select>
+											  <Modal
+         										 title="Available Apartments"
+         										 visible={this.state.visible}
+         										 onOk={this.handleOk}
+         										 onCancel={this.handleCancel}
+       												 >
+         										 <div className="apts"><p>Apts will eventually be shown here</p></div>
+       										 </Modal>
+                                         
                                             </div>
-
-                                            <div className="col-lg-4 col-md-6 col-xs-6">
-                                                <select name="bedroom" className="app-select form-control" required>
-                                                    <option data-display="Bedrooms">Bedrooms</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
-                                                </select>
-                                            </div>
-                                            </div>
-                                            <div class="row">
+                                            <div className="row">
                                             <div className="col-lg-12 d-flex justify-content-end">
-                                                <button className="primary-btn mt-50" style={{height: '45px', marginLeft: '95px'}}>Search Properties<span className="lnr lnr-arrow-right"></span></button>
+                                                <button className="primary-btn mt-50" style={{height: '45px', marginLeft: '95px'}} onClick={this.showModal}>
+												Search Properties<span className="lnr lnr-arrow-right"></span></button>
+												
                                             </div>
+										
                                             </div>
                                         </div>
                                     </div>
                                 </form>
                             </div>
+							
                         </div>
                     </div>
                 </div>
@@ -214,36 +232,6 @@ class Home extends Component {
 						</div>																											
 					</div>
 				</div>	
-			</section>
-            {/* city area */}
-            <section className="city-area section-gap">
-				<div className="container">
-					<div className="row">
-						<div className="col-lg-6 col-md-6 mt-30">
-									<div className="content">
-									    <a href="#" target="_blank">
-									      <div className="content-overlay"></div>
-									  		 <img className="content-image img-fluid d-block mx-auto" src={require("../../../img/p3.jpg")} alt=""></img>
-									      <div className="content-details fadeIn-bottom">
-									        <h3 className="content-title">Chicago Properties</h3>
-									      </div>
-									    </a>
-									</div>
-								</div>
-								<div className="col-lg-6 col-md-6 mt-30">
-									<div className="content">
-									    <a href="#" target="_blank">
-									      <div className="content-overlay"></div>
-									  		 <img className="content-image img-fluid d-block mx-auto" src={require("../../../img/p4.jpg")} alt=""></img>
-									      <div className="content-details fadeIn-bottom">
-									        <h3 className="content-title">Hawaii Properties</h3>
-									      </div>
-									    </a>
-									</div>
-								</div>								
-					
-						 </div>
-						</div>	
 			</section>
 		
             </div>

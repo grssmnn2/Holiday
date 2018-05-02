@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import Navbar from "../../Navbar"
 import Footer from "../../Footer"
-// import Imageuploader from "../../ImageUploader"
+import "./Register.css"
+import Imageuploader from "../../Imageuploader"
+
+
 class Register extends Component {
     render() {
         return (
          <div className={this.props.Name} >
-             {/* <Navbar/> */}
+         
             
          <div className="container" style={{padding: '130px'}}>
                     <div className="row main"></div>
@@ -22,38 +25,12 @@ class Register extends Component {
                         <label htmlFor="name" className="cols-sm-2 control-label">Your Name</label>
                         <div className="cols-sm-10">
                             <div className="input-group">
-                                <span className="input-group-addon"><i className="fa fa-user fa" aria-hidden="true"></i></span>
+                                <span className="input-group-addon"><i className="fa-lg fa-user fa "  aria-hidden="true"></i></span>
                                 <input type="text" className="form-control" name="name" id="name" placeholder="Enter your Name" />
                             </div>
                         </div>
                     </div>
-                    {/* <div className="form-group">
-                        <label htmlFor="email" className="cols-sm-2 control-label">Your Email</label>
-                        <div className="cols-sm-10">
-                            <div className="input-group">
-                                <span className="input-group-addon"><i className="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                <input type="text" className="form-control" name="email" id="email" placeholder="Enter your Email" />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password" className="cols-sm-2 control-label">Password</label>
-                        <div className="cols-sm-10">
-                            <div className="input-group">
-                                <span className="input-group-addon"><i className="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                <input type="password" className="form-control" name="password" id="password" placeholder="Enter your Password" />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="confirm" className="cols-sm-2 control-label">Confirm Password</label>
-                        <div className="cols-sm-10">
-                            <div className="input-group">
-                                <span className="input-group-addon"><i className="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                <input type="password" className="form-control" name="confirm" id="confirm" placeholder="Confirm your Password" />
-                            </div>
-                        </div>
-                    </div> */}
+                    <Imageuploader/>
                     <div className="form-group">
                         <label htmlFor="confirm" className="cols-sm-2 control-label">Address</label>
                         <div className="cols-sm-10">
@@ -102,12 +79,13 @@ class Register extends Component {
                          </div>
                          </div>
                    </div>
-                    <div className="form-group">
-                      <label htmlFor="confirm" className="cols-sm-2 control-label">Number of Bathrooms</label>
+                   <div className="form-row">
+                    <div className="form-group" style={{paddingRight: '100px'}}>
+                      <label htmlFor="confirm" className="cols-md-3 control-label"  >Number of Bathrooms</label>
                       <div className="cols-sm-10">
                        <div className="input-group">
                              <span className="input-group-addon"><i className="fa fa-bath fa-lg" aria-hidden="true"></i></span>
-                            <select class="form-control">
+                            <select className="form-control">
                                 <option>0</option>
                                 <option>1</option>
                                  <option>2</option>
@@ -116,20 +94,54 @@ class Register extends Component {
                       </div>
                      </div>
                     </div>
-                    <div className="form-group">
-                     <label htmlFor="confirm" className="cols-sm-2 control-label">Wifi?</label>
+
+                       <div className="form-group" style={{paddingRight: '100px'}}>
+                      <label htmlFor="confirm" className="cols-md-3 control-label" >Number of Bedrooms</label>
+                      <div className="cols-sm-10">
+                       <div className="input-group">
+                             <span className="input-group-addon"><i className="fa fa-bed fa-lg" aria-hidden="true"></i></span>
+                            <select className="form-control">
+                                <option>0</option>
+                                <option>1</option>
+                                 <option>2</option>
+                                 <option>3+</option>
+                             </select>
+                      </div>
+                     </div>
+                    </div>
+
+                       <div className="form-group" style={{paddingRight: '100px'}}>
+                      <label htmlFor="confirm" className="cols-md-3 control-label" >Number of Guests Possible</label>
+                      <div className="cols-sm-10">
+                       <div className="input-group">
+                             <span className="input-group-addon"><i className="fa fa-child fa-lg" aria-hidden="true"></i></span>
+                            <select className="form-control">
+                                <option>0</option>
+                                <option>1</option>
+                                 <option>2</option>
+                                 <option>3+</option>
+                             </select>
+                      </div>
+                     </div>
+                    </div>
+
+                      <div className="form-group">
+                     <label htmlFor="confirm" className="cols-md-3 control-label">Wifi?</label>
                      <div className="cols-sm-10">
                         <div className="input-group">
                         <span className="input-group-addon"><i className="fa fa-wifi fa-lg" aria-hidden="true"></i></span>
-                         <select class="form-control">
+                         <select className="form-control">
                             <option>Yes</option>
                             <option>No</option>
                          </select>
                         </div>
                     </div>
                     </div>
+
+                    </div>
+                  
                 
-                    {/* <Imageuploader/> */}
+                
                     <div className="form-group ">
                         <button type="button" className="btn btn-primary btn-lg btn-block login-button">Register</button>
                     </div>
