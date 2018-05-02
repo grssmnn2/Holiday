@@ -2,33 +2,38 @@ import React, { Component } from "react";
 import Navbar from "../../Navbar"
 import Friendlist from "../../Friendlist"
 import Footer from "../../Footer"
-import { Modal, Button } from 'antd';
-
+import { Redirect } from "react-router-dom";
+import axios from 'axios';
 
 class Home extends Component {
-	// code to open modal
-	state = { visible: false }
-	showModal = () => {
-	  this.setState({
-		visible: true,
-	  });
-	}
-	handleOk = (e) => {
-	  console.log(e);
-	  this.setState({
-		visible: false,
-	  });
-	}
-	handleCancel = (e) => {
-	  console.log(e);
-	  this.setState({
-		visible: false,
-	  });
-	}
-
-    render() {
+		// code to open modal
+		// state = { visible: false }
+		state={
+			city:null,
+			isredirect:false
+		}
+		resultsPage = (event) => {
+			event.preventDefault()
+		  this.setState({
+		// 	visible: true,
+			city: event.target.value 
+		  },()=>{
+			  console.log(this.state.city)
+		  });
+		}
+		displayResults =()=>{
+			this.setState({
+				isredirect:true
+			})
+		
+		}
+	render() {
+		if(this.state.isredirect){
+			return <Redirect to={{pathname:"/result",state:{city:this.state.city}}}></Redirect>
+		}
         return (
             <div style={{minWidth:900+"px"}}>
+			
 			{/* <Friendlist email={this.props.location.state.email}></Friendlist> */}
             <section className="banner-area relative" id="home">
                 <div className="overlay overlay-bg"></div>
@@ -39,7 +44,7 @@ class Home extends Component {
                                 HOLIDAY
                     		</h1>
                             <div className="search-field">
-                                <form className="search-form" action="#">
+                                <form className="search-form">
                                     <div className="row">
                                         <div className="col-lg-12 d-flex align-items-center justify-content-center toggle-wrap">
                                             <div className="row">
@@ -49,27 +54,18 @@ class Home extends Component {
                                             </div>
                                             <div className="row">
                                             <div className="col-lg-12 col-md-12 col-xs-12">
-                                                <select name="location" className="app-select form-control" required>
+                                                <select name="location" onChange={this.resultsPage} className="app-select form-control" required>
                                                     <option data-display="Choose locations">Choose locations</option>
-                                                    <option value="1">Chicago</option>
-                                                    <option value="2">Hawaii</option>
+                                                    <option className="Chicago">Chicago</option>
+                                                    <option className="Hawaii">Hawaii</option>
 
                                                 </select>
                                             </div>
-
-											  <Modal
-         										 title="Available Apartments"
-         										 visible={this.state.visible}
-         										 onOk={this.handleOk}
-         										 onCancel={this.handleCancel}
-       												 >
-         										 <div className="apts"><p>Apts will eventually be shown here</p></div>
-       										 </Modal>
                                          
                                             </div>
                                             <div className="row">
                                             <div className="col-lg-12 d-flex justify-content-end">
-                                                <button className="primary-btn mt-50" style={{height: '45px', marginLeft: '95px'}} onClick={this.showModal}>
+                                               <button onClick={this.displayResults} className="primary-btn mt-50" style={{height: '45px', marginLeft: '95px'}} >
 												Search Properties<span className="lnr lnr-arrow-right"></span></button>
 												
                                             </div>
