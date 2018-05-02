@@ -1,10 +1,12 @@
 import { List, message, Avatar, Spin } from 'antd';
 import React from "react";
+import API from "../../utils/API"
 import {Collapse} from 'react-collapse';
 import InfiniteScroll from 'react-infinite-scroller';
 import GoX from "react-icons/lib/go/x";
 import IoIosChatbubbleOutline from "react-icons/lib/io/ios-chatbubble-outline";
 import Chatbox from "../Chatbox"
+import Navbar from "../Navbar"
 import "./Friendlist.css";
 import "../../utils/API"
 class Friendlist extends React.Component {
@@ -16,34 +18,15 @@ class Friendlist extends React.Component {
     className:"hide"
   }
   componentDidMount(){
-    const data = [
-      {
-        title: 'Title 1',
-      },
-      {
-        title: 'Title 2',
-      },
-      {
-        title: 'Title 3',
-      },
-      {
-        title: 'Title 4',
-      }, 
-      {
-        title: 'Title 4',
-      }, {
-        title: 'Title 3',
-      },
-      {
-        title: 'Title 4',
-      }, 
-      {
-        title: 'Title 4',
-      }
-    ];
-    this.setState({
-      data
+    API.retrieveFriendList(this.props.email).then(res=>{
+      console.log(res)
+      this.setState({
+        data:res.data.friendlist
+      })
+    }).catch(err=>{
+      console.log(err)
     })
+   
   }
   // retriveList = (user) =>{
   //   API.retrieveFriendList(user)
@@ -85,7 +68,7 @@ class Friendlist extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.display}>click me!!!</button>
+      <Navbar display={this.display}></Navbar>
       <Chatbox click={this.removeChatbox} name={this.state.className}></Chatbox>
       <Collapse isOpened={this.state.isOpened} fixedHeight={400}>
       <GoX onClick={this.display} style={{fontSize:30,float:"right"}}></GoX>
@@ -103,8 +86,8 @@ class Friendlist extends React.Component {
               <List.Item >
                 <List.Item.Meta
                   avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                  title={<a href="https://ant.design">{item.title}</a>}
-                  description={item.title}
+                  title={<a href="https://ant.design">{item}</a>}
+                  description={item}
                 />
                 <div><IoIosChatbubbleOutline onClick={this.showChatbox} style={{fontSize:30}}></IoIosChatbubbleOutline></div>
               </List.Item>

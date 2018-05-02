@@ -1,5 +1,4 @@
 const db = require("../models");
-const options = { upsert: true, new: true, setDefaultsOnInsert: true };
 module.exports = {
   update: (req, res) => {
     db.messages
@@ -19,9 +18,14 @@ module.exports = {
     })
   },
   findFriendList:(req,res) =>{
-    db.friendlist.find()
+    db.listing.findOne({email:req.params.user}).then(dbuser=>{
+      res.json(dbuser)
+    })
   },
   addFriend: (req,res) =>{
-  
+    db.listing.findOneAndUpdate({email:req.params.name},{$push:req.body},{new:true})
+    .then(dbdata=>{
+      res.json(dbdata)
+    })
   }
 };
