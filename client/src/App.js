@@ -13,7 +13,7 @@ import Register from "./components/Pages/Register"
 // import Home from "./components/Pages/Home"
 import Footer from "./components/Footer"
 import Header from "./components/Header"
-// import Result from "./components/Pages/Result"
+import Result from "./components/Pages/Result"
 //  other static components go here too
 import { app, base } from './base'
 import "./App.css";
@@ -138,7 +138,7 @@ class App extends Component {
                   exact
                   path="/home"
                   authenticated={this.state.authenticated}
-                  component={Home}
+                  component={Result}
                    /> 
                   <Route exact path="/" component={Home} />
                   <Route exact path="/profile" component={Profile} />    
