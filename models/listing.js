@@ -12,12 +12,8 @@ var listingSchema = new Schema({
     name: {
         type: String
     },
-    imageLink: [{
-        type: String
-    }],
     friendlist: [{
-        name: String,
-        email: String
+        type: String
     }],
     address: {
         type: String
@@ -55,7 +51,11 @@ var listingSchema = new Schema({
     review: {
         type: String
     }
-
+    img: {
+        data: Buffer,
+        contentType: String
+    }
+}
 })
 var listing = mongoose.model("listing", listingSchema)
 module.exports = listing;
