@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import Navbar from "../../Navbar"
 import Friendlist from "../../Friendlist"
 import Footer from "../../Footer"
-import menu from "../../menu"
 import { Redirect } from "react-router-dom";
 import axios from 'axios';
-import { Menu, Dropdown, Icon } from 'antd';
+
 
 
 class Home extends Component {
