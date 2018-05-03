@@ -1,6 +1,9 @@
 .chat_box .chat_message_wrapper ul.chat_message>li+li {
     margin-top: 4px;
   }
+  .hide{
+    display:none
+  }
   aside{
     top:10px;
     display:inline!important;

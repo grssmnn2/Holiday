@@ -10,7 +10,12 @@ class Home extends Component {
 		// state = { visible: false }
 		state={
 			city:null,
+<<<<<<< HEAD
 			isredirect:false
+=======
+			isredirect:false,
+			email:this.props.location.state.email
+>>>>>>> b4acfa26d91f43abdf67f24e1dbb71b480748e24
 		}
 		resultsPage = (event) => {
 			event.preventDefault()
@@ -34,7 +39,11 @@ class Home extends Component {
         return (
             <div style={{minWidth:900+"px"}}>
 			
+<<<<<<< HEAD
 			{/* <Friendlist email={this.props.location.state.email}></Friendlist> */}
+=======
+			<Friendlist email={this.state.email?this.state.email:null}></Friendlist>
+>>>>>>> b4acfa26d91f43abdf67f24e1dbb71b480748e24
             <section className="banner-area relative" id="home">
                 <div className="overlay overlay-bg"></div>
                 <div className="container">
