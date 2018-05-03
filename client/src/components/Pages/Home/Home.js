@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import Navbar from "../../Navbar"
 import Friendlist from "../../Friendlist"
 import Footer from "../../Footer"
+import menu from "../../menu"
 import { Redirect } from "react-router-dom";
 import axios from 'axios';
+import { Menu, Dropdown, Icon } from 'antd';
+
 
 class Home extends Component {
 		// code to open modal
@@ -49,21 +52,21 @@ class Home extends Component {
                                         <div className="col-lg-12 d-flex align-items-center justify-content-center toggle-wrap">
                                             <div className="row">
                                                 <div className="col">
-                                                    <h4 className="search-title">Find a Swap</h4>
+                                                    <h4 className="search-title text-uppercase" style={{margin: "25px", fontSize: "25px"}}>Find a Swap</h4>
                                                 </div>
-                                            </div>
-                                            <div className="row">
+                                            
+                                           
                                             <div className="col-lg-12 col-md-12 col-xs-12">
                                                 <select name="location" onChange={this.resultsPage} className="app-select form-control" required>
-                                                    <option data-display="Choose locations">Choose locations</option>
-                                                    <option className="Chicago">Chicago</option>
-                                                    <option className="Hawaii">Hawaii</option>
+                                                    <option data-display="Choose locations" style={{fontSize: "15px"}}>Choose locations</option>
+                                                    <option className="Chicago" style={{fontSize: "15px"}}>Chicago</option>
+                                                    <option className="Hawaii" style={{fontSize: "15px"}}>Hawaii</option>
 
                                                 </select>
-                                            </div>
+                                           
                                          
                                             </div>
-                                            <div className="row">
+                                          
                                             <div className="col-lg-12 d-flex justify-content-end">
                                                <button onClick={this.displayResults} className="primary-btn mt-50" style={{height: '45px', marginLeft: '95px'}} >
 												Search Properties<span className="lnr lnr-arrow-right"></span></button>
