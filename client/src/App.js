@@ -13,7 +13,7 @@ import Register from "./components/Pages/Register"
 // import Home from "./components/Pages/Home"
 import Footer from "./components/Footer"
 import Header from "./components/Header"
-// import Result from "./components/Pages/Result"
+import Result from "./components/Pages/Result"
 //  other static components go here too
 import { app, base } from './base'
 import "./App.css";
@@ -136,13 +136,20 @@ class App extends Component {
                 {/* <Chatbox /> */}
                 <AuthenticatedRoute
                   exact
+                  path="/result"
+                  authenticated={this.state.authenticated}
+                  component={Result}
+                   /> 
+
+                <AuthenticatedRoute
+                  exact
                   path="/home"
                   authenticated={this.state.authenticated}
                   component={Home}
                    /> 
-                  <Route exact path="/" component={Home} />
+                  {/* <Route exact path="/" component={Home} />
                   <Route exact path="/profile" component={Profile} />    
-                  <Route exact path="/register" component={Register} />                          
+                  <Route exact path="/register" component={Register} />                           */}
                 {/* <ShowRoute
                   path="/chatbox"
                   component={Chatbox}

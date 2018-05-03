@@ -1,22 +1,11 @@
-import {compose, withProps, lifecycle} from 'recompose'
 import {withScriptjs, withGoogleMap, GoogleMap, Marker} from 'react-google-maps'
 import Geocode from 'react-geocode'
 import React, { Component } from 'react'
 import { Circle } from "react-google-maps";
 
-//  internal code dependencies 
-// import './map.css'
-//  geo coding 
 
 const markers=[{lat: -34.397, lng: 150.644},
     {lat: -35.394, lng: 150.644}, {lat: 19.8968, lng:155.5828}]
-
-    //  testing to get lat and lng from address
-    //  so this console logs it - next step -render to the screen 
-    //  get input from form 
-    //  pass input into that function
-    //  this is HI: 21.2868645 -157.825472
-    //this is NY: 40.9949525 -72.2926543
 
 //  refactor into function that takes an object (this would be part of the component / which would be a class component )
 //  address would be from parent component / just changing this to local variable for now 
@@ -58,6 +47,5 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
 )}
     </GoogleMap>
 ))
-
 
 export default MyMapComponent
