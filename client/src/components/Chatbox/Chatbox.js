@@ -11,12 +11,33 @@ class Chatbox extends Component {
   state = {
     sender:"",
     message: "",
-    messages: [],
+    messages:[],
     socket: null,
-    receiver:""
+    receiver:"",
+    className:"hide",
+    isOpen:false
   };
   componentWillMount(){
     this.initSocket();
+  }
+  componentWillReceiveProps(nextProps){
+    if(this.props.receiver!==nextProps.receiver){
+    this.setState({
+      receiver:nextProps.receiver
+    },()=>{
+      console.log(this.state.sender+this.state.receiver)
+    })
+  }
+  if(this.state.className!==nextProps.name){
+    this.setState({
+      className:nextProps.name
+    })
+  }
+  if(this.state.messages!==nextProps.messages){
+    this.setState({
+      messages:nextProps.messages
+    })
+  }
   }
   componentDidMount() {
     const { socket,sender} = this.state;
@@ -36,20 +57,18 @@ class Chatbox extends Component {
   }
   initSocket = () => {
     const socket = io("http://localhost:3001");
-    const name=["eddie","megan","a","b","c","d"];
-    let num=Math.floor(Math.random()*name.length)
     this.setState({ 
       socket:socket,
-      sender:name[num]
+      sender:this.props.email
     });
-    socket.emit("NEW_USERS", {sender:name[num]})
+    socket.emit("NEW_USERS", {sender:this.props.email})
   };
   sendMessage = () => {
     const { socket,receiver,sender } = this.state;
     socket.emit("SEND_MESSAGE", {
       sender: sender,
       receiver:receiver,
-      messages: this.state.message
+      messages: this.state.message,
     },(data)=>{
       console.log(data)
       this.saveMessage({sender:data.name,receiver:data.receiver,message:data.messages})
@@ -59,26 +78,26 @@ class Chatbox extends Component {
     API.storeMessage(message)
     .then(res=>{
       console.log("hello")
+      this.setState({
+        message:""
+      })
     }).catch(err => console.log(err));
   }
-  displayHistoryMessage = ()=>{
-    API.findhistoryMessage(this.state.sender,this.state.receiver)
-    .then(res =>{
-      let obj=[];
-      res.data.forEach(element => {
-          obj=[...obj,{name:element.sender, receiver:element.receiver,messages:element.message,time:element.created}]
-      });
-      this.obj
-      this.setState({
-        messages:obj
-      })
-    }).catch(err => console.log(err))
+
+  removeChatbox=() =>{
+    this.setState({
+      className:"hide",
+      receiver:null,
+      isOpen:false
+    },()=>{
+      console.log(this.state.isOpen)
+    })
   }
   render() {
     return (
         <aside
           id="sidebar_secondary"
-          className={`tabbed_sidebar ng-scope chat_sidebar dragme ${this.props.name}`}
+          className={`tabbed_sidebar ng-scope chat_sidebar dragme  ${this.state.className}`}
         >
           <div className="popup-head">
             <div className="popup-head-left pull-left">
@@ -98,7 +117,7 @@ class Chatbox extends Component {
                 className="chat-header-button pull-right"
                 type="button"
               >
-                <IoClose onClick={this.props.click} style={{fontSize:20}}></IoClose>
+                <IoClose onClick={this.removeChatbox} style={{fontSize:20}}></IoClose>
               </button>
             </div>
           </div>
@@ -113,7 +132,7 @@ class Chatbox extends Component {
             }}
           >
             <div className="chat_box touchscroll chat_box_colors_a">
-              {this.state.messages.map((mes, i) => {
+              {this.state.messages?this.state.messages.map((mes, i) => {
                 return (
                   <div key={i} className={`chat_message_wrapper ${mes.name===this.state.sender?null:"chat_message_right"}` }>
                     <Avatar style={{float:mes.name===this.state.sender?"left":"right"}}>{mes.name.charAt(0)}</Avatar>
@@ -129,7 +148,7 @@ class Chatbox extends Component {
                     </ul>
                   </div>
                 );
-              })}
+              }):null}
 
               {/* <div className="chat_message_wrapper chat_message_right">
             <div className="chat_user_avatar" />
@@ -157,18 +176,17 @@ class Chatbox extends Component {
                     <i className="fa fa-camera" />
                   </a>
                 </span>
-                <input
+                <a>{this.props.receiver?this.props.receiver:null}</a>
+                {/* <input
                   type="text"
                   placeholder="Type a message"
                   id="submit_message"
                   style={{ width: 100 + "%" }}
                   name="submit_message"
                   className="md-input"
-                  value={this.state.receiver}
-                  onChange={event =>
-                    this.setState({ receiver: event.target.value })
-                  }
-                />
+                  value={this.props.receiver}
+                 
+                /> */}
                 <input
                 type="text"
                 placeholder="Type a message"

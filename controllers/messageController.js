@@ -23,7 +23,7 @@ module.exports = {
     })
   },
   addFriend: (req,res) =>{
-    db.listing.findOneAndUpdate({email:req.params.name},{$push:req.body},{new:true})
+    db.listing.findOneAndUpdate({email:req.params.name},{$push:{friendlist:req.body}},{new:true})
     .then(dbdata=>{
       res.json(dbdata)
     })
