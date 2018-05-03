@@ -4,53 +4,58 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-var listingSchema = new Schema ({
+var listingSchema = new Schema({
     email: {
         type: String,
-        required:true
+        required: true
     },
     name: {
         type: String
-    }, 
-    friendlist:[{
-        type:String
+    },
+    friendlist: [{
+        type: String
     }],
     address: {
         type: String
     },
     city: {
         type: String
-    }, 
+    },
     state: {
         type: String
-    }, 
+    },
     country: {
         type: String
     },
-    geocode:{
-        type:Object
+    geocode: {
+        type: Object
     },
     zip: {
         type: Number
-    },  
+    },
     pets: {
-        type:Boolean
+        type: Boolean
     },
     bathroom: {
         type: Number
-    }, 
+    },
     bedroom: {
         type: Number
     },
     guest: {
         type: Number
-    },  
+    },
     wifi: {
-        type:Boolean
-    }, 
-    review:{
-        type:String
+        type: Boolean
+    },
+    review: {
+        type: String
     }
+    img: {
+        data: Buffer,
+        contentType: String
+    }
+}
 })
-var listing = mongoose.model("listing",listingSchema)
-module.exports =listing;
+var listing = mongoose.model("listing", listingSchema)
+module.exports = listing;
