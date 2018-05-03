@@ -126,11 +126,15 @@ class App extends Component {
       <div>
         <Router>
           <div>
-            <Navbar authenticated={this.state.authenticated} />
-            <div className="main-content" style={{ padding: "5em" }}>
-              <div className="workspace">
+            {/* <Navbar authenticated={this.state.authenticated} /> */}
+            {/* <div className="main-content" style={{ padding: "5em" }}>
+              <div className="workspace"> */}
                 <Route exact path="/login" render={(props) => {
-                  return <Login setCurrentUser={this.setCurrentUser} {...props} />
+                  return <div>
+                    <Navbar authenticated={this.state.authenticated}/>
+                    <div className="main-content" style={{ padding: "5em" }}>
+                     <div style={{marginTop: 10+"%"}}className="workspace">
+                    <Login setCurrentUser={this.setCurrentUser} {...props}/></div></div></div>
                 }} />
                 <Route exact path="/logout" component={Logout} />
                 {/* <Chatbox /> */}
@@ -138,6 +142,7 @@ class App extends Component {
                   exact
                   path="/result"
                   authenticated={this.state.authenticated}
+                  item={this.state.authenticated}
                   component={Result}
                    /> 
 
@@ -145,6 +150,7 @@ class App extends Component {
                   exact
                   path="/home"
                   authenticated={this.state.authenticated}
+                  item={this.state.authenticated}
                   component={Home}
                    /> 
                   {/* <Route exact path="/" component={Home} />
@@ -159,8 +165,8 @@ class App extends Component {
                   // updateSong={this.updateSong}
                   // items={this.state.songs} 
                   /> */}
-              </div>
-            </div>
+              {/* </div>
+            </div> */}
           </div>
         </Router>
         <Footer />

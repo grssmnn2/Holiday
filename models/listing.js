@@ -12,8 +12,12 @@ var listingSchema = new Schema ({
     name: {
         type: String
     }, 
-    friendlist:[{
+    imageLink:[{
         type:String
+    }],
+    friendlist:[{
+        name:String,
+        email:String
     }],
     address: {
         type: String

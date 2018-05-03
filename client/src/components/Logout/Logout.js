@@ -20,6 +20,7 @@ class Logout extends Component {
 
   render() {
     if (this.state.redirect === true) {
+      localStorage.removeItem("user");
       return <Redirect to="/" />
     }
 

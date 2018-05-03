@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 class Navbar extends Component {
+ 
   render() {
+    console.log(this.props.authenticated)
     return (
       <header className="default-header">
         {/* <div className="menutop-wrap">
@@ -52,13 +54,14 @@ class Navbar extends Component {
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav">
-                <Link to="/index">Home</Link>
-
-                <a onClick={this.props.display} >Messages</a>
+                <Link to="/home">Home</Link>
+              {this.props.authenticated ? (
+               <a onClick={this.props.click} >Messages</a>):null}
 
                 <Link to="/profile">Profile</Link>
 
                 {this.props.authenticated ? (
+                  
                   <Link to="/logout">Log Out</Link>
                 ) : (
                   <Link to="/login">Register/Log In</Link>

@@ -5,6 +5,9 @@
     top:10px;
     display:inline!important;
   }
+  .hide{
+    display:none
+  }
   #chat {
   
     z-index: 9999;
