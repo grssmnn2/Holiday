@@ -15,7 +15,9 @@ class Friendlist extends React.Component {
     loading: false,
     hasMore: true,
     isOpened:false,
-    className:"hide"
+    className:"hide",
+    receiver:null,
+    messages:[]
   }
   componentDidMount(){
     API.retrieveFriendList(this.props.email).then(res=>{
@@ -55,21 +57,45 @@ class Friendlist extends React.Component {
       isOpened:!this.state.isOpened
     })
   }
-  showChatbox =()=>{
+  showChatbox =(user)=>{
+    if(this.state.className===null){
+      this.setState({
+        className:"hide",
+        receiver:user,
+        historyMessage:!this.state.historyMessage
+      },()=>{
+        this.displayHistoryMessage()
+      })
+    }else(
     this.setState({
-      className:null
-    })
+      className:null,
+      receiver:user,
+      historyMessage:!this.state.historyMessage
+    },()=>{
+      this.displayHistoryMessage()
+    }))
   }
-  removeChatbox=() =>{
-    this.setState({
-      className:"hide"
-    })
+  displayHistoryMessage = ()=>{
+    API.findhistoryMessage(this.props.email,this.state.receiver)
+    .then(res =>{
+      console.log(res)
+      let obj=[];
+      res.data.forEach(element => {
+          obj=[...obj,{name:element.sender, receiver:element.receiver,messages:element.message,time:element.created.substring(0,19)}]
+      });
+      console.log("hello")
+      this.setState({
+        messages:obj
+      },()=>{
+        console.log(this.state.messages)
+      })
+    }).catch(err => console.log(err))
   }
   render() {
     return (
       <div>
-      <Navbar display={this.display}></Navbar>
-      <Chatbox click={this.removeChatbox} name={this.state.className}></Chatbox>
+      <Navbar authenticated={this.props.authenticated} click={this.display}></Navbar>
+      <Chatbox messages={this.state.messages} isOpen={this.state.historyMessage} email={this.props.email} receiver={this.state.receiver}  name={this.state.className}></Chatbox>
       <Collapse isOpened={this.state.isOpened} fixedHeight={400}>
       <GoX onClick={this.display} style={{fontSize:30,float:"right"}}></GoX>
       <div className="demo-infinite-container">
@@ -86,10 +112,10 @@ class Friendlist extends React.Component {
               <List.Item >
                 <List.Item.Meta
                   avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                  title={<a href="https://ant.design">{item}</a>}
-                  description={item}
+                  title={<a href="https://ant.design">{item.name}</a>}
+                  description={item.email}
                 />
-                <div><IoIosChatbubbleOutline onClick={this.showChatbox} style={{fontSize:30}}></IoIosChatbubbleOutline></div>
+                <div onClick={()=>this.showChatbox(item.email)}><IoIosChatbubbleOutline  style={{fontSize:30}}></IoIosChatbubbleOutline></div>
               </List.Item>
             )}
           >

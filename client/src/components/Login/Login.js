@@ -73,18 +73,19 @@ class Login extends Component {
   </div>
         <label className="pt-label">
           Email
-    <input style={{ width: "100%" }} className="pt-input" name="email" type="email" ref={(input) => { this.emailInput = input }} placeholder="Email"></input>
+    <input style={{ width: "140%" }} className="pt-input" name="email" type="email" ref={(input) => { this.emailInput = input }} placeholder="Email"></input>
         </label>
         <label className="pt-label">
           Password
-    <input style={{ width: "100%" }} className="pt-input" name="password" type="password" ref={(input) => { this.passwordInput = input }} placeholder="Password"></input>
+    <input style={{ width: "123%" }} className="pt-input" name="password" type="password" ref={(input) => { this.passwordInput = input }} placeholder="Password"></input>
         </label>
-        <input style={{ width: "100%" }} type="submit" className="pt-button pt-intent-primary" value="Log In"></input>
+        <input style={{ marginTop:14+"px",width: "100%" }} type="submit" className="pt-button pt-intent-primary" value="Log In"></input>
       </form>
     </div> : <div><Register /> <Toaster ref={(element) => { this.toaster = element }} /></div>
     if (this.state.redirect === true) {
       console.log("redirect")
-      return <Redirect to={{pathname:"/home",state:{email:this.state.email}}}/>
+      localStorage.setItem("user",this.state.email)
+      return <Redirect to={{pathname:"/home"}}/>
     }
     return (
       <div>

@@ -10,7 +10,8 @@ class Home extends Component {
 		// state = { visible: false }
 		state={
 			city:null,
-			isredirect:false
+			isredirect:false,
+			email:localStorage.getItem("user")
 		}
 		resultsPage = (event) => {
 			event.preventDefault()
@@ -28,13 +29,16 @@ class Home extends Component {
 		
 		}
 	render() {
+		console.log(this.props.item)
+		console.log(this.state.email)
 		if(this.state.isredirect){
 			return <Redirect to={{pathname:"/result",state:{city:this.state.city}}}></Redirect>
 		}
         return (
             <div style={{minWidth:900+"px"}}>
-			
-			{/* <Friendlist email={this.props.location.state.email}></Friendlist> */}
+			<Friendlist authenticated={this.props.item} email={this.state.email?this.state.email:null}></Friendlist>
+			<div className="main-content" style={{ padding: "5em" }}>
+              <div className="workspace">
             <section className="banner-area relative" id="home">
                 <div className="overlay overlay-bg"></div>
                 <div className="container">
@@ -229,7 +233,8 @@ class Home extends Component {
 					</div>
 				</div>	
 			</section>
-		
+		</div>
+		</div>
             </div>
         );
     }
