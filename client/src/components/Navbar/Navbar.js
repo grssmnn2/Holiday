@@ -54,7 +54,7 @@ class Navbar extends Component {
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav">
-                <Link to="/home">Home</Link>
+                <Link to="/">Home</Link>
               {this.props.authenticated ? (
                <a onClick={this.props.click} >Messages</a>):null}
 
