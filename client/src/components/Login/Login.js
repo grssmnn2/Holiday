@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { Toaster, Intent } from '@blueprintjs/core'
 import { app } from '../../base'
+import { Alert } from 'antd';
+import API from "../../utils/API"
 import Register from "../Pages/Register"
 import "./login.css"
 const loginStyles = {
@@ -21,11 +23,16 @@ class Login extends Component {
       redirect: false,
       email:"",
       isLogin: true,
-      validate:false
-
+      validate:false,
+      visible: false,
+      hasError:false,
+      error:null
     }
   }
-
+  
+  handleClose = () => {
+    this.setState({ visible: false });
+  }
   authWithEmailPassword(event) {
     event.preventDefault()
 
@@ -38,15 +45,30 @@ class Login extends Component {
           this.setState({
             isLogin:false
           })
+          console.log("create")
           return app.auth().createUserWithEmailAndPassword(email, password)
-        } else {
+        } else if (providers.indexOf("password") === -1) {
+          this.toaster.show({ intent: Intent.WARNING, message: "Try alternative login." })
+        }
+        else {
           // sign user in
          validate=true;
-
           return app.auth().signInWithEmailAndPassword(email, password)
         }
       })
       .then((user) => {
+          this.setState({
+            hasError:false,
+            visible: false
+          })
+          if(!validate){
+            localStorage.setItem("user",email)
+            API.createUser({email:email}).then(user=>{
+              
+            }).catch(err=>console.log(err))
+          }
+         
+          console.log("i go first")
           if(validate&&user&&user.email){  
             console.log(user)         // this.loginForm.reset()
             console.log(this)
@@ -59,12 +81,20 @@ class Login extends Component {
           }
       })
       .catch((error) => {
+        console.log(error)
+        if(error.message){
+       this.setState({
+         visible:true,
+         hasError:true,
+         error:error.message
+       })
+      }
         this.toaster.show({ intent: Intent.DANGER, message: error.message })
       })
   }
   render() {
     const { from } = this.props.location.state || { from: { pathname: '/' } }
-    const display = this.state.isLogin ? <div style={loginStyles}>
+    const display = this.state.isLogin || this.state.hasError ? <div style={loginStyles}>
       <Toaster ref={(element) => { this.toaster = element }} />
       <form onSubmit={(event) => this.authWithEmailPassword(event)}>
         <div className="pt-callout pt-icon-info-sign">
@@ -89,6 +119,18 @@ class Login extends Component {
     }
     return (
       <div>
+         <div style={{textAlign:"center"}}>
+        {
+          this.state.visible ? (
+            <Alert
+              message={this.state.error}
+              type="error"
+              closable
+              afterClose={this.handleClose}
+            />
+          ) : null
+        }
+      </div>
         {display}
       </div>
     )

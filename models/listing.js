@@ -35,22 +35,22 @@ var listingSchema = new Schema ({
         type:Object
     },
     zip: {
-        type: Number
+        type: String
     },  
     pets: {
-        type:Boolean
+        type:String
     },
     bathroom: {
-        type: Number
+        type: String
     }, 
     bedroom: {
-        type: Number
+        type: String
     },
     guest: {
-        type: Number
+        type: String
     },  
     wifi: {
-        type:Boolean
+        type:String
     }, 
     review:{
         type:String
