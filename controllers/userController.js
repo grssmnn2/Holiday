@@ -10,5 +10,11 @@ module.exports={
         .then(dbuser=>{
             res.json(dbuser)
         })
+    },
+    uploadImage:(req,res)=>{
+        db.listing.findOneAndUpdate({email:req.params.email},{$push:{imageLink:req.body}},{new:true})
+        .then(dbimage=>{
+            res.json(dbimage)
+        })
     }
 }
