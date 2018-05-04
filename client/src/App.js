@@ -8,6 +8,7 @@ import Login from "./components/Login"
 import Logout from "./components/Logout"
 import Profile from "./components/Pages/Profile"
 import Home from "./components/Pages/Home"
+import Home2 from "./components/Pages/Home2"
 import Properyinfor from "./components/Propertyinfor"
 import Register from "./components/Pages/Register"
 // import Home from "./components/Pages/Home"
@@ -153,7 +154,7 @@ class App extends Component {
                   item={this.state.authenticated}
                   component={Home}
                    /> 
-                  <Route exact path="/" component={Home} />
+                  <Route exact path="/" component={Home2} />
                   <Route exact path="/profile" component={Profile} />    
                   <Route exact path="/register" component={Register} /> 
                

@@ -7,7 +7,7 @@ import axios from 'axios';
 
 
 
-class Home extends Component {
+class Home2 extends Component {
 		// code to open modal
 		// state = { visible: false }
 		state={
@@ -242,4 +242,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default Home2;
