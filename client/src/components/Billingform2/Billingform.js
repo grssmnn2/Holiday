@@ -303,14 +303,12 @@ class Billingform extends Component {
       <div>
         <Button
           style={{
-            border: "none",
-            backgroundColor: "#FF5A5F",
-            marginTop: 10 + "%"
+            border: "none"
           }}
           type="primary"
           onClick={this.showModal}
         >
-          Book
+          Confirm
         </Button>
         <Modal
           width="700px"

@@ -8,5 +8,12 @@ export default {
     getResults:(city) => axios.get("/api/results/"+city),
     updateUserData:(email,data)=> axios.put("/api/userinfor/"+email,data),
     createUser:(data)=> axios.post("/api/newUser/",data),
-    uploadImageLink:(email,data)=> axios.put("/api/image/"+email,data)
+    uploadImageLink:(email,data)=> axios.put("/api/image/"+email,data),
+    retrievePendingTrips:(user)=>axios.get("/api/pending/"+user),
+    retreiveSwapRequests:(user)=>axios.get("/api/request/"+user),
+    retrieveUpcomingTrips:(user)=>axios.get("/api/upcoming/"+user),
+    retrieveCompleteTrips:(user)=>axios.get("/api/complete/"+user),
+    createRequest:(data)=>axios.post("/api/newtrips",data),
+    confirmTrip:(users)=>axios.put("/api/confirm/",users),
+    completeTrip:(id)=>axios.put("/api/completetrip/"+id)
 }

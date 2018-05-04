@@ -1,4 +1,5 @@
 module.exports={
     messages:require("./messages"),
-    listing:require("./listing")
+    listing:require("./listing"),
+    swap: require("./swap")
 }
