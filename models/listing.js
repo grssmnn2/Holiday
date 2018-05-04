@@ -13,7 +13,7 @@ var listingSchema = new Schema ({
         type: String
     }, 
     imageLink:[{
-        type:String
+        link:String
     }],
     friendlist:[{
         name:String,

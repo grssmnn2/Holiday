@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "../../Navbar"
 import Footer from "../../Footer"
+import ImageUploader from "../../Imageuploader"
 import { Redirect } from 'react-router-dom'
 import { Alert } from 'antd';
 import API from "../../../utils/API"
@@ -160,7 +161,7 @@ class Register extends Component {
                                     <div className="cols-sm-10">
                                         <div className="input-group">
                                             <span className="input-group-addon"><i className="fa fa-bed fa-lg" aria-hidden="true"></i></span>
-                                            <select onChange={(e)=>this.handleChange(e)} value={this.state.bedroom}name="bedroom"class="form-control">
+                                            <select onChange={(e)=>this.handleChange(e)} value={this.state.bedroom}name="bedroom"className="form-control">
                                                 <option></option>
                                                 <option>0</option>
                                                 <option>1</option>
@@ -206,10 +207,12 @@ class Register extends Component {
                                         <div className="input-group">
                                             <div>
                                                 <RangePicker onChange={this.onChange} />
+                                                <ImageUploader email={localStorage.getItem("user")}></ImageUploader>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                               
 
 
                             </div>
