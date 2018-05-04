@@ -1,11 +1,14 @@
-import {withScriptjs, withGoogleMap, GoogleMap, Marker} from 'react-google-maps'
+import {withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow} from 'react-google-maps'
 import React, { Component } from 'react'
 import { Circle } from "react-google-maps";
 // import GoogleMapReact from 'google-map-react'
-
+const { compose, withProps, withStateHandlers } = require("recompose");
 
 const markers=[{lat: -34.397, lng: 150.644},
     {lat: -35.394, lng: 150.644}, {lat: 19.8968, lng:155.5828}]
+
+const FaAnchor = require("react-icons/lib/fa/anchor");
+    
 
 //  refactor into function that takes an object (this would be part of the component / which would be a class component )
 //  address would be from parent component / just changing this to local variable for now 
@@ -33,7 +36,6 @@ geocoder.geocode( { 'address': address}, function(results, status) {
   if (status == google.maps.GeocoderStatus.OK) {
     var latitude = results[0].geometry.location.lat();
     var longitude = results[0].geometry.location.lng();
-    alert(latitude);
   } 
 }); 
 
@@ -61,5 +63,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
 )}
     </GoogleMap>
 ))
+
+
 
 export default MyMapComponent
