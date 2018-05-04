@@ -55,6 +55,8 @@
 }
 
 body {
+  padding-right: 0px!important;
+  overflow: auto!important;
   color: #212326;
   font-family: "Poppins", sans-serif;
   font-size: 14px;

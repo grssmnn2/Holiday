@@ -1,0 +1,15 @@
+.anticon-loading{
+    color:white!important;
+}
+.rccs{
+display:inline-block;
+margin-left: 30%;
+margin-top: -42%
+}
+.ant-cascader-input{
+    height:25px!important;
+    border: 1px solid black;
+    border-radius: 4px;
+    width: 160px!important;
+    margin-right: 20px
+}
