@@ -4,7 +4,7 @@ import Footer from "../../Footer";
 import { Modal, Button } from "antd";
 import API from "../../../utils/API";
 
-import Map from "../../Map";
+import MyMapComponent from "../../Map";
 import { Card } from "antd";
 const { Meta } = Card;
 class Result extends Component {
@@ -48,6 +48,8 @@ class Result extends Component {
 
   //  start render
   //  return a div that contains search results on one side and map on the other
+  //  actually that would need to be two divs / floated 
+
 
   render() {
     const info = {
@@ -65,7 +67,7 @@ class Result extends Component {
               return (
                 <Card
                   hoverable
-                  style={{ width: 240, float: "left" }}
+                  style={{ width: 240, float: "left", marginBottom: 40, height: 373 }}
                   cover={
                     <img
                       alt="example"
@@ -82,7 +84,12 @@ class Result extends Component {
                 </Card>
               );
             })}
-            {/* <Map /> */}
+            <MyMapComponent isMarkerShown
+   googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZ0UrBlp4cZvjyvOfJthUB1jPyj1X4pn4&v=3.exp&libraries=geometry,drawing,places"
+   loadingElement={<div style={{ height: `100%` }} />}
+   containerElement={<div style={{ height: `400px` }} />}
+   mapElement={<div style={{ height: `100%` }} />}
+ />
           </div>
         </div>
       </div>
