@@ -1,7 +1,7 @@
 import {withScriptjs, withGoogleMap, GoogleMap, Marker} from 'react-google-maps'
-import Geocode from 'react-geocode'
 import React, { Component } from 'react'
 import { Circle } from "react-google-maps";
+// import GoogleMapReact from 'google-map-react'
 
 
 const markers=[{lat: -34.397, lng: 150.644},
@@ -12,17 +12,31 @@ const markers=[{lat: -34.397, lng: 150.644},
 // 1 let address = this.props.address 
 //  2 and also this.function as an attr somewhere 
 
-let address = "181 Madison St, Sag Harbor, NY";
-   Geocode.fromAddress(address).then(
-       response => {
-           const {lat, lng} = response.results[0].geometry.location;
-          console.log(lat, lng);
+// let address = "181 Madison St, Sag Harbor, NY";
+//    Geocode.fromAddress(address).then(
+//        response => {
+//            const {lat, lng} = response.results[0].geometry.location;
+//           console.log(lat, lng);
 
-       },
-       error => {
-           console.error(error);
-       }
-   );
+//        },
+//        error => {
+//            console.error(error);
+//        }
+//    );
+
+const google = window.google;
+var geocoder = new google.maps.Geocoder();
+var address = "new york";
+
+geocoder.geocode( { 'address': address}, function(results, status) {
+
+  if (status == google.maps.GeocoderStatus.OK) {
+    var latitude = results[0].geometry.location.lat();
+    var longitude = results[0].geometry.location.lng();
+    alert(latitude);
+  } 
+}); 
+
 
 //    <MyMapComponent isMarkerShown
 //    googleMapURL="https://maps.googleapis.com/maps/api/js?key=&v=3.exp&libraries=geometry,drawing,places"
