@@ -43,8 +43,6 @@ class Profile extends Component {
     }
 }
 
-export default Profile;
-
 class Profile extends Component {
     render() {
         return ( <
