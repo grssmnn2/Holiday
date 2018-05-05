@@ -38,6 +38,8 @@ function initAutocomplete () {
     console.log("Initialialized autocomplete");
 }
 
+initAutocomplete();
+
 function fillInAddress () {
     // Get the place details from the autocomplete object.
     var place = autocomplete.getPlace();
@@ -56,6 +58,7 @@ function fillInAddress () {
         document.getElementById(addressType).value = val;
       }
     }
+    console.log("This should be filling in the address");
 }
 
       // Bias the autocomplete object to the user's geographical location,
@@ -73,9 +76,10 @@ function geolocate () {
         });
         autocomplete.setBounds(circle.getBounds());
         });
+
+        console.log('Geolocate function running');
     }
 }
-
 
 class Register extends Component {
     state={
