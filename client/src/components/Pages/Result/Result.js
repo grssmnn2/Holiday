@@ -16,7 +16,7 @@ class Result extends Component {
   //  lifecycle methods
 
   componentDidMount() {
-    this.displayResults(this.props.location.state.city);
+    // this.displayResults(this.props.location.state.city);
   }
 
   //  this.req.params.listing.city => be

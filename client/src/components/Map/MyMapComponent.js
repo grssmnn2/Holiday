@@ -20,7 +20,7 @@ var geocoder = new google.maps.Geocoder()
 //this.state.city  - where is this from since i get address from KS 
 //  when it is string 
 //  moving geocode code into component 
-var address = "this.state.city"
+var address = "chicago"
 
 geocoder.geocode({ address: address }, function(results, status) {
   if (status == google.maps.GeocoderStatus.OK) {
