@@ -19,7 +19,11 @@ const swapSchema=new Schema({
         type:Boolean,
         default:false
     },
-    complete:{
+    senderComplete:{
+        type:Boolean,
+        default:false
+    },
+    receiverComplete:{
         type:Boolean,
         default:false
     }

@@ -57,16 +57,18 @@ class Login extends Component {
         }
       })
       .then((user) => {
+        if(!validate){
+          localStorage.setItem("user",email)
+          console.log(localStorage.getItem("user"))
+          API.createUser({email:email}).then(user=>{
+            
+          }).catch(err=>console.log(err))
+        }
           this.setState({
             hasError:false,
             visible: false
           })
-          if(!validate){
-            localStorage.setItem("user",email)
-            API.createUser({email:email}).then(user=>{
-              
-            }).catch(err=>console.log(err))
-          }
+        
          
           console.log("i go first")
           if(validate&&user&&user.email){  

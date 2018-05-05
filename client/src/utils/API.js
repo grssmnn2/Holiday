@@ -14,6 +14,6 @@ export default {
     retrieveUpcomingTrips:(user)=>axios.get("/api/upcoming/"+user),
     retrieveCompleteTrips:(user)=>axios.get("/api/complete/"+user),
     createRequest:(data)=>axios.post("/api/newtrips",data),
-    confirmTrip:(users)=>axios.put("/api/confirm/",users),
-    completeTrip:(id)=>axios.put("/api/completetrip/"+id)
+    confirmTrip:(id)=>axios.put("/api/confirm/"+id),
+    completeTrip:(id,data)=>axios.put("/api/completetrip/"+id,data)
 }
