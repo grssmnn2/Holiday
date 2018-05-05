@@ -9,7 +9,8 @@ import { Card } from "antd";
 const { Meta } = Card;
 class Result extends Component {
   state = {
-    results: []
+    results: [],
+    // address: this.state.address
   };
 
   //  lifecycle methods
@@ -67,7 +68,7 @@ class Result extends Component {
               return (
                 <Card
                   hoverable
-                  style={{ width: 240, float: "left", marginBottom: 40, height: 373 }}
+                  style={{ width: 240, float: "left", marginBottom: 40, height: 373, marginRight: 20 }}
                   cover={
                     <img
                       alt="example"
@@ -87,7 +88,7 @@ class Result extends Component {
             <MyMapComponent isMarkerShown
    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZ0UrBlp4cZvjyvOfJthUB1jPyj1X4pn4&v=3.exp&libraries=geometry,drawing,places"
    loadingElement={<div style={{ height: `100%` }} />}
-   containerElement={<div style={{ height: `400px`, width: `600px` }} />}
+   containerElement={<div style={{ height: `373px` }} />}
    mapElement={<div style={{ height: `100%` }} />}
  />
           </div>

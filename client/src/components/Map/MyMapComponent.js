@@ -13,7 +13,7 @@ const markers = [
   { lat: 19.8968, lng: 155.5828 }
 ]
 
-const FaAnchor = require("react-icons/lib/fa/anchor")
+// const FaAnchor = require("react-icons/lib/fa/anchor")
 
 const google = window.google
 var geocoder = new google.maps.Geocoder()
@@ -32,7 +32,7 @@ geocoder.geocode({ address: address }, function(results, status) {
 })
 const MyMapComponent = withScriptjs(
   withGoogleMap(props => (
-    <GoogleMap defaultZoom={12} defaultCenter={{lat: -34.297, lng: 150.644}}>
+    <GoogleMap defaultZoom={9} defaultCenter={{lat: -34.297, lng: 150.644}}>
       {markers.map(marker => {
         {
           props.isMarkerShown && (
