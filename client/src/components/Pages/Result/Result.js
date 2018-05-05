@@ -68,7 +68,7 @@ class Result extends Component {
               return (
                 <Card
                   hoverable
-                  style={{ width: 240, float: "left", marginBottom: 40, height: 373, marginRight: 20 }}
+                  style={{ width: 240, float: "left", marginBottom: 40, height: 373, marginRight: 30 }}
                   cover={
                     <img
                       alt="example"
