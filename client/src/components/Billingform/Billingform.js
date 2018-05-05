@@ -4,9 +4,10 @@ import Cards from "react-credit-cards";
 import { Timeline, Cascader, Select,message } from "antd";
 import "react-credit-cards/es/styles-compiled.css";
 import "./Billingform.css";
+import API from "../../utils/API"
 import state from "./state.json";
 const confirm = Modal.confirm;
-const Option = Select.Option;
+// const Option = Select.Option;
 
 const options = state;
 class Billingform extends Component {
@@ -52,8 +53,8 @@ class Billingform extends Component {
   }
   showConfirm = cb => {
     confirm({
-      title: "Do you Want to delete these items?",
-      content: "Some descriptions",
+      title: "Do you Want to submit your payment?",
+      content: "",
       onOk() {
         cb();
         console.log("OK");
@@ -65,8 +66,8 @@ class Billingform extends Component {
   };
   showConfirm2 = (cb) => {
     confirm({
-      title: "Do you Want to submit your payment?",
-      content: "Some descriptions",
+      title: "Do you Want to leave this page?",
+      content: "You have not completed your payment yet",
       onOk() {
         cb()
         console.log("OK");
@@ -87,6 +88,8 @@ class Billingform extends Component {
         loading: true,
         step3:"green"
        });
+      //  API.confirmTrip().then(result=>{
+      //  }).catch(err=>console.log(err))
       setTimeout(() => {
         this.setState({ loading: false, visible: false,
         number: "",

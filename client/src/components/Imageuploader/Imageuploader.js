@@ -4,7 +4,7 @@ import 'antd/dist/antd.css';
 import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
 import { CIRCLE } from "@blueprintjs/icons/lib/esm/generated/iconNames";
-import {app, base} from "../../base"
+import API from "../../utils/API"
 class Imageuploader extends Component {
   state = {
     username: "",
@@ -14,8 +14,6 @@ class Imageuploader extends Component {
     avatarURL: []
   };
 
-  handleChangeUsername = event =>
-    this.setState({ username: event.target.value });
   handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
   handleProgress = progress => this.setState({ progress });
   handleUploadError = error => {
@@ -26,31 +24,28 @@ class Imageuploader extends Component {
     this.setState({ avatar: filename, progress: 100, isUploading: true });
     firebase
       .storage()
-      .ref("images")
+      .ref(this.props.email)
       .child(filename)
       .getDownloadURL()
-      .then(url => this.setState({ avatarURL:[...this.state.avatarURL,url] }));
+      .then(url =>{ 
+        this.setState({ avatarURL:[...this.state.avatarURL,url] }
+      )
+      API.uploadImageLink(this.props.email,{link:url}).then(image=>{
+      }).catch(err=>console.log(err))
+    }
+    );
+    
+    
   };
   
 
   render() {
     return (
       <div>
-        <form>
-          
+       
+
         <label >
-            Username:
           
-          <input style={{color: 'black'}}
-            type="text"
-            // value={this.props.email}
-            name="username"
-            onChange={this.handleChangeUsername}
-          />
-          </label>
-        <label >
-            Avatar:
-          {this.state.isUploading && <Progress width={50} percent={this.state.progress} type={CIRCLE}></Progress>}
           {/* {this.state.avatarURL && <img src={this.state.avatarURL} />} */}
           {this.state.avatarURL.map((url,i) =>{
             return (<img alt="" key={i} style={{width:100+'px', height:110+'px'}} src={url}/>)
@@ -58,18 +53,20 @@ class Imageuploader extends Component {
           
           <FileUploader
             // hidden
+            style={{marginTop:"20px"}}
             accept="image/*"
             name="avatar"
             multiple={true}
             randomizeFilename
-            storageRef={firebase.storage().ref("images")}
+            storageRef={firebase.storage().ref(this.props.email)}
             onUploadStart={this.handleUploadStart}
             onUploadError={this.handleUploadError}
             onUploadSuccess={this.handleUploadSuccess}
             onProgress={this.handleProgress}
           />
           </label>
-        </form>
+          {this.state.isUploading && <Progress  style={{display:"inline-block"}}  width={50} percent={this.state.progress} type={CIRCLE}></Progress>}
+   
       </div>
     );
   }
