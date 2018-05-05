@@ -17,7 +17,8 @@ class Navbar extends Component {
     pending:[],
     swapRequest:[],
     upcoming:[],
-    complete:[]
+    complete:[],
+    sender:""
   };
   showModal = (data) => {
     console.log(data)
@@ -27,7 +28,8 @@ class Navbar extends Component {
       name:data.name,
       button:data.button,
       confirmBtn:data.confirmBtn,
-      id:data.id
+      id:data.id,
+      sender:data.sender
     });
   }
   handleOk = (e) => {
@@ -71,19 +73,44 @@ class Navbar extends Component {
   }
   completeTrip=()=>{
     const cb=()=>{
-      API.completeTrip(this.state.id).then(result=>{
+      let currentUser=localStorage.getItem("user")
+      console.log(this.state.sender)
+      if(currentUser===this.state.sender){
+      API.completeTrip(this.state.id,{senderComplete:true}).then(result=>{
+        console.log(result)
         message.config({
           top: 100,
           duration: 2,
           maxCount: 3,
         });
-        message.success("You have completed a trip!")
+        if(result.data==="completed"){
+          window.location.refresh();
+        }
+        message.success(result.data)
         this.setState({
           open:false
         })
       }).catch(err=>{
         console.log(err)
       })
+    }else{
+      API.completeTrip(this.state.id,{receiverComplete:true}).then(result=>{
+        message.config({
+          top: 100,
+          duration: 2,
+          maxCount: 3,
+        });
+        if(result.data==="completed"){
+          window.location.refresh();
+        }
+        message.success(result.data)
+        this.setState({
+          open:false
+        })
+      }).catch(err=>{
+        console.log(err)
+      })
+    }
     }
     confirm({
       title: 'Do you Want to complete the trip?',
@@ -108,22 +135,22 @@ class Navbar extends Component {
         <Menu.Item style={{color:"gold"}} disabled key="1">Pending Trips</Menu.Item>
         <Menu.Divider />
         {pending.map((trip,i)=>{
-           return (<Menu.Item  key={"pending"+i} ><a onClick={()=>this.showModal({title:"Pending Trips",name:"Please wait for "+trip.receiver+" to confirm the trip!",button:false,confirmBtn:false,id:null})}>{trip.receiver}</a></Menu.Item>)
+           return (<Menu.Item  key={"pending"+i} ><a onClick={()=>this.showModal({title:"Pending Trips",name:"Please wait for "+trip.receiver+" to confirm the trip!",button:false,confirmBtn:false,id:null,sender:null})}>{trip.receiver}</a></Menu.Item>)
         })}
         <Menu.Item  style={{color:"gold"}}disabled key="0">Received Swap Requests</Menu.Item>
         <Menu.Divider />
         {swapRequest.map((trip,i)=>{
-           return (<Menu.Item  key={"request"+i} ><a onClick={()=>this.showModal({title:"Swap Requests",name:"Please Confirm the swap request from "+trip.sender, button:true,confirmBtn:false,id:null})}>{trip.receiver}</a></Menu.Item>)
+           return (<Menu.Item  key={"request"+i} ><a onClick={()=>this.showModal({title:"Swap Requests",name:"Please Confirm the swap request from "+trip.sender, button:true,confirmBtn:false,id:trip._id,sender:null})}>{trip.receiver}</a></Menu.Item>)
         })}
         <Menu.Item  style={{color:"gold"}}disabled key="6">Upcoming Trips</Menu.Item>
         <Menu.Divider />
         {upcoming.map((trip,i)=>{
-           return (<Menu.Item  key={"upcoming"+i} ><a onClick={()=>this.showModal({title:"Upcoming Trips",name:"Please click to complete your swap trip ",button:false,confirmBtn:true,id:trip._id})}>{trip.receiver}</a></Menu.Item>)
+           return (<Menu.Item  key={"upcoming"+i} ><a onClick={()=>this.showModal({title:"Upcoming Trips",name:"Please click to complete your swap trip ",button:false,confirmBtn:true,id:trip._id,sender:trip.sender})}>{trip.receiver}</a></Menu.Item>)
         })}
         <Menu.Item  style={{color:"gold"}}disabled key="7">Complete Trips</Menu.Item>
         <Menu.Divider />
         {complete.map((trip,i)=>{
-           return (<Menu.Item  key={"complete"+i} ><a onClick={()=>this.showModal({title:"Complete Trips",name:"Please Confirm the swap request from "+trip.sender, button:false,confirmBtn:false,id:null})}>{trip.receiver}</a></Menu.Item>)
+           return (<Menu.Item  key={"complete"+i} ><a onClick={()=>this.showModal({title:"Complete Trips",name:"Please Confirm the swap request from "+trip.sender, button:false,confirmBtn:false,id:null,sender:null})}>{trip.receiver}</a></Menu.Item>)
         })}
 
 
@@ -214,7 +241,7 @@ class Navbar extends Component {
           <p>Start Date:</p>
           <p>End Date:</p>
           <p>{this.state.name}</p>
-          {this.state.button?<Billingform></Billingform>:null}
+          {this.state.button?<Billingform id={this.state.id}></Billingform>:null}
           {this.state.confirmBtn?<Button onClick={this.completeTrip} type="primary">Complete</Button>:null}
         </Modal>
       </header>

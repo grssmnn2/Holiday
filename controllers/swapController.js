@@ -17,28 +17,37 @@ module.exports={
         })
     },
     retrieveUpcomingTrips: (req,res)=>{
-        db.swap.find({$or: [{sender:req.params.user,confirmed:true,complete:false},
-            {receiver:req.params.user,confirmed:true,complete:false}
+        db.swap.find({$or: [{sender:req.params.user,confirmed:true,senderComplete:false,receiverComplete:false},
+            {sender:req.params.user,confirmed:true,senderComplete:true,receiverComplete:false},
+            {sender:req.params.user,confirmed:true,senderComplete:false,receiverComplete:true},
+            {receiver:req.params.user,confirmed:true,senderComplete:false,receiverComplete:false},
+            {receiver:req.params.user,confirmed:true,senderComplete:true,receiverComplete:false},
+            {receiver:req.params.user,confirmed:true,senderComplete:false,receiverComplete:true}
            ]}).then(dbresult=>{
             res.json(dbresult)
         })
     },
     retrieveCompleteTrips: (req,res)=>{
-        db.swap.find({$or: [{sender:req.params.user,complete:true},
-            {receiver:req.params.user,complete:true}
+        db.swap.find({$or: [{sender:req.params.user,senderComplete:true,receiverComplete:true},
+            {receiver:req.params.user,senderComplete:true,receiverComplete:true}
            ]}).then(dbresult=>{
             res.json(dbresult)
         })
     },
     confirmTrip:(req,res)=>{
-        db.swap.findOneAndUpdate().then(dbresult=>{
+        db.swap.findByIdAndUpdate({_id:req.params.id},{confirmed:true},{new:true}).then(dbresult=>{
             res.json(dbresult)
         })
     },
     completeTrip:(req,res)=>{
-        db.swap.findByIdAndUpdate({_id:req.params.id},{complete:true},{new:true})
+        db.swap.findByIdAndUpdate({_id:req.params.id},req.body,{new:true})
         .then(result=>{
-            res.json(result)
+            if(result.senderComplete===true&&result.receiverComplete===true){
+            console.log(result)
+            res.json("completed")
+            }else{
+                res.json("Please wait for the other user to complete the trip!")
+            }
         })
     }
 
