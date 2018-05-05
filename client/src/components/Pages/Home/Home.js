@@ -146,67 +146,7 @@ class Home extends Component {
 							</p>
 						</div>
 					</div>
-					<div className="row">
-						<div className="col-lg-4">
-							<div className="single-property">
-								<div className="images">
-									<img className="img-fluid mx-auto d-block" src={require("../../../img/s1.jpg")} alt=""></img>
-									<span>Request a swap</span>
-								</div>
-								
-								<div className="desc">
-									<div className="top d-flex justify-content-between">
-										<h4><a href="#">Activity 1 Name</a></h4>
-										
-									</div>
-									<div className="middle">
-								
-										<Events />
-		
-									</div>
-										
-								</div>	
-							</div>
-						</div>	
-						<div className="col-lg-4">
-							<div className="single-property">
-								<div className="images">
-									<img className="img-fluid mx-auto d-block" src={require("../../../img/s2.jpg")} alt=""></img>
-								
-								</div>
-								
-								<div className="desc">
-									<div className="top d-flex justify-content-between">
-										<h4><a href="#">Activity 2 Name</a></h4>
-										
-									</div>
-									<div className="middle">
-									ACTIVITY 2 PHOTO
-									</div>
-									
-								</div>	
-							</div>
-						</div>	
-						<div className="col-lg-4">
-							<div className="single-property">
-								<div className="images">
-									<img className="img-fluid mx-auto d-block" src={require("../../../img/s3.jpg")} alt=""></img>
-									<span>Request a Swap</span>
-								</div>
-								
-								<div className="desc">
-									<div className="top d-flex justify-content-between">
-										<h4><a href="#">Activity 3 Name</a></h4>
-									
-									</div>
-									<div className="middle">
-										ACTIVITY 3 PHOTO
-									</div>
-							
-								</div>	
-							</div>
-						</div>																											
-					</div>
+					<Events />
 				</div>	
 			</section>
 		</div>

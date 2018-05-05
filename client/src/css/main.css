@@ -2478,6 +2478,8 @@ text-transform:uppercase .menutop-wrap .menu-top .list li:hover a {
 
 .desc .middle {
   padding-bottom: 5px;
+  max-height: 200px;
+  overflow-y: hidden;
 }
 
 .desc .middle p {
