@@ -17,18 +17,22 @@ const FaAnchor = require("react-icons/lib/fa/anchor")
 
 const google = window.google
 var geocoder = new google.maps.Geocoder()
-var address = "new york"
+//this.state.city  - where is this from since i get address from KS 
+//  when it is string 
+//  moving geocode code into component 
+var address = "this.state.city"
 
 geocoder.geocode({ address: address }, function(results, status) {
   if (status == google.maps.GeocoderStatus.OK) {
     var latitude = results[0].geometry.location.lat()
     var longitude = results[0].geometry.location.lng()
+    console.log(latitude);
+    console.log(longitude);
   }
 })
-
 const MyMapComponent = withScriptjs(
   withGoogleMap(props => (
-    <GoogleMap defaultZoom={12} defaultCenter={{ lat: -34.297, lng: 150.644 }}>
+    <GoogleMap defaultZoom={12} defaultCenter={{lat: -34.297, lng: 150.644}}>
       {markers.map(marker => {
         {
           props.isMarkerShown && (
