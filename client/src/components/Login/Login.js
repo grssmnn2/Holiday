@@ -42,6 +42,7 @@ class Login extends Component {
     app.auth().fetchProvidersForEmail(email)
       .then((providers) => {
         if (providers.length  === 0) {
+          localStorage.setItem("user",email)
           this.setState({
             isLogin:false
           })
@@ -53,20 +54,23 @@ class Login extends Component {
         else {
           // sign user in
          validate=true;
+        //  localStorage.setItem("user",email)
           return app.auth().signInWithEmailAndPassword(email, password)
         }
       })
       .then((user) => {
+        if(!validate){
+          localStorage.setItem("user",email)
+          console.log(localStorage.getItem("user"))
+          API.createUser({email:email}).then(user=>{
+            
+          }).catch(err=>console.log(err))
+        }
           this.setState({
             hasError:false,
             visible: false
           })
-          if(!validate){
-            localStorage.setItem("user",email)
-            API.createUser({email:email}).then(user=>{
-              
-            }).catch(err=>console.log(err))
-          }
+        
          
           console.log("i go first")
           if(validate&&user&&user.email){  

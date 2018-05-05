@@ -88,8 +88,10 @@ class Billingform extends Component {
         loading: true,
         step3:"green"
        });
-      //  API.confirmTrip().then(result=>{
-      //  }).catch(err=>console.log(err))
+       console.log(this.props.id)
+       API.confirmTrip(this.props.id).then(result=>{
+        window.location.reload()
+       }).catch(err=>console.log(err))
       setTimeout(() => {
         this.setState({ loading: false, visible: false,
         number: "",
@@ -303,14 +305,12 @@ class Billingform extends Component {
       <div>
         <Button
           style={{
-            border: "none",
-            backgroundColor: "#FF5A5F",
-            marginTop: 10 + "%"
+            border: "none"
           }}
           type="primary"
           onClick={this.showModal}
         >
-          Book
+          Confirm
         </Button>
         <Modal
           width="700px"
