@@ -16,7 +16,7 @@ class Result extends Component {
   //  lifecycle methods
 
   componentDidMount() {
-    // this.displayResults(this.props.location.state.city);
+    this.displayResults(this.props.location.state.city);
   }
 
   //  this.req.params.listing.city => be
@@ -46,10 +46,6 @@ class Result extends Component {
   // handleItemHover = () => {
 
   // }
-
-  //  start render
-  //  return a div that contains search results on one side and map on the other
-  //  actually that would need to be two divs / floated 
 
 
   render() {

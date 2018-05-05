@@ -20,17 +20,22 @@ var geocoder = new google.maps.Geocoder()
 //this.state.city  - where is this from since i get address from KS 
 //  when it is string 
 //  moving geocode code into component 
+//  here we are refactoring this to class component 
+
 var address = "chicago"
 
-geocoder.geocode({ address: address }, function(results, status) {
-  if (status == google.maps.GeocoderStatus.OK) {
-    var latitude = results[0].geometry.location.lat()
-    var longitude = results[0].geometry.location.lng()
-    console.log(latitude);
-    console.log(longitude);
-  }
-})
+// geocoder.geocode({ address: address }, function(results, status) {
+//   if (status == google.maps.GeocoderStatus.OK) {
+//     var latitude = results[0].geometry.location.lat()
+//     var longitude = results[0].geometry.location.lng()
+//     console.log(latitude);
+//     console.log(longitude);
+//   }
+// })
+
+
 const MyMapComponent = withScriptjs(
+
   withGoogleMap(props => (
     <GoogleMap defaultZoom={9} defaultCenter={{lat: -34.297, lng: 150.644}}>
       {markers.map(marker => {
