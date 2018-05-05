@@ -48,15 +48,11 @@ class Profile extends Component {
         return ( <
             div >
             <
-            div className = "container pt-30" >                  < div className = "row height align-items-center justify-content-center" >                      < div className = "col-lg-10" >                          < div className = "generic-banner-content" >                                  < h2 className = "text-white text-center" > Welcome back! < /h2>                                 < p className = "text-white" > Manage your saved homes and view your messages here. < /p>                         < /div>                                               < /div>                 < /div>             < /div>
-
-
-
-            <
+            div className = "container pt-30" >                  < div className = "row height align-items-center justify-content-center" >                      < div className = "col-lg-10" >                          < div className = "generic-banner-content" >                                  < h2 className = "text-white text-center" > Welcome back! < /h2>                                 < p className = "text-white" > Manage your saved homes and view your messages here. < /p>                         < /div>                                               < /div>                 < /div>             < /div> <
             /div >
 
         )
     }
 }
 
-export default Profile; //
+export default Profile;
