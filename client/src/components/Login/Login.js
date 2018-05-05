@@ -42,6 +42,7 @@ class Login extends Component {
     app.auth().fetchProvidersForEmail(email)
       .then((providers) => {
         if (providers.length  === 0) {
+          localStorage.setItem("user",email)
           this.setState({
             isLogin:false
           })
@@ -53,6 +54,7 @@ class Login extends Component {
         else {
           // sign user in
          validate=true;
+        //  localStorage.setItem("user",email)
           return app.auth().signInWithEmailAndPassword(email, password)
         }
       })
