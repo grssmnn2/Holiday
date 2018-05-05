@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Friendlist from "../../Friendlist"
+import Events from "../../Events"
 import { Redirect } from "react-router-dom";
 
 
@@ -124,112 +125,19 @@ class Home2 extends Component {
 				</div>	
 			</section>
             {/* property area */}
-            <section className="property-area section-gap relative" id="property">
+          {/* property area */}
+		  <section className="property-area section-gap relative" id="property">
 				<div className="overlay overlay-bg"></div>
 				<div className="container">
 					<div className="row d-flex justify-content-center">
 						<div className="col-md-8 pb-40 header-text">
-							<h1>Our Best Reviewed Properties</h1>
+							<h1>Checkout Local Activities</h1>
 							<p>
-								Who doesn't love a successful vacation story?
+								Need some help choosing how to spend your Holiday?
 							</p>
 						</div>
 					</div>
-					<div className="row">
-						<div className="col-lg-4">
-							<div className="single-property">
-								<div className="images">
-									<img className="img-fluid mx-auto d-block" src={require("../../../img/s1.jpg")} alt=""></img>
-									<span>Request a swap</span>
-								</div>
-								
-								<div className="desc">
-									<div className="top d-flex justify-content-between">
-										<h4><a href="#">04 Bed Duplex</a></h4>
-										
-									</div>
-									<div className="middle">
-										<div className="d-flex justify-content-start">
-										<p>Bed: 04</p>
-										<p>Bath: 03</p>
-										<p>Area: 750sqm</p>
-										</div>
-										<div className="d-flex justify-content-start">
-										<p>Pool: <span className="gr">Yes</span></p>
-										<p>Internet: <span className="rd">No</span></p>
-										<p>Cleaning: <span className="rd">No</span></p>
-										</div>
-									</div>
-									<div className="bottom d-flex justify-content-start">
-										<p><span className="lnr lnr-heart"></span> 15 Likes</p>
-										<p><span className="lnr lnr-bubble"></span> 02 Comments</p>
-									</div>	
-								</div>	
-							</div>
-						</div>	
-						<div className="col-lg-4">
-							<div className="single-property">
-								<div className="images">
-									<img className="img-fluid mx-auto d-block" src={require("../../../img/s2.jpg")} alt=""></img>
-									<span>Request a Swap</span>
-								</div>
-								
-								<div className="desc">
-									<div className="top d-flex justify-content-between">
-										<h4><a href="#">04 Bed Duplex</a></h4>
-										
-									</div>
-									<div className="middle">
-										<div className="d-flex justify-content-start">
-										<p>Bed: 04</p>
-										<p>Bath: 03</p>
-										<p>Area: 750sqm</p>
-										</div>
-										<div className="d-flex justify-content-start">
-										<p>Pool: <span className="gr">Yes</span></p>
-										<p>Internet: <span className="rd">No</span></p>
-										<p>Cleaning: <span className="rd">No</span></p>
-										</div>
-									</div>
-									<div className="bottom d-flex justify-content-start">
-										<p><span className="lnr lnr-heart"></span> 15 Likes</p>
-										<p><span className="lnr lnr-bubble"></span> 02 Comments</p>
-									</div>	
-								</div>	
-							</div>
-						</div>	
-						<div className="col-lg-4">
-							<div className="single-property">
-								<div className="images">
-									<img className="img-fluid mx-auto d-block" src={require("../../../img/s3.jpg")} alt=""></img>
-									<span>Request a Swap</span>
-								</div>
-								
-								<div className="desc">
-									<div className="top d-flex justify-content-between">
-										<h4><a href="#">04 Bed Duplex</a></h4>
-									
-									</div>
-									<div className="middle">
-										<div className="d-flex justify-content-start">
-										<p>Bed: 04</p>
-										<p>Bath: 03</p>
-										<p>Area: 750sqm</p>
-										</div>
-										<div className="d-flex justify-content-start">
-										<p>Pool: <span className="gr">Yes</span></p>
-										<p>Internet: <span className="rd">No</span></p>
-										<p>Cleaning: <span className="rd">No</span></p>
-										</div>
-									</div>
-									<div className="bottom d-flex justify-content-start">
-										<p><span className="lnr lnr-heart"></span> 15 Likes</p>
-										<p><span className="lnr lnr-bubble"></span> 02 Comments</p>
-									</div>	
-								</div>	
-							</div>
-						</div>																											
-					</div>
+					<Events />
 				</div>	
 			</section>
 		</div>

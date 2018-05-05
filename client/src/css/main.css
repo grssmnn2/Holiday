@@ -2481,11 +2481,14 @@ text-transform:uppercase .menutop-wrap .menu-top .list li:hover a {
 .desc .middle {
   padding-bottom: 5px;
   max-height: 200px;
-  overflow-y: hidden;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow:ellipsis;
 }
 
 .desc .middle p {
   width: 33%;
+
 }
 
 @media (max-width: 1024px) and (min-width: 992px) {

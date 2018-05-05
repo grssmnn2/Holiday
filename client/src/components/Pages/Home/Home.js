@@ -3,8 +3,8 @@ import React, { Component } from "react";
 import Navbar from "../../Navbar";
 import Friendlist from "../../Friendlist";
 import Footer from "../../Footer";
+import Events from "../../Events"
 
-import Friendlist from "../../Friendlist"
 
 import { Redirect } from "react-router-dom";
 
