@@ -26,7 +26,16 @@ const swapSchema=new Schema({
     receiverComplete:{
         type:Boolean,
         default:false
+    },
+    senderRated:{
+        type:Boolean,
+        default:false
+    },
+    receiverRated:{
+        type:Boolean,
+        default:false
     }
+
 })
 
 var swap = mongoose.model("swap",swapSchema)

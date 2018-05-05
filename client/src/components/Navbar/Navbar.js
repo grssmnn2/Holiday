@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import {message, Menu, Dropdown, Icon } from 'antd';
+import { Rate } from 'antd';
 import API from "../../utils/API"
 import Billingform from "../Billingform2"
 import { Modal, Button } from 'antd';
 const confirm = Modal.confirm;
 class Navbar extends Component {
+  handleChange = value => {
+    this.setState({ value });
+  };
   state = {
     visible: false,
     open:false,
@@ -18,10 +22,54 @@ class Navbar extends Component {
     swapRequest:[],
     upcoming:[],
     complete:[],
-    sender:""
+    sender:"",
+    value: 3,
+    review:null,
+    rate:false,
+    userReview:"",
+    current:""
   };
+  handleEdit =(e)=>{
+    this.setState({
+      [e.target.name]:e.target.value
+    })
+  }
+  submitReview =()=>{
+    const user=localStorage.getItem("user")
+    console.log(user)
+    API.addReview(this.state.sender,{review:this.state.userReview,score:this.state.value}).then(result=>{
+    }).catch(err=>{
+      console.log(err)
+    })
+    if(this.state.current===user){
+      console.log(this.state.id+"first")
+      API.updateRateStatus(this.state.id,{senderRated:true}).then(result=>{
+        this.setState({
+          open:false,
+          review:true
+        },()=>{
+          console.log(this.state.review)
+        })
+      }).catch(err=>{
+        console.log(err)
+      })
+    }else{
+      console.log(this.state.id+"second")
+      API.updateRateStatus(this.state.id,{receiverRated:true}).then(result=>{
+        this.setState({
+          open:false,
+          review:true
+        },()=>{
+          console.log(this.state.review)
+        })
+      }).catch(err=>{
+        console.log(err)
+      })
+    }
+  }
   showModal = (data) => {
     console.log(data)
+    
     this.setState({
       open: true,
       title:data.title,
@@ -29,7 +77,9 @@ class Navbar extends Component {
       button:data.button,
       confirmBtn:data.confirmBtn,
       id:data.id,
-      sender:data.sender
+      sender:data.sender,
+      review:this.state.review===true?true:data.review,
+      current:data.current
     });
   }
   handleOk = (e) => {
@@ -129,31 +179,35 @@ class Navbar extends Component {
     this.setState({ visible: flag });
   }
   render() {
-    const {pending,swapRequest,upcoming,complete}=this.state
+    const {pending,swapRequest,upcoming,complete,value}=this.state
+    const userName=localStorage.getItem("user")
     const menu = (
       <Menu >
         <Menu.Item style={{color:"gold"}} disabled key="1">Pending Trips</Menu.Item>
         <Menu.Divider />
         {pending.map((trip,i)=>{
-           return (<Menu.Item  key={"pending"+i} ><a onClick={()=>this.showModal({title:"Pending Trips",name:"Please wait for "+trip.receiver+" to confirm the trip!",button:false,confirmBtn:false,id:null,sender:null})}>{trip.receiver}</a></Menu.Item>)
+           return (<Menu.Item  key={"pending"+i} ><a onClick={()=>this.showModal({title:"Pending Trips",name:"Please wait for "+trip.receiver+" to confirm the trip!",button:false,confirmBtn:false,id:null,sender:null,review:null,current:null})}>{trip.receiver}</a></Menu.Item>)
         })}
         <Menu.Item  style={{color:"gold"}}disabled key="0">Received Swap Requests</Menu.Item>
         <Menu.Divider />
         {swapRequest.map((trip,i)=>{
-           return (<Menu.Item  key={"request"+i} ><a onClick={()=>this.showModal({title:"Swap Requests",name:"Please Confirm the swap request from "+trip.sender, button:true,confirmBtn:false,id:trip._id,sender:null})}>{trip.receiver}</a></Menu.Item>)
+           return (<Menu.Item  key={"request"+i} ><a onClick={()=>this.showModal({title:"Swap Requests",name:"Please Confirm the swap request from "+trip.sender, button:true,confirmBtn:false,id:trip._id,sender:null,review:null,current:null})}>{trip.receiver}</a></Menu.Item>)
         })}
         <Menu.Item  style={{color:"gold"}}disabled key="6">Upcoming Trips</Menu.Item>
         <Menu.Divider />
         {upcoming.map((trip,i)=>{
-           return (<Menu.Item  key={"upcoming"+i} ><a onClick={()=>this.showModal({title:"Upcoming Trips",name:"Please click to complete your swap trip ",button:false,confirmBtn:true,id:trip._id,sender:trip.sender})}>{trip.receiver}</a></Menu.Item>)
+           return (<Menu.Item  key={"upcoming"+i} ><a onClick={()=>this.showModal({title:"Upcoming Trips",name:"Please click to complete your swap trip ",button:false,confirmBtn:true,id:trip._id,sender:trip.sender,review:null,current:null})}>{trip.receiver}</a></Menu.Item>)
         })}
         <Menu.Item  style={{color:"gold"}}disabled key="7">Complete Trips</Menu.Item>
         <Menu.Divider />
         {complete.map((trip,i)=>{
-           return (<Menu.Item  key={"complete"+i} ><a onClick={()=>this.showModal({title:"Complete Trips",name:"Please Confirm the swap request from "+trip.sender, button:false,confirmBtn:false,id:null,sender:null})}>{trip.receiver}</a></Menu.Item>)
-        })}
+          if(trip.sender===userName){
+           return (<Menu.Item  key={"complete"+i} ><a onClick={()=>this.showModal({title:"Complete Trips",name:this.state.review===true?"You have added reviews for "+trip.receiver:"You can add reviews for "+trip.receiver, button:false,confirmBtn:false,id:trip._id,sender:trip.receiver,review:trip.senderRated,current:trip.sender})}>{trip.receiver}</a></Menu.Item>)
+        }else{
+          return (<Menu.Item  key={"complete"+i} ><a onClick={()=>this.showModal({title:"Complete Trips",name:this.state.review?"You have added reviews for "+trip.sender:"You can add reviews for "+trip.sender, button:false,confirmBtn:false,id:trip._id,sender:trip.sender,review:trip.receiverRated,current:trip.sender})}>{trip.receiver}</a></Menu.Item>)
 
-
+        }}
+      )}
       </Menu>
     );
     return (
@@ -243,6 +297,8 @@ class Navbar extends Component {
           <p>{this.state.name}</p>
           {this.state.button?<Billingform id={this.state.id}></Billingform>:null}
           {this.state.confirmBtn?<Button onClick={this.completeTrip} type="primary">Complete</Button>:null}
+          {this.state.review===false?<div><Rate  allowHalf onChange={this.handleChange}  style={{ color: '#00c'}} value={value} />
+                {value && <span className="ant-rate-text">{value} stars</span>}<textarea name="userReview" onChange={(e)=>this.handleEdit(e)} value={this.state.userReview} style={{display:"block", width:100+"%" }} ></textarea> <Button style={{marginTop:"5px"}}onClick={this.submitReview} type="primary" ghost>Submit Your review</Button></div>:null}
         </Modal>
       </header>
     );

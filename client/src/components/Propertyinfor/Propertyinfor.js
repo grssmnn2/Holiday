@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import {Carousel, Layout, Menu, Breadcrumb } from "antd";
-import { Rate } from 'antd';
 import IoIosPaw from "react-icons/lib/io/ios-paw";
 import IoAndroidPersonAdd from "react-icons/lib/io/android-person-add";
 import IoEmail from "react-icons/lib/io/email";
+import {Rate} from "antd"
 import IoWifi from "react-icons/lib/io/wifi";
 import MdHotel from "react-icons/lib/md/hotel"
 import MdHotTub from "react-icons/lib/md/hot-tub";
@@ -24,15 +24,10 @@ const { Header, Content, Sider, Footer } = Layout;
 const { MonthPicker, RangePicker } = DatePicker;
 const dateFormat = 'YYYY/MM/DD';
 class Propertyinfor extends Component {
-  state = {
-    value: 3
-  };
-  handleChange = value => {
-    this.setState({ value });
-  };
+
   success = () => {
-    console.log(this.props.location.state.email)
-    API.addFriends(this.props.location.state.email,{"friendlist":"eddie"}).then(res=>{
+    const user=localStorage.getItem("user")
+    API.addFriends(user,{"friendlist":"eddie"}).then(res=>{
       console.log(res)
     }).catch(err=>{
       console.log(err)
@@ -129,11 +124,6 @@ class Propertyinfor extends Component {
               <MdHotTub style={{fontSize:30}}></MdHotTub>
               <IoAndroidPeople style={{fontSize:30}}></IoAndroidPeople>
               <MdTv style={{fontSize:30}}></MdTv>
-              
-              <span>
-                <Rate onChange={this.handleChange}  style={{ color: '#00c' }} value={value} />
-                {value && <span className="ant-rate-text">{value} stars</span>}
-              </span>
               <Rate disabled defaultValue={2} />
             </div>
           </Content>
