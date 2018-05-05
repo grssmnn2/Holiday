@@ -12,7 +12,7 @@ const loginStyles = {
   margin: "20px auto",
   border: "1px solid #ddd",
   borderRadius: "5px",
-  padding: "10px"
+  padding: "60px"
 };
 
 class Login extends Component {
@@ -97,7 +97,7 @@ class Login extends Component {
       })
   }
   render() {
-    const { from } = this.props.location.state || { from: { pathname: '/' } }
+    // const { from } = this.props.location.state || { from: { pathname: '/' } }
     const display = this.state.isLogin || this.state.hasError ? <div style={loginStyles}>
       <Toaster ref={(element) => { this.toaster = element }} />
       <form onSubmit={(event) => this.authWithEmailPassword(event)}>

@@ -7,7 +7,7 @@ import "./Billingform.css";
 import API from "../../utils/API"
 import state from "./state.json";
 const confirm = Modal.confirm;
-const Option = Select.Option;
+// const Option = Select.Option;
 
 const options = state;
 class Billingform extends Component {

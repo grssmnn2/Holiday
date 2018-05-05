@@ -1,25 +1,20 @@
 import React, { Component } from "react";
-import Chatbox from "./components/Chatbox"
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Redirect } from 'react-router'
 import { Spin } from 'antd';
-import { Spinner, Card } from '@blueprintjs/core';
 import Login from "./components/Login"
 import Logout from "./components/Logout"
 import Profile from "./components/Pages/Profile"
 import Home from "./components/Pages/Home"
 import Home2 from "./components/Pages/Home2"
-import Properyinfor from "./components/Propertyinfor"
 import Register from "./components/Pages/Register"
-// import Home from "./components/Pages/Home"
 import Footer from "./components/Footer"
-import Header from "./components/Header"
 import Result from "./components/Pages/Result"
-//  other static components go here too
 import { app, base } from './base'
-import "./App.css";
-import Imageuploader from "./components/Imageuploader"
 import Navbar from "./components/Navbar"
+
+//  other static components go here too
+import "./App.css";
 import "./css/bootstrap.css"
 import "./css/main.css"
 import "./css/bootstrap.css"
@@ -33,7 +28,15 @@ import "./css/linearicons.css"
 import "./css/magnific-popup.css"
 import "./css/nice-select.css"
 import "./css/owl.carousel.css"
-import { truncate } from "fs";
+
+// //unused in App.js
+// import Chatbox from "./components/Chatbox"
+// import { Spinner, Card } from '@blueprintjs/core';
+// import Properyinfor from "./components/Propertyinfor"
+// import Header from "./components/Header"
+// import Imageuploader from "./components/Imageuploader"
+// import { truncate } from "fs";
+
 
 function AuthenticatedRoute({ component: Component, authenticated, ...rest }) {
   return (

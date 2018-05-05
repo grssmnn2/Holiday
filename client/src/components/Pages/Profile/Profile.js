@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-import Navbar from "../../Navbar"
-import Footer from "../../Footer"
 
 
 class Profile extends Component {

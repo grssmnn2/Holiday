@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import Friendlist from "../../Friendlist"
-import Footer from "../../Footer";
-import { Modal, Button } from "antd";
 import API from "../../../utils/API";
-
 import MyMapComponent from "../../Map";
 import { Card } from "antd";
 const { Meta } = Card;

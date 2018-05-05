@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import Navbar from "../../Navbar"
 import Friendlist from "../../Friendlist"
-import Footer from "../../Footer"
 import { Redirect } from "react-router-dom";
-import axios from 'axios';
 
 
 
