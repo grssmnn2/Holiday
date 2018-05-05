@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import Navbar from "../../Navbar"
-import Friendlist from "../../Friendlist"
-import Footer from "../../Footer"
+import Navbar from "../../Navbar";
+import Friendlist from "../../Friendlist";
+import Footer from "../../Footer";
+import Events from "../../Events";
 import { Redirect } from "react-router-dom";
 import axios from 'axios';
 
@@ -13,7 +14,9 @@ class Home extends Component {
 		state={
 			city:null,
 			isredirect:false,
-			email:localStorage.getItem("user")
+			email:localStorage.getItem("user"),
+	
+		
 		}
 		resultsPage = (event) => {
 			event.preventDefault()
@@ -30,9 +33,14 @@ class Home extends Component {
 			})
 		
 		}
+
+
+
+		
+
+		
 	render() {
-		console.log(this.props.item)
-		console.log(this.state.email)
+
 		if(this.state.isredirect){
 			return <Redirect to={{pathname:"/result",state:{city:this.state.city}}}></Redirect>
 		}
@@ -132,9 +140,9 @@ class Home extends Component {
 				<div className="container">
 					<div className="row d-flex justify-content-center">
 						<div className="col-md-8 pb-40 header-text">
-							<h1>Our Best Reviewed Properties</h1>
+							<h1>Checkout Local Activities</h1>
 							<p>
-								Who doesn't love a successful vacation story?
+								Need some help choosing how to spend your Holiday?
 							</p>
 						</div>
 					</div>
@@ -148,25 +156,15 @@ class Home extends Component {
 								
 								<div className="desc">
 									<div className="top d-flex justify-content-between">
-										<h4><a href="#">04 Bed Duplex</a></h4>
+										<h4><a href="#">Activity 1 Name</a></h4>
 										
 									</div>
 									<div className="middle">
-										<div className="d-flex justify-content-start">
-										<p>Bed: 04</p>
-										<p>Bath: 03</p>
-										<p>Area: 750sqm</p>
-										</div>
-										<div className="d-flex justify-content-start">
-										<p>Pool: <span className="gr">Yes</span></p>
-										<p>Internet: <span className="rd">No</span></p>
-										<p>Cleaning: <span className="rd">No</span></p>
-										</div>
+								
+										<Events />
+		
 									</div>
-									<div className="bottom d-flex justify-content-start">
-										<p><span className="lnr lnr-heart"></span> 15 Likes</p>
-										<p><span className="lnr lnr-bubble"></span> 02 Comments</p>
-									</div>	
+										
 								</div>	
 							</div>
 						</div>	
@@ -174,30 +172,18 @@ class Home extends Component {
 							<div className="single-property">
 								<div className="images">
 									<img className="img-fluid mx-auto d-block" src={require("../../../img/s2.jpg")} alt=""></img>
-									<span>Request a Swap</span>
+								
 								</div>
 								
 								<div className="desc">
 									<div className="top d-flex justify-content-between">
-										<h4><a href="#">04 Bed Duplex</a></h4>
+										<h4><a href="#">Activity 2 Name</a></h4>
 										
 									</div>
 									<div className="middle">
-										<div className="d-flex justify-content-start">
-										<p>Bed: 04</p>
-										<p>Bath: 03</p>
-										<p>Area: 750sqm</p>
-										</div>
-										<div className="d-flex justify-content-start">
-										<p>Pool: <span className="gr">Yes</span></p>
-										<p>Internet: <span className="rd">No</span></p>
-										<p>Cleaning: <span className="rd">No</span></p>
-										</div>
+									ACTIVITY 2 PHOTO
 									</div>
-									<div className="bottom d-flex justify-content-start">
-										<p><span className="lnr lnr-heart"></span> 15 Likes</p>
-										<p><span className="lnr lnr-bubble"></span> 02 Comments</p>
-									</div>	
+									
 								</div>	
 							</div>
 						</div>	
@@ -210,25 +196,13 @@ class Home extends Component {
 								
 								<div className="desc">
 									<div className="top d-flex justify-content-between">
-										<h4><a href="#">04 Bed Duplex</a></h4>
+										<h4><a href="#">Activity 3 Name</a></h4>
 									
 									</div>
 									<div className="middle">
-										<div className="d-flex justify-content-start">
-										<p>Bed: 04</p>
-										<p>Bath: 03</p>
-										<p>Area: 750sqm</p>
-										</div>
-										<div className="d-flex justify-content-start">
-										<p>Pool: <span className="gr">Yes</span></p>
-										<p>Internet: <span className="rd">No</span></p>
-										<p>Cleaning: <span className="rd">No</span></p>
-										</div>
+										ACTIVITY 3 PHOTO
 									</div>
-									<div className="bottom d-flex justify-content-start">
-										<p><span className="lnr lnr-heart"></span> 15 Likes</p>
-										<p><span className="lnr lnr-bubble"></span> 02 Comments</p>
-									</div>	
+							
 								</div>	
 							</div>
 						</div>																											
