@@ -212,7 +212,7 @@ class Navbar extends Component {
                  onVisibleChange={this.handleVisibleChange}
                  visible={this.state.visible}
                >
-                 <a className="ant-dropdown-link" href="#">
+                 <a className="ant-dropdown-link">
                    Trips <Icon type="down" />
                  </a>
                </Dropdown>

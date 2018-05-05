@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+
 import Navbar from "../../Navbar"
 import Footer from "../../Footer"
 import React, { Component } from 'react';
 import { Panel, ControlLabel, Glyphicon } from 'react-bootstrap';
+
 
 class Profile extends Component {
     componentWillMount() {

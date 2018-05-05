@@ -4,7 +4,6 @@ import 'antd/dist/antd.css';
 import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
 import { CIRCLE } from "@blueprintjs/icons/lib/esm/generated/iconNames";
-import {app, base} from "../../base"
 import API from "../../utils/API"
 class Imageuploader extends Component {
   state = {
