@@ -51,10 +51,18 @@ var listingSchema = new Schema ({
     },  
     wifi: {
         type:String
-    }, 
-    review:{
+    },
+    rating:{
+        type:Number,
+        default:5
+    },
+    numberOfRatings:{
+        type:Number,
+        default:1
+    },
+    review:[{
         type:String
-    }
+    }]
 })
 var listing = mongoose.model("listing",listingSchema)
 module.exports =listing;

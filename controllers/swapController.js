@@ -16,17 +16,6 @@ module.exports={
             res.json(dbresult)
         })
     },
-    retrieveUpcomingTrips: (req,res)=>{
-        db.swap.find({$or: [{sender:req.params.user,confirmed:true,senderComplete:false,receiverComplete:false},
-            {sender:req.params.user,confirmed:true,senderComplete:true,receiverComplete:false},
-            {sender:req.params.user,confirmed:true,senderComplete:false,receiverComplete:true},
-            {receiver:req.params.user,confirmed:true,senderComplete:false,receiverComplete:false},
-            {receiver:req.params.user,confirmed:true,senderComplete:true,receiverComplete:false},
-            {receiver:req.params.user,confirmed:true,senderComplete:false,receiverComplete:true}
-           ]}).then(dbresult=>{
-            res.json(dbresult)
-        })
-    },
     retrieveCompleteTrips: (req,res)=>{
         db.swap.find({$or: [{sender:req.params.user,senderComplete:true,receiverComplete:true},
             {receiver:req.params.user,senderComplete:true,receiverComplete:true}
@@ -48,6 +37,32 @@ module.exports={
             }else{
                 res.json("Please wait for the other user to complete the trip!")
             }
+        })
+    },
+    addReview: (req,res) =>{
+        console.log(req.body.data.review)
+        db.listing.findOneAndUpdate({email:req.params.user},{$push:{review:req.body.data.review}},{new:true}).then(dbresult=>{
+            const num=dbresult.rating+req.body.data.score
+            return db.listing.findOneAndUpdate({email:req.params.user},{$set:{rating:num,numberOfRatings:dbresult.numberOfRatings+1}},{new:true}).then(result=>{
+                res.json(result)
+            })
+        })
+    },
+    updateRateStatus: (req,res)=>{
+        console.log(req.params.id)
+        db.swap.findByIdAndUpdate({_id:req.params.id},req.body,{new:true}).then(result=>{
+            res.json(result)
+        })
+    },
+    retrieveUpcomingTrips: (req,res)=>{
+        db.swap.find({$or: [{sender:req.params.user,confirmed:true,senderComplete:false,receiverComplete:false},
+            {sender:req.params.user,confirmed:true,senderComplete:true,receiverComplete:false},
+            {sender:req.params.user,confirmed:true,senderComplete:false,receiverComplete:true},
+            {receiver:req.params.user,confirmed:true,senderComplete:false,receiverComplete:false},
+            {receiver:req.params.user,confirmed:true,senderComplete:true,receiverComplete:false},
+            {receiver:req.params.user,confirmed:true,senderComplete:false,receiverComplete:true}
+           ]}).then(dbresult=>{
+            res.json(dbresult)
         })
     }
 
