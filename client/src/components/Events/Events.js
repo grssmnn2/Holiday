@@ -29,7 +29,7 @@ class Events extends Component {
 
                                 <div className="desc">
                                     <div className="top d-flex justify-content-between">
-                                        <h4><a href="#">{pic.name}</a></h4>
+                                        <h4><a href={pic.booking_url} target="_blank">{pic.name}</a></h4>
 
                                     </div>
                                     <div className="middle">
