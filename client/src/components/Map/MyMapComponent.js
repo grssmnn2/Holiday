@@ -22,22 +22,25 @@ var geocoder = new google.maps.Geocoder()
 //  moving geocode code into component 
 //  here we are refactoring this to class component 
 
-var address = "chicago"
 
-// geocoder.geocode({ address: address }, function(results, status) {
-//   if (status == google.maps.GeocoderStatus.OK) {
-//     var latitude = results[0].geometry.location.lat()
-//     var longitude = results[0].geometry.location.lng()
-//     console.log(latitude);
-//     console.log(longitude);
-//   }
-// })
+geocoder.geocode({ address: "chicago" }, function(results, status) {
+  if (status == google.maps.GeocoderStatus.OK) {
+    var latitude = results[0].geometry.location.lat()
+    var longitude = results[0].geometry.location.lng()
+    console.log(latitude);
+    console.log(longitude);
+  }
+})
 
-
+// at: -34.297, lng: 150.644
 const MyMapComponent = withScriptjs(
-
+ 
   withGoogleMap(props => (
+
+   
     <GoogleMap defaultZoom={9} defaultCenter={{lat: -34.297, lng: 150.644}}>
+
+    {console.log(props)}
       {markers.map(marker => {
         {
           props.isMarkerShown && (

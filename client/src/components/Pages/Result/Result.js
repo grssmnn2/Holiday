@@ -7,13 +7,22 @@ import API from "../../../utils/API";
 import MyMapComponent from "../../Map";
 import { Card } from "antd";
 const { Meta } = Card;
+//  we can access the address using this.state.address 
+//  pass this into the geo coding?  - and putting the geo coding
+//  examples of passing state 
+
 class Result extends Component {
   state = {
     results: [],
-    // address: this.state.address
+    address: {
+      city: "chicago",
+      state: "illinois",
+      country: "USA"
+    }
   };
 
   //  lifecycle methods
+
 
   componentDidMount() {
     this.displayResults(this.props.location.state.city);
@@ -49,11 +58,11 @@ class Result extends Component {
 
 
   render() {
-    const info = {
-      city: "Chicago",
-      state: "Illinois",
-      country: "United States"
-    };
+    // const info = {
+    //   city: "Chicago",
+    //   state: "Illinois",
+    //   country: "United States"
+    // };
 
     return (
       <div>
@@ -81,11 +90,12 @@ class Result extends Component {
                 </Card>
               );
             })}
-            <MyMapComponent isMarkerShown
+            <MyMapComponent isMarkerShown={true}
    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZ0UrBlp4cZvjyvOfJthUB1jPyj1X4pn4&v=3.exp&libraries=geometry,drawing,places"
    loadingElement={<div style={{ height: `100%` }} />}
    containerElement={<div style={{ height: `373px` }} />}
    mapElement={<div style={{ height: `100%` }} />}
+   data={this.state.address}
  />
           </div>
         </div>
