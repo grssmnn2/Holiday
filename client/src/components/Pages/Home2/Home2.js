@@ -87,6 +87,7 @@ class Home2 extends Component {
 
             {/* service area */}
 
+
             <section className="service-area section-gap" id="service">
 				<div className="container">
 					<div className="row d-flex justify-content-center">
@@ -99,8 +100,8 @@ class Home2 extends Component {
 							<div className="single-service">
 								<h4><span className="lnr lnr-user"></span>Lower Vacation Costs</h4>
 								<p>
-									Plan a budget friendly vacation by saving money on housing. Dying to try that new restaurant or sail on a cruise around your favorite island?
-									 Spend your money on what you truly care about it and leave the housing concerns to us.
+									 Spend your money on what you truly care about it and leave the housing concerns to us. Holiday
+									 provides you with the opportunity to spend your vacation budget where it matters most.
 								</p>
 							</div>
 						</div>
@@ -108,8 +109,9 @@ class Home2 extends Component {
 							<div className="single-service">
 								<h4><span className="lnr lnr-license"></span>Professional Service</h4>
 								<p>
-									Feel safe swapping apartments knowing we take our user safety seriously. Read and write reviews of 
-									past visits. Know that every user is background checked before being allowed to use the application.
+								We help connect travelers all over the world so they can discover rustic, authentic,
+									  and unspoiled gems. Do what the locals do, eat where they eat, and experience 
+									  the realness of the place you're visiting.
 								</p>								
 							</div>
 						</div>
@@ -117,14 +119,15 @@ class Home2 extends Component {
 							<div className="single-service">
 								<h4><span className="lnr lnr-phone"></span>Easy Access</h4>
 								<p>
-									Access our application from any device, on the go or at home. Contact our customer support team with any concerns, 24/7.
+									Access our application from any device, on the go or at home. Read and write reviews of past visits to prepare
+									other users for their stay. Save favorite homes so you can easily revisit them when you're ready to swap.
 								</p>								
 							</div>
 						</div>
 					</div>
 				</div>	
 			</section>
-            {/* property area */}
+       
           {/* property area */}
 		  <section className="property-area section-gap relative" id="property">
 				<div className="overlay overlay-bg"></div>
