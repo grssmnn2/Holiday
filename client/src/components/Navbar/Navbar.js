@@ -92,6 +92,7 @@ class Navbar extends Component {
       open: false,
     });
   }
+
   componentDidMount(){
     this.showTripDetails()
   }
@@ -234,7 +235,7 @@ class Navbar extends Component {
               {this.props.authenticated ? 
                 <Link to="/home">Home</Link>:<Link to="/">Home</Link>}
               {this.props.authenticated ? (
-               <a onClick={this.props.click} >Messages</a>):null}
+               <a onClick={this.props.click} >Messages<span style={{borderRadius: 63+"%"}}className="badge">{this.props.number}</span></a>):null}
                  {this.props.authenticated ? 
                null:<Link to="/team">Team</Link>}
               {this.props.authenticated ? (

@@ -7,8 +7,10 @@ import GoX from "react-icons/lib/go/x";
 import IoIosChatbubbleOutline from "react-icons/lib/io/ios-chatbubble-outline";
 import Chatbox from "../Chatbox"
 import Navbar from "../Navbar"
+import GoMailRead from "react-icons/lib/go/mail-read"
 import "./Friendlist.css";
 import "../../utils/API"
+import { Z_DEFAULT_COMPRESSION } from 'zlib';
 class Friendlist extends React.Component {
   state = {
     data: [],
@@ -17,18 +19,30 @@ class Friendlist extends React.Component {
     isOpened:false,
     className:"hide",
     receiver:null,
-    messages:[]
+    messages:[],
+    unreadUser:{},
+    messageNumber:0
   }
   componentDidMount(){
     API.retrieveFriendList(this.props.email).then(res=>{
       console.log(res)
       this.setState({
         data:res.data.friendlist
+      },()=>{
+        let unreadMessage={}
+        API.retrieveUnreadMessage(this.props.email).then(result=>{
+          result.data.forEach(message=>{
+            unreadMessage[message.sender]=true
+          })
+          this.setState({
+            unreadUser:unreadMessage,
+            messageNumber:result.data.length
+          })
+      }).catch(err=>console.log(err))
       })
     }).catch(err=>{
       console.log(err)
     })
-   
   }
   // retriveList = (user) =>{
   //   API.retrieveFriendList(user)
@@ -59,6 +73,14 @@ class Friendlist extends React.Component {
   }
   showChatbox =(user)=>{
     if(this.state.className===null){
+      API.updateMessage(user,this.props.email).then(data=>{
+        const readMessage=this.state.unreadUser;
+        readMessage[user]=false
+        this.setState({
+          unreadUser:readMessage,
+          messageNumber:0
+        })
+      }).catch(err=>console.log(err))
       this.setState({
         className:"hide",
         receiver:user,
@@ -66,14 +88,23 @@ class Friendlist extends React.Component {
       },()=>{
         this.displayHistoryMessage()
       })
-    }else(
+    }else{
+      API.updateMessage(user,this.props.email).then(data=>{
+        console.log(data)
+        const readMessage=this.state.unreadUser;
+        readMessage[user]=false
+        this.setState({
+          unreadUser:readMessage,
+          messageNumber:0
+        })
+      }).catch(err=>console.log(err))
     this.setState({
       className:null,
       receiver:user,
       historyMessage:!this.state.historyMessage
     },()=>{
       this.displayHistoryMessage()
-    }))
+    })}
   }
   displayHistoryMessage = ()=>{
     API.findhistoryMessage(this.props.email,this.state.receiver)
@@ -92,10 +123,11 @@ class Friendlist extends React.Component {
     }).catch(err => console.log(err))
   }
   render() {
+    const {unreadUser}=this.state;
     return (
       <div>
-      <Navbar authenticated={this.props.authenticated} click={this.display}></Navbar>
-      <Chatbox messages={this.state.messages} isOpen={this.state.historyMessage} email={this.props.email} receiver={this.state.receiver}  name={this.state.className}></Chatbox>
+      <Navbar number={this.state.messageNumber} authenticated={this.props.authenticated} click={this.display}></Navbar>
+      <Chatbox authenticated={this.props.authenticated} messages={this.state.messages} isOpen={this.state.historyMessage} email={this.props.email} receiver={this.state.receiver}  name={this.state.className}></Chatbox>
       <Collapse isOpened={this.state.isOpened} fixedHeight={400}>
       <GoX onClick={this.display} style={{fontSize:30,float:"right"}}></GoX>
       <div className="demo-infinite-container">
@@ -115,7 +147,7 @@ class Friendlist extends React.Component {
                   title={<a href="https://ant.design">{item.name}</a>}
                   description={item.email}
                 />
-                <div onClick={()=>this.showChatbox(item.email)}><IoIosChatbubbleOutline  style={{fontSize:30}}></IoIosChatbubbleOutline></div>
+                <div onClick={()=>this.showChatbox(item.email)}>{unreadUser[item.email]===true?<GoMailRead  style={{fontSize:30,color:"gold"}}></GoMailRead>:<IoIosChatbubbleOutline  style={{fontSize:30}}></IoIosChatbubbleOutline>}</div>
               </List.Item>
             )}
           >

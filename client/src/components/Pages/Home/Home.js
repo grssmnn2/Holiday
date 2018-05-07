@@ -99,8 +99,8 @@ class Home extends Component {
 
             {/* service area */}
 
-            <section className="service-area section-gap" id="service">
-				<div className="container">
+            <section style={{padding: "50px 0"}}className="service-area section-gap" id="service">
+				{/* <div className="container">
 					<div className="row d-flex justify-content-center">
 						<div className="col-md-8 pb-40 header-text">
 							<h1>Why use Holiday?</h1>
@@ -136,7 +136,7 @@ class Home extends Component {
 							</div>
 						</div>
 					</div>
-				</div>	
+				</div>	 */}
 			</section>
             {/* property area */}
             <section className="property-area section-gap relative" id="property">
