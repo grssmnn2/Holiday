@@ -183,28 +183,28 @@ class Navbar extends Component {
     const userName=localStorage.getItem("user")
     const menu = (
       <Menu >
-        <Menu.Item style={{color:"gold"}} disabled key="1">Pending Trips</Menu.Item>
+        <Menu.Item style={{color:"black"}} disabled key="1">Pending Trips</Menu.Item>
         <Menu.Divider />
         {pending.map((trip,i)=>{
-           return (<Menu.Item  key={"pending"+i} ><a onClick={()=>this.showModal({title:"Pending Trips",name:"Please wait for "+trip.receiver+" to confirm the trip!",button:false,confirmBtn:false,id:null,sender:null,review:null,current:null})}>{trip.receiver}</a></Menu.Item>)
+           return (<Menu.Item  style={{color:"grey"}}key={"pending"+i} ><a onClick={()=>this.showModal({title:"Pending Trips",name:"Please wait for "+trip.receiver+" to confirm the trip!",button:false,confirmBtn:false,id:null,sender:null,review:null,current:null})}>{trip.receiver}</a></Menu.Item>)
         })}
-        <Menu.Item  style={{color:"gold"}}disabled key="0">Received Swap Requests</Menu.Item>
+        <Menu.Item  style={{color:"black"}}disabled key="0">Received Swap Requests</Menu.Item>
         <Menu.Divider />
         {swapRequest.map((trip,i)=>{
-           return (<Menu.Item  key={"request"+i} ><a onClick={()=>this.showModal({title:"Swap Requests",name:"Please Confirm the swap request from "+trip.sender, button:true,confirmBtn:false,id:trip._id,sender:null,review:null,current:null})}>{trip.receiver}</a></Menu.Item>)
+           return (<Menu.Item  style={{color:"grey"}}key={"request"+i} ><a onClick={()=>this.showModal({title:"Swap Requests",name:"Please Confirm the swap request from "+trip.sender, button:true,confirmBtn:false,id:trip._id,sender:null,review:null,current:null})}>{trip.receiver}</a></Menu.Item>)
         })}
-        <Menu.Item  style={{color:"gold"}}disabled key="6">Upcoming Trips</Menu.Item>
+        <Menu.Item  style={{color:"black"}}disabled key="6">Upcoming Trips</Menu.Item>
         <Menu.Divider />
         {upcoming.map((trip,i)=>{
-           return (<Menu.Item  key={"upcoming"+i} ><a onClick={()=>this.showModal({title:"Upcoming Trips",name:"Please click to complete your swap trip ",button:false,confirmBtn:true,id:trip._id,sender:trip.sender,review:null,current:null})}>{trip.receiver}</a></Menu.Item>)
+           return (<Menu.Item  style={{color:"grey"}}key={"upcoming"+i} ><a onClick={()=>this.showModal({title:"Upcoming Trips",name:"Please click to complete your swap trip ",button:false,confirmBtn:true,id:trip._id,sender:trip.sender,review:null,current:null})}>{trip.receiver}</a></Menu.Item>)
         })}
-        <Menu.Item  style={{color:"gold"}}disabled key="7">Complete Trips</Menu.Item>
+        <Menu.Item  style={{color:"black"}}disabled key="7">Complete Trips</Menu.Item>
         <Menu.Divider />
         {complete.map((trip,i)=>{
           if(trip.sender===userName){
-           return (<Menu.Item  key={"complete"+i} ><a onClick={()=>this.showModal({title:"Complete Trips",name:this.state.review===true?"You have added reviews for "+trip.receiver:"You can add reviews for "+trip.receiver, button:false,confirmBtn:false,id:trip._id,sender:trip.receiver,review:trip.senderRated,current:trip.sender})}>{trip.receiver}</a></Menu.Item>)
+           return (<Menu.Item style={{color:"grey"}} key={"complete"+i} ><a onClick={()=>this.showModal({title:"Complete Trips",name:this.state.review===true?"You have added reviews for "+trip.receiver:"You can add reviews for "+trip.receiver, button:false,confirmBtn:false,id:trip._id,sender:trip.receiver,review:trip.senderRated,current:trip.sender})}>{trip.receiver}</a></Menu.Item>)
         }else{
-          return (<Menu.Item  key={"complete"+i} ><a onClick={()=>this.showModal({title:"Complete Trips",name:this.state.review?"You have added reviews for "+trip.sender:"You can add reviews for "+trip.sender, button:false,confirmBtn:false,id:trip._id,sender:trip.sender,review:trip.receiverRated,current:trip.sender})}>{trip.receiver}</a></Menu.Item>)
+          return (<Menu.Item  style={{color:"grey"}}key={"complete"+i} ><a onClick={()=>this.showModal({title:"Complete Trips",name:this.state.review?"You have added reviews for "+trip.sender:"You can add reviews for "+trip.sender, button:false,confirmBtn:false,id:trip._id,sender:trip.sender,review:trip.receiverRated,current:trip.sender})}>{trip.receiver}</a></Menu.Item>)
 
         }}
       )}
@@ -212,33 +212,6 @@ class Navbar extends Component {
     );
     return (
       <header className="default-header">
-        {/* <div className="menutop-wrap">
-          <div className="menu-top container">
-            <div className="d-flex justify-content-end align-items-center">
-              <ul className="list">
-                <li>
-                  <a href="/search">Search For A Swap</a>
-                </li>
-                <li>
-                {
-          this.props.authenticated
-            ? (
-              <div className="pt-navbar-group pt-align-right">
-                <Link className="pt-button pt-minimal pt-icon-log-out" to="/logout" aria-label="Log Out">Log Out</Link>
-              </div>
-            )
-            : (
-              <div className="pt-navbar-group pt-align-right">
-                <Link className="pt-button pt-intent-primary" to="/login">Register/Log In</Link>
-              </div>
-            )
-        }
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div> */}
-
         <nav className="navbar navbar-expand-lg  navbar-light bg-light">
           <div className="container">
             <a className="navbar-brand" to="/index" />
@@ -258,9 +231,12 @@ class Navbar extends Component {
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav">
-                <Link to="/">Home</Link>
+              {this.props.authenticated ? 
+                <Link to="/home">Home</Link>:<Link to="/">Home</Link>}
               {this.props.authenticated ? (
                <a onClick={this.props.click} >Messages</a>):null}
+                 {this.props.authenticated ? 
+               null:<Link to="/team">Team</Link>}
               {this.props.authenticated ? (
                  <Dropdown overlay={menu}
                  onVisibleChange={this.handleVisibleChange}
