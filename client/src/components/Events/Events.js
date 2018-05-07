@@ -12,18 +12,18 @@ class Events extends Component {
 
 
     componentDidMount() {
-        fetch("https://www.triposo.com/api/20180223/local_event.json?location_id=Chicago&count=3&account=2JSJ6C5C&token=77b4rd1cpzck05y81wgao0o1x54khes9")
+        let num=Math.floor(Math.random()*2)
+        const location=["Chicago","Honolulu"];
+        fetch(`https://www.triposo.com/api/20180223/local_event.json?location_id=${location[num]}&count=6&account=2JSJ6C5C&token=77b4rd1cpzck05y81wgao0o1x54khes9`)
             .then(results => {
-
                 return results.json();
             }).then(data => {
-
                 let pictures = data.results.map((pic, index) => {
                     return (
                         <div key={pic.external_image_url} className="col-lg-4">
-                            <div className="single-property">
+                            <div style={{height:"365px",marginTop:"10px"}}className="single-property">
                                 <div className="images">
-                                    <img className="img-fluid mx-auto d-block" src={pic.external_image_url} alt="" />
+                                    <img style={{width:"280px",height:"200px"}}className="img-fluid mx-auto d-block" src={pic.external_image_url} alt="" />
 
                                 </div>
 

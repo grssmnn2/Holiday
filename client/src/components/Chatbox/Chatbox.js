@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import io from "socket.io-client";
 import API from "../../utils/API";
-import { Avatar } from 'antd';
+import { Avatar, notification } from 'antd';
 import IoAndroidCall from "react-icons/lib/io/android-call";
 import IoClose from "react-icons/lib/io/close"
 import MdVideoCall from "react-icons/lib/md/video-call"
@@ -18,7 +18,9 @@ class Chatbox extends Component {
     isOpen:false
   };
   componentWillMount(){
-    this.initSocket();
+    if(this.props.authenticated){
+      this.initSocket();
+    }
   }
   componentWillReceiveProps(nextProps){
     if(this.props.receiver!==nextProps.receiver){
@@ -42,10 +44,17 @@ class Chatbox extends Component {
   }
   }
   componentDidMount() {
+    if(this.props.authenticated){
     const { socket,sender} = this.state;
     socket.on("RECEIVE_MESSAGE",data =>{
       console.log(data)
+    
       if(data.receiver===sender){
+        notification.open({
+          message: 'Messages',
+          description: data.name+" send you a message",
+          duration: 0,
+        });
         this.setState({
           receiver:data.name,
           messages: [...this.state.messages,data]
@@ -56,6 +65,7 @@ class Chatbox extends Component {
         })
       }
     })
+  }
   }
   initSocket = () => {
     const socket = io("http://localhost:3001");
@@ -151,18 +161,6 @@ class Chatbox extends Component {
                   </div>
                 );
               }):null}
-
-              {/* <div className="chat_message_wrapper chat_message_right">
-            <div className="chat_user_avatar" />
-            <ul className="chat_message">
-              <li>
-                <p>
-                  it is me
-                  <span className="chat_message_time">13:34</span>
-                </p>
-              </li>
-            </ul>
-          </div> */}
             </div>
           </div>
           <div className="chat_submit_box">
@@ -178,7 +176,7 @@ class Chatbox extends Component {
                     <i className="fa fa-camera" />
                   </a>
                 </span>
-                <a>{this.props.receiver?this.props.receiver:null}</a>
+                {/* <a>{this.props.receiver?this.props.receiver:null}</a> */}
                 {/* <input
                   type="text"
                   placeholder="Type a message"
@@ -189,7 +187,7 @@ class Chatbox extends Component {
                   value={this.props.receiver}
                  
                 /> */}
-                <input
+                {/* <input
                 type="text"
                 placeholder="Type a message"
                 id="submit_message"
@@ -200,7 +198,7 @@ class Chatbox extends Component {
                 onChange={event =>
                   this.setState({ sender: event.target.value })
                 }
-              />
+              /> */}
                 <input
                   type="text"
                   placeholder="Type a message"
@@ -216,10 +214,9 @@ class Chatbox extends Component {
               </div>
               <span className="uk-input-group-addon">
                 <a onClick={this.sendMessage} href="#">
-                  <i className="glyphicon glyphicon-send" />
+                  <i style={{marginTop:"20px"}}className="glyphicon glyphicon-send" />
                 </a>
               </span>
-              <a onClick={this.displayHistoryMessage}>click this</a>
             </div>
           </div>
         </aside>

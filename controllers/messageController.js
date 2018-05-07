@@ -25,7 +25,21 @@ module.exports = {
   addFriend: (req,res) =>{
     db.listing.findOneAndUpdate({email:req.params.name},{$push:{friendlist:req.body}},{new:true})
     .then(dbdata=>{
-      res.json(dbdata)
+        return db.listing.findOneAndUpdate({email:req.body.email},{$push:{friendlist:{email:req.params.name}}},{new:true}).then(dbresult=>{
+          res.json(dbdata)
+        })
+     
+    })
+  },
+  unreadMessage:(req,res)=>{
+    db.messages.find({receiver:req.params.email,read:false}).then(result=>{
+      console.log(result)
+      res.json(result)
+    });
+  },
+  updateMessage:(req,res)=>{
+    db.messages.updateMany({sender:req.params.email,receiver:req.body.data},{read:true},{new:true}).then(data=>{
+      res.json(data)
     })
   }
 };

@@ -16,6 +16,10 @@ const messagesSchema=new Schema({
     },
     message:{
         type:String
+    },
+    read:{
+        type:Boolean,
+        default:false
     }
        
 

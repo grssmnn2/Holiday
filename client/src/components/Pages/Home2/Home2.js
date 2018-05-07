@@ -95,7 +95,7 @@ class Home2 extends Component {
 							<h1>Why use Holiday?</h1>
 						</div>
 					</div>
-					<div className="row">
+					<div style={{display:"block"}}className="row">
 						<div className="col-lg-4 col-md-6 pb-30">
 							<div className="single-service">
 								<h4><span className="lnr lnr-user"></span>Lower Vacation Costs</h4>
