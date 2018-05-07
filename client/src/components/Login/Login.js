@@ -5,6 +5,7 @@ import { app } from '../../base'
 import { Alert } from 'antd';
 import API from "../../utils/API"
 import Register from "../Pages/Register"
+import Particles from 'react-particles-js';
 import "./login.css"
 const loginStyles = {
   width: "90%",
@@ -12,7 +13,8 @@ const loginStyles = {
   margin: "20px auto",
   border: "1px solid #ddd",
   borderRadius: "5px",
-  padding: "60px"
+  padding: "27px",
+  background:"white"
 };
 
 class Login extends Component {
@@ -135,6 +137,27 @@ class Login extends Component {
           ) : null
         }
       </div>
+      <Particles style={{position:"absolute", height: "100vh !important"}}
+    params={{
+      particles: {
+        line_linked: {
+          shadow: {
+            enable: true,
+            color: "black",
+            blur: 1
+          }},
+          number:{
+            value:50
+          }
+      }
+    }}
+    style={{
+      width: '100%',
+      position:"absolute",
+      zIndex:-1
+      // backgroundImage: `url(${logo})` 
+    }}
+  />;
         {display}
       </div>
     )

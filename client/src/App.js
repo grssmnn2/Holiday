@@ -12,7 +12,7 @@ import Footer from "./components/Footer"
 import Result from "./components/Pages/Result"
 import { app, base } from './base'
 import Navbar from "./components/Navbar"
-
+import Team from "./components/Team"
 //  other static components go here too
 import "./App.css";
 import "./css/bootstrap.css"
@@ -157,9 +157,17 @@ class App extends Component {
                   item={this.state.authenticated}
                   component={Home}
                    /> 
-                  <Route exact path="/" component={Home2} />
-                  <Route exact path="/profile" component={Profile} />    
-                  <Route exact path="/register" component={Register} /> 
+                  <Route exact path="/" render={(props)=>{
+                    return <Home2 item={this.state.authenticated}></Home2>
+                  }} />
+                  {/* <Route exact path="/profile" component={Profile} />     */}
+                  <Route exact path="/team" render={(props) => {
+                  return <div>
+                    <Navbar authenticated={this.state.authenticated}/>
+                    <div className="main-content" style={{ padding: "5em" }}>
+                     <div style={{marginTop: 10+"%"}}className="workspace">
+                    <Team/></div></div></div>
+                }} />
                
 
                 {/* <ShowRoute
