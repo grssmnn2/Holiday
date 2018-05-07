@@ -17,16 +17,23 @@ class Result extends Component {
     address: {
       city: "chicago",
       state: "illinois",
-      country: "USA"
+      country: "USA",
+      lat: 41.8781,
+      lng: 87.6298
     }
   };
+
+
 
   //  lifecycle methods
 
 
   componentDidMount() {
     this.displayResults(this.props.location.state.city);
-  }
+    // setMapElementReference = function(MapElementReference) {
+    //  this.mapElement = MapElementReference;
+    }
+
 
   //  this.req.params.listing.city => be
 
@@ -37,11 +44,7 @@ class Result extends Component {
         this.setState({
           results: res.data
         });
-        console.log(
-          "this.state.address",
-          "this.state.city",
-          "this.state.country"
-        );
+        
       })
       .catch(err => console.log(err));
   };
@@ -56,8 +59,31 @@ class Result extends Component {
 
   // }
 
+  //  handleFormSubmit = () => {
 
-  render() {
+  //}
+  geocodeAddress = address => {
+    const google = window.google
+    var geocoder = new google.maps.Geocoder()
+    this.geocoder.geocode({ address: "this.state.city"}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        var latitude = parseFloat(results[0].geometry.location.lat())
+        var longitude = parseFloat(results[0].geometry.location.lng())
+        console.log(latitude);
+        console.log(longitude);
+        this.setState({
+          lat: latitude,
+          lng: longitude 
+        })
+      }
+    })
+
+  }
+
+
+
+
+  render = () => {
     // const info = {
     //   city: "Chicago",
     //   state: "Illinois",
@@ -102,6 +128,6 @@ class Result extends Component {
       </div>
     );
   }
+// }
 }
-
 export default Result;
