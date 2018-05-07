@@ -24,10 +24,10 @@ const MyMapComponent = withScriptjs(
 
 
    
-    <GoogleMap defaultZoom={9} defaultCenter={{lat: props.data.lat, lng: props.data.lng}}>
+    <GoogleMap defaultZoom={14} defaultCenter={{lat: props.data.lat, lng: props.data.lng}}>
 
-    {console.log(props)}
-
+    {console.log(props.data.lat)}
+    {console.log(props.data)}
       {markers.map(marker => {
         {
           props.isMarkerShown && (
@@ -36,7 +36,7 @@ const MyMapComponent = withScriptjs(
         }
         return (
           <Circle
-            radius={8046.72}
+            radius={200.72}
             center={{lat: props.data.lat, lng: props.data.lng}}
           />
         )
