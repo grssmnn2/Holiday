@@ -4,17 +4,33 @@ import API from "../../../utils/API";
 import MyMapComponent from "../../Map";
 import { Card } from "antd";
 const { Meta } = Card;
+//  we can access the address using this.state.address 
+//  pass this into the geo coding?  - and putting the geo coding
+//  examples of passing state 
+
 class Result extends Component {
   state = {
     results: [],
-    // address: this.state.address
+    address: {
+      city: "chicago",
+      state: "illinois",
+      country: "USA",
+      lat: 41.8781,
+      lng: -87.6298
+    }
   };
+
+
 
   //  lifecycle methods
 
+
   componentDidMount() {
     this.displayResults(this.props.location.state.city);
-  }
+    // setMapElementReference = function(MapElementReference) {
+    //  this.mapElement = MapElementReference;
+    }
+
 
   //  this.req.params.listing.city => be
 
@@ -25,11 +41,7 @@ class Result extends Component {
         this.setState({
           results: res.data
         });
-        console.log(
-          "this.state.address",
-          "this.state.city",
-          "this.state.country"
-        );
+        
       })
       .catch(err => console.log(err));
   };
@@ -38,23 +50,39 @@ class Result extends Component {
   //   const
   // }
 
-  //  enlarge image onhover
-  // //
-  // handleItemHover = () => {
-
-  // }
-
-  //  start render
-  //  return a div that contains search results on one side and map on the other
-  //  actually that would need to be two divs / floated 
 
 
-  render() {
-    const info = {
-      city: "Chicago",
-      state: "Illinois",
-      country: "United States"
-    };
+  //  for whatever option they picked, set state to geo coordinates 
+  //  handleFormSubmit = () => {
+
+  //}
+  geocodeAddress = address => {
+    const google = window.google
+    var geocoder = new google.maps.Geocoder()
+    this.geocoder.geocode({ address: "this.state.city"}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        var latitude = parseFloat(results[0].geometry.location.lat())
+        var longitude = parseFloat(results[0].geometry.location.lng())
+        console.log(latitude);
+        console.log(longitude);
+        this.setState({
+          lat: latitude,
+          lng: longitude 
+        })
+      }
+    })
+
+  }
+
+
+
+
+  render = () => {
+    // const info = {
+    //   city: "Chicago",
+    //   state: "Illinois",
+    //   country: "United States"
+    // };
 
     return (
       <div>
@@ -82,17 +110,18 @@ class Result extends Component {
                 </Card>
               );
             })}
-            <MyMapComponent isMarkerShown
+            <MyMapComponent isMarkerShown={true}
    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZ0UrBlp4cZvjyvOfJthUB1jPyj1X4pn4&v=3.exp&libraries=geometry,drawing,places"
    loadingElement={<div style={{ height: `100%` }} />}
    containerElement={<div style={{ height: `373px` }} />}
    mapElement={<div style={{ height: `100%` }} />}
+   data={this.state.address}
  />
           </div>
         </div>
       </div>
     );
   }
+// }
 }
-
 export default Result;

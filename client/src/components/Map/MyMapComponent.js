@@ -7,42 +7,37 @@ import {
 import React, { Component } from "react"
 import { Circle } from "react-google-maps"
 
+
+// const FaAnchor = require("react-icons/lib/fa/anchor")
 const markers = [
   { lat: -34.397, lng: 150.644 },
   { lat: -35.394, lng: 150.644 },
   { lat: 19.8968, lng: 155.5828 }
 ]
 
-// const FaAnchor = require("react-icons/lib/fa/anchor")
-
-const google = window.google
-var geocoder = new google.maps.Geocoder()
-//this.state.city  - where is this from since i get address from KS 
-//  when it is string 
-//  moving geocode code into component 
-var address = "this.state.city"
-
-geocoder.geocode({ address: address }, function(results, status) {
-  if (status == google.maps.GeocoderStatus.OK) {
-    var latitude = results[0].geometry.location.lat()
-    var longitude = results[0].geometry.location.lng()
-    console.log(latitude);
-    console.log(longitude);
-  }
-})
+//  lat: parseFloat(props.lat), lng: parseFloat(props.lng)
+//  lat: 41.8781, lng:  -87.6298
+//  data.lat
 const MyMapComponent = withScriptjs(
+ 
   withGoogleMap(props => (
-    <GoogleMap defaultZoom={9} defaultCenter={{lat: -34.297, lng: 150.644}}>
+
+
+   
+    <GoogleMap defaultZoom={9} defaultCenter={{lat: props.data.lat, lng: props.data.lng}}>
+
+    {console.log(props)}
+
       {markers.map(marker => {
         {
           props.isMarkerShown && (
-            <Marker position={{ lat: marker.lat, lng: marker.lng }} />
+            <Marker position={{lat: props.data.lat, lng: props.data.lng}} />
           )
         }
         return (
           <Circle
             radius={8046.72}
-            center={{ lat: marker.lat, lng: marker.lng }}
+            center={{lat: props.data.lat, lng: props.data.lng}}
           />
         )
       })}
