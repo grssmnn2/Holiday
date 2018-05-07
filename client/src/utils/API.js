@@ -17,5 +17,6 @@ export default {
     confirmTrip:(id)=>axios.put("/api/confirm/"+id),
     completeTrip:(id,data)=>axios.put("/api/completetrip/"+id,data),
     addReview:(user,review)=>axios.put("/api/addreview/"+user, {data : review}),
-    updateRateStatus:(id,data)=>axios.put("/api/updatestatus/"+id,data)
+    updateRateStatus:(id,data)=>axios.put("/api/updatestatus/"+id,data),
+    retrieveUserData:(email)=>axios.get("/api/userInfor/"+email)
 }

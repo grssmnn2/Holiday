@@ -13,6 +13,7 @@ import Result from "./components/Pages/Result"
 import { app, base } from './base'
 import Navbar from "./components/Navbar"
 
+
 //  other static components go here too
 import "./App.css";
 import "./css/bootstrap.css"
@@ -158,10 +159,18 @@ class App extends Component {
                   component={Home}
                    /> 
                   <Route exact path="/" component={Home2} />
-                  <Route exact path="/profile" component={Profile} />    
+                  {/* <Route exact path="/profile" component={Profile} />     */}
                   <Route exact path="/register" component={Register} /> 
                
-
+                  <Navbar authenticated={this.state.authenticated}/>
+                  <AuthenticatedRoute
+                  exact
+                  path="/profile"
+                  authenticated={this.state.authenticated}
+                  item={this.state.authenticated}
+                  component={Profile}
+                   /> 
+           
                 {/* <ShowRoute
                   path="/chatbox"
                   component={Chatbox}

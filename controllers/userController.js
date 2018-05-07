@@ -16,5 +16,10 @@ module.exports={
         .then(dbimage=>{
             res.json(dbimage)
         })
+    },
+    retrieveUserData:(req,res)=>{
+        db.listing.findOne({email:req.params.emai}).then(dbresult=>{
+            res.json(dbresult)
+        })
     }
 }
