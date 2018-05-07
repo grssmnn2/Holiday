@@ -53,11 +53,7 @@ class Result extends Component {
   //   const
   // }
 
-  //  enlarge image onhover
-  // //
-  // handleItemHover = () => {
 
-  // }
 
   //  for whatever option they picked, set state to geo coordinates 
   //  handleFormSubmit = () => {
