@@ -19,7 +19,7 @@ class Result extends Component {
       state: "illinois",
       country: "USA",
       lat: 41.8781,
-      lng: 87.6298
+      lng: -87.6298
     }
   };
 
@@ -59,6 +59,7 @@ class Result extends Component {
 
   // }
 
+  //  for whatever option they picked, set state to geo coordinates 
   //  handleFormSubmit = () => {
 
   //}

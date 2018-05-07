@@ -36,24 +36,29 @@ const markers = [
 //  may have to make this class based 
 //  going to try a couple of more things and then will try to restructure it 
 //  marker.lat
+//  lat: parseFloat(props.lat), lng: parseFloat(props.lng)
+//  lat: 41.8781, lng:  -87.6298
+//  data.lat
 const MyMapComponent = withScriptjs(
  
   withGoogleMap(props => (
 
-   
-    <GoogleMap defaultZoom={9} defaultCenter={{lat: 41.8781, lng:  -87.6298}}>
 
-    {console.log(props)}
+   
+    <GoogleMap defaultZoom={9} defaultCenter={{lat: props.data.lat, lng: props.data.lng}}>
+
+    {console.log(props)},
+
       {markers.map(marker => {
         {
           props.isMarkerShown && (
-            <Marker position={{  lat: parseFloat(props.lat), lng: parseFloat(props.lng) }} />
+            <Marker position={{lat: props.data.lat, lng: props.data.lng}} />
           )
         }
         return (
           <Circle
             radius={8046.72}
-            center={{ lat: parseFloat(props.lat), lng:parseFloat(props.lng) }}
+            center={{lat: props.data.lat, lng: props.data.lng}}
           />
         )
       })}
