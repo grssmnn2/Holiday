@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import {message, Menu, Dropdown, Icon } from 'antd';
+import {message, Menu, Dropdown, Icon , Badge} from 'antd';
 import { Rate } from 'antd';
 import API from "../../utils/API"
 import Billingform from "../Billingform2"
 import { Modal, Button } from 'antd';
+import FaSuitcase from "react-icons/lib/fa/suitcase"
+import FaAngellist from "react-icons/lib/fa/angellist"
+import FaHourglass from  "react-icons/lib/fa/hourglass"
+import FaSubway from "react-icons/lib/fa/subway"
 import "./Navbar.css"
 const confirm = Modal.confirm;
 class Navbar extends Component {
@@ -227,17 +231,17 @@ class Navbar extends Component {
     const userName=localStorage.getItem("user")
     const menu = (
       <Menu >
-        <Menu.Item style={{color:"black"}} disabled key="1">Pending Trips</Menu.Item>
+        <Menu.Item style={{color:"black",fontFamily: 'Card,serif'}} disabled key="1">Pending Trips <FaHourglass style={{fontSize:25,color:"gold"}}></FaHourglass></Menu.Item>
         <Menu.Divider />
         {pending.map((trip,i)=>{
            return (<Menu.Item  style={{color:"grey"}}key={"pending"+i} ><a onClick={()=>this.showModal({title:"Pending Trips",name:"Please wait for "+trip.receiver+" to confirm the trip!",button:false,confirmBtn:null,id:null,sender:null,review:null,current:null})}>{trip.receiver}</a></Menu.Item>)
         })}
-        <Menu.Item  style={{color:"black"}}disabled key="0">Received Swap Requests</Menu.Item>
+        <Menu.Item  style={{color:"black",fontFamily: 'Card,serif'}}disabled key="0">Received Requests <FaSubway style={{fontSize:25,color:"gold"}}/></Menu.Item>
         <Menu.Divider />
         {swapRequest.map((trip,i)=>{
            return (<Menu.Item  style={{color:"grey"}}key={"request"+i} ><a onClick={()=>this.showModal({title:"Swap Requests",name:"Please Confirm the swap request from "+trip.sender, button:true,confirmBtn:null,id:trip._id,sender:null,review:null,current:null})}>{trip.receiver}</a></Menu.Item>)
         })}
-        <Menu.Item  style={{color:"black"}}disabled key="6">Upcoming Trips</Menu.Item>
+        <Menu.Item  style={{color:"black",fontFamily: 'Card,serif'}}disabled key="6">Upcoming Trips <FaSuitcase style={{fontSize:25,color:"gold"}}></FaSuitcase></Menu.Item>
         <Menu.Divider />
         {upcoming.map((trip,i)=>{
           if(trip.sender===userName){
@@ -246,7 +250,7 @@ class Navbar extends Component {
             return (<Menu.Item  style={{color:"grey"}}key={"upcoming"+i} ><a onClick={()=>this.showModal({title:"Upcoming Trips",name:"Wait for both users to complete the trip",button:false,confirmBtn:trip.receiverComplete,id:trip._id,sender:trip.sender,review:null,current:null})}>{trip.receiver}</a></Menu.Item>)
           }
           })}
-        <Menu.Item  style={{color:"black"}}disabled key="7">Complete Trips</Menu.Item>
+        <Menu.Item  style={{color:"black",fontFamily: 'Card,serif'}}disabled key="7">Complete Trips <FaAngellist style={{fontSize:25,color:"gold"}}></FaAngellist></Menu.Item>
         <Menu.Divider />
         {complete.map((trip,i)=>{
           if(trip.sender===userName){
@@ -263,6 +267,7 @@ class Navbar extends Component {
         <nav className="navbar navbar-expand-lg  navbar-light bg-light">
           <div className="container">
             <a className="navbar-brand" to="/index" />
+            <h1 style={{color:"#ff5a5f",fontFamily: 'Pangolin,cursive'}}>Holiday</h1>
             <button
               className="navbar-toggler"
               type="button"
@@ -278,11 +283,11 @@ class Navbar extends Component {
               className="collapse navbar-collapse justify-content-end align-items-center"
               id="navbarSupportedContent"
             >
-              <ul className="navbar-nav">
+              <ul style={{fontFamily: 'Noto Sans,sans-serif'}} className="navbar-nav">
               {this.props.authenticated ? 
                 <Link to="/home">Home</Link>:<Link to="/">Home</Link>}
               {this.props.authenticated ? (
-               <a onClick={this.props.click} >Messages<span style={{borderRadius: 63+"%"}}className="badge">{this.props.number}</span></a>):null}
+               <a onClick={this.props.click} >Messages<Badge style={{boxShadow: '0 0 0 1px #d9d9d9 inset'}}showZero={true} count={this.props.number} /></a>):null}
                  {this.props.authenticated ? 
                null:<Link to="/team">Team</Link>}
               {this.props.authenticated ? (

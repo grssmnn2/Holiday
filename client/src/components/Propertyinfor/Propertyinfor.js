@@ -17,6 +17,7 @@ import { message, Button } from "antd";
 import { DatePicker } from 'antd';
 import moment from 'moment';
 import Billingform from "../Billingform"
+import Friendlist from "../Friendlist"
 import API from "../../utils/API"
 import "./Propertyinfor.css";
 const { Meta } = Card;
@@ -24,7 +25,9 @@ const { Header, Content, Sider, Footer } = Layout;
 const { MonthPicker, RangePicker } = DatePicker;
 const dateFormat = 'YYYY/MM/DD';
 class Propertyinfor extends Component {
-
+  state={
+    email:localStorage.getItem("user")
+  }
   success = () => {
     const user=localStorage.getItem("user")
     API.addFriends(user,{"friendlist":"eddie"}).then(res=>{
@@ -39,22 +42,11 @@ class Propertyinfor extends Component {
     message.success("You have added a new friend!");
   };
   render() {
-    const { value } = this.state;
+    // const { value } = this.state;
     return (
-      <Layout className="layout">
-        <Header>
-          <div className="logo" />
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            defaultSelectedKeys={["2"]}
-            style={{ lineHeight: "64px" }}
-          >
-            <Menu.Item key="1">nav 1</Menu.Item>
-            <Menu.Item key="2">nav 2</Menu.Item>
-            <Menu.Item key="3">nav 3</Menu.Item>
-          </Menu>
-        </Header>
+      <Layout style={{ paddingBottom: "106px", background: "white"}}className="layout">
+        <Friendlist authenticated={this.props.item} email={this.state.email?this.state.email:null}></Friendlist>
+        <div style={{marginTop: 5+"%"}}className="workspace">
         <Carousel autoplay>
           <div>
             <h3>1</h3>
@@ -69,6 +61,7 @@ class Propertyinfor extends Component {
             <h3>4</h3>
           </div>
         </Carousel>
+        </div>
         <Layout>
           <Sider>
             <Card
@@ -96,14 +89,20 @@ class Propertyinfor extends Component {
             </Card>
           </Sider>
           <Content>
-            <div style={{ background: "#fff", padding: 24, minHeight: 280 }}>
-              Content
+            <div style={{ borderBottom:"1px solid #e8e8e8" ,background: "#fff", padding: 24, minHeight: 291 }}>
+            <IoIosPaw style={{fontSize:30}}></IoIosPaw>
+              <IoWifi style={{fontSize:30}} />
+              <MdHotel style={{fontSize:30}}></MdHotel>
+              <MdHotTub style={{fontSize:30}}></MdHotTub>
+              <IoAndroidPeople style={{fontSize:30}}></IoAndroidPeople>
+              <MdTv style={{fontSize:30}}></MdTv>
+              <Rate disabled defaultValue={2} />
             </div>
           </Content>
         </Layout>
         <Layout>
           <Sider style={{border:"0.5px solid #e8e8e8",background:"white"}}>
-          <hr style={{border: "1px solid #e8e8e8",marginTop: 10+"%"}}/>
+          {/* <hr style={{border: "1px solid #e8e8e8",marginTop: 10+"%"}}/> */}
           <div style={{textAlign:"center",marginTop: 35+"%"}}>
             <p>Start your trip from here! <GoLightBulb style={{color:"gold", fontSize:20}}></GoLightBulb></p>
             <RangePicker
@@ -117,20 +116,11 @@ class Propertyinfor extends Component {
           </div>
           </Sider>
           <Content>
-            <div style={{ background: "#fff", padding: 24, minHeight: 280 }}>
-              <IoIosPaw style={{fontSize:30}}></IoIosPaw>
-              <IoWifi style={{fontSize:30}} />
-              <MdHotel style={{fontSize:30}}></MdHotel>
-              <MdHotTub style={{fontSize:30}}></MdHotTub>
-              <IoAndroidPeople style={{fontSize:30}}></IoAndroidPeople>
-              <MdTv style={{fontSize:30}}></MdTv>
-              <Rate disabled defaultValue={2} />
+            <div style={{  borderBottom:"1px solid #e8e8e8",background: "#fff", padding: 24, minHeight: 280 }}>
+                Reviews
             </div>
           </Content>
         </Layout>
-        <Footer style={{ textAlign: "center" }}>
-          Ant Design ©2016 Created by Ant UED
-        </Footer>
       </Layout>
     );
   }
