@@ -90,7 +90,8 @@ class Billingform extends Component {
        });
        console.log(this.props.id)
        API.confirmTrip(this.props.id).then(result=>{
-        window.location.reload()
+         console.log(result)
+        this.props.refresh(result.data,this.props.id)
        }).catch(err=>console.log(err))
       setTimeout(() => {
         this.setState({ loading: false, visible: false,

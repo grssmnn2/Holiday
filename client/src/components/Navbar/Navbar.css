@@ -1,0 +1,6 @@
+.anticon-star::before{
+    color:#e8e8e8!important;
+  }
+  .ant-rate-star-full .ant-rate-star-second .anticon-star::before{
+    color:gold!important
+  }

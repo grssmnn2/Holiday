@@ -5,6 +5,7 @@ import { Rate } from 'antd';
 import API from "../../utils/API"
 import Billingform from "../Billingform2"
 import { Modal, Button } from 'antd';
+import "./Navbar.css"
 const confirm = Modal.confirm;
 class Navbar extends Component {
   handleChange = value => {
@@ -75,7 +76,7 @@ class Navbar extends Component {
       title:data.title,
       name:data.name,
       button:data.button,
-      confirmBtn:data.confirmBtn,
+      confirmBtn:this.state.confirmBtn===true?true:data.confirmBtn,
       id:data.id,
       sender:data.sender,
       review:this.state.review===true?true:data.review,
@@ -134,28 +135,54 @@ class Navbar extends Component {
           duration: 2,
           maxCount: 3,
         });
-        if(result.data==="completed"){
-          window.location.refresh();
-        }
-        message.success(result.data)
+        if(result.data.data==="completed"){
+          let {upcoming}=this.state
+          console.log(upcoming)
+          upcoming = upcoming.filter(function( obj ) {
+            console.log(obj)
+            return obj.sender !== result.data.result.sender;
+        });
+        console.log(upcoming)
         this.setState({
+          upcoming,
+          complete:[...this.state.complete,result.data.result]
+        })
+        }
+        message.success(result.data.data)
+        this.setState({
+          confirmBtn:true,
           open:false
+          
+        },()=>{
+          console.log(this.state.confirmBtn)
         })
       }).catch(err=>{
         console.log(err)
       })
     }else{
       API.completeTrip(this.state.id,{receiverComplete:true}).then(result=>{
+        console.log(result)
         message.config({
           top: 100,
           duration: 2,
           maxCount: 3,
         });
-        if(result.data==="completed"){
-          window.location.refresh();
-        }
-        message.success(result.data)
+        if(result.data.data==="completed"){
+          let {upcoming}=this.state
+          console.log(upcoming)
+          upcoming = upcoming.filter(function( obj ) {
+            console.log(obj)
+            return obj.sender !== result.data.result.sender;
+        });
+        console.log(upcoming)
         this.setState({
+          upcoming,
+          complete:[...this.state.complete,result.data.result]
+        })
+        }
+        message.success(result.data.data)
+        this.setState({
+          confirmBtn:true,
           open:false
         })
       }).catch(err=>{
@@ -179,6 +206,22 @@ class Navbar extends Component {
     console.log("hello")
     this.setState({ visible: flag });
   }
+  reload=(result,id)=>{
+    let {swapRequest}=this.state
+    console.log(swapRequest)
+    swapRequest = swapRequest.filter(function( obj ) {
+      console.log(obj)
+      return obj._id!==id;
+  });
+  console.log(swapRequest)
+  this.setState({
+    swapRequest,
+    upcoming:[...this.state.upcoming,result],
+    open:false
+  },()=>{
+    console.log(this.state.upcoming)
+  })
+  }
   render() {
     const {pending,swapRequest,upcoming,complete,value}=this.state
     const userName=localStorage.getItem("user")
@@ -187,25 +230,29 @@ class Navbar extends Component {
         <Menu.Item style={{color:"black"}} disabled key="1">Pending Trips</Menu.Item>
         <Menu.Divider />
         {pending.map((trip,i)=>{
-           return (<Menu.Item  style={{color:"grey"}}key={"pending"+i} ><a onClick={()=>this.showModal({title:"Pending Trips",name:"Please wait for "+trip.receiver+" to confirm the trip!",button:false,confirmBtn:false,id:null,sender:null,review:null,current:null})}>{trip.receiver}</a></Menu.Item>)
+           return (<Menu.Item  style={{color:"grey"}}key={"pending"+i} ><a onClick={()=>this.showModal({title:"Pending Trips",name:"Please wait for "+trip.receiver+" to confirm the trip!",button:false,confirmBtn:null,id:null,sender:null,review:null,current:null})}>{trip.receiver}</a></Menu.Item>)
         })}
         <Menu.Item  style={{color:"black"}}disabled key="0">Received Swap Requests</Menu.Item>
         <Menu.Divider />
         {swapRequest.map((trip,i)=>{
-           return (<Menu.Item  style={{color:"grey"}}key={"request"+i} ><a onClick={()=>this.showModal({title:"Swap Requests",name:"Please Confirm the swap request from "+trip.sender, button:true,confirmBtn:false,id:trip._id,sender:null,review:null,current:null})}>{trip.receiver}</a></Menu.Item>)
+           return (<Menu.Item  style={{color:"grey"}}key={"request"+i} ><a onClick={()=>this.showModal({title:"Swap Requests",name:"Please Confirm the swap request from "+trip.sender, button:true,confirmBtn:null,id:trip._id,sender:null,review:null,current:null})}>{trip.receiver}</a></Menu.Item>)
         })}
         <Menu.Item  style={{color:"black"}}disabled key="6">Upcoming Trips</Menu.Item>
         <Menu.Divider />
         {upcoming.map((trip,i)=>{
-           return (<Menu.Item  style={{color:"grey"}}key={"upcoming"+i} ><a onClick={()=>this.showModal({title:"Upcoming Trips",name:"Please click to complete your swap trip ",button:false,confirmBtn:true,id:trip._id,sender:trip.sender,review:null,current:null})}>{trip.receiver}</a></Menu.Item>)
-        })}
+          if(trip.sender===userName){
+           return (<Menu.Item  style={{color:"grey"}}key={"upcoming"+i} ><a onClick={()=>this.showModal({title:"Upcoming Trips",name:"Wait for both users to complete the trip",button:false,confirmBtn:trip.senderComplete,id:trip._id,sender:trip.sender,review:null,current:null})}>{trip.receiver}</a></Menu.Item>)
+          }else{
+            return (<Menu.Item  style={{color:"grey"}}key={"upcoming"+i} ><a onClick={()=>this.showModal({title:"Upcoming Trips",name:"Wait for both users to complete the trip",button:false,confirmBtn:trip.receiverComplete,id:trip._id,sender:trip.sender,review:null,current:null})}>{trip.receiver}</a></Menu.Item>)
+          }
+          })}
         <Menu.Item  style={{color:"black"}}disabled key="7">Complete Trips</Menu.Item>
         <Menu.Divider />
         {complete.map((trip,i)=>{
           if(trip.sender===userName){
-           return (<Menu.Item style={{color:"grey"}} key={"complete"+i} ><a onClick={()=>this.showModal({title:"Complete Trips",name:this.state.review===true?"You have added reviews for "+trip.receiver:"You can add reviews for "+trip.receiver, button:false,confirmBtn:false,id:trip._id,sender:trip.receiver,review:trip.senderRated,current:trip.sender})}>{trip.receiver}</a></Menu.Item>)
+           return (<Menu.Item style={{color:"grey"}} key={"complete"+i} ><a onClick={()=>this.showModal({title:"Complete Trips",name:this.state.review===true?"You have added reviews for "+trip.receiver:"You can add reviews for "+trip.receiver, button:false,confirmBtn:true,id:trip._id,sender:trip.receiver,review:trip.senderRated,current:trip.sender})}>{trip.receiver}</a></Menu.Item>)
         }else{
-          return (<Menu.Item  style={{color:"grey"}}key={"complete"+i} ><a onClick={()=>this.showModal({title:"Complete Trips",name:this.state.review?"You have added reviews for "+trip.sender:"You can add reviews for "+trip.sender, button:false,confirmBtn:false,id:trip._id,sender:trip.sender,review:trip.receiverRated,current:trip.sender})}>{trip.receiver}</a></Menu.Item>)
+          return (<Menu.Item  style={{color:"grey"}}key={"complete"+i} ><a onClick={()=>this.showModal({title:"Complete Trips",name:this.state.review?"You have added reviews for "+trip.sender:"You can add reviews for "+trip.sender, button:false,confirmBtn:true,id:trip._id,sender:trip.sender,review:trip.receiverRated,current:trip.sender})}>{trip.receiver}</a></Menu.Item>)
 
         }}
       )}
@@ -272,9 +319,9 @@ class Navbar extends Component {
           <p>Start Date:</p>
           <p>End Date:</p>
           <p>{this.state.name}</p>
-          {this.state.button?<Billingform id={this.state.id}></Billingform>:null}
-          {this.state.confirmBtn?<Button onClick={this.completeTrip} type="primary">Complete</Button>:null}
-          {this.state.review===false?<div><Rate  allowHalf onChange={this.handleChange}  style={{ color: '#00c'}} value={value} />
+          {this.state.button?<Billingform refresh={(result,id)=>this.reload(result,id)}id={this.state.id}></Billingform>:null}
+          {this.state.confirmBtn===false?<Button onClick={this.completeTrip} type="primary">Complete</Button>:null}
+          {this.state.review===false?<div><Rate  allowHalf onChange={this.handleChange}  style={{ color: 'gold!important'}} value={value} />
                 {value && <span className="ant-rate-text">{value} stars</span>}<textarea name="userReview" onChange={(e)=>this.handleEdit(e)} value={this.state.userReview} style={{display:"block", width:100+"%" }} ></textarea> <Button style={{marginTop:"5px"}}onClick={this.submitReview} type="primary" ghost>Submit Your review</Button></div>:null}
         </Modal>
       </header>
