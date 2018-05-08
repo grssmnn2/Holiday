@@ -44,7 +44,6 @@ class Result extends Component {
     
 
 
-  //  this.req.params.listing.city => be
 
   displayResults = city => {
     API.getResults(city)
@@ -128,11 +127,44 @@ class Result extends Component {
         <div className="main-content" style={{ padding: "5em" }}>
           <div className="workspace">
           <div className="mainContent">
-            {friend.map(result => {
+          <div className="cardContent row">
+          <div className="col"> 
+          {friend.map(result => {
+              return (
+                <div className="row">
+                <Card
+                  hoverable
+                  style={{ width: 150, float: "left", marginBottom: 40, height: 373, marginRight: 30 }}
+                  cover={
+                    <img
+                      alt="example"
+                      src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                    />
+                  }
+                >
+                  <Meta
+                    title={result.name}
+                    description={
+                      "city:" + result.city 
+                    }
+                  />
+                </Card>
+                </div>
+               
+              );
+              
+            })}
+          </div>
+          <div className="col">  col 2  </div>
+
+
+
+           </div>
+            {/* {friend.map(result => {
               return (
                 <Card
                   hoverable
-                  style={{ width: 200, float: "left", marginBottom: 40, height: 373, marginRight: 30 }}
+                  style={{ width: 150, float: "left", marginBottom: 40, height: 373, marginRight: 30 }}
                   cover={
                     <img
                       alt="example"
@@ -150,12 +182,13 @@ class Result extends Component {
                
               );
               
-            })}
+            })} */}
+
              </div>
             {this.state.isMap?null:<MyMapComponent isMarkerShown={true}
    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZ0UrBlp4cZvjyvOfJthUB1jPyj1X4pn4&v=3.exp&libraries=geometry,drawing,places"
    loadingElement={<div style={{ height: `100%` }} />}
-   containerElement={<div style={{ width:"200px" ,position:"fixed",height: `373px` }} />}
+   containerElement={<div style={{ width:"200px" ,position:"fixed",height: `500px` }} />}
    mapElement={<div style={{ height: `100%` }} />}
    data={this.state}
  />}
