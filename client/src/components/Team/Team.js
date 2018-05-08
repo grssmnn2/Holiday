@@ -45,8 +45,8 @@ class Team extends Component {
               <div className="caption text-center">
                 <strong>Cecily Grossmann</strong>
                 <p>Developer</p>
-                <a href="https://www.linkedin.com/in/cecily-grossmann/" style={fiStyle}><i style={{color:"white"}}class="fa fa-linkedin"></i></a>
-                <a href="https://github.com/grssmnn2"style={fiStyle}><i style={{color:"white"}}class="fa fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/cecily-grossmann/" style={fiStyle}><i style={{color:"white"}}className="fa fa-linkedin"></i></a>
+                <a href="https://github.com/grssmnn2"style={fiStyle}><i style={{color:"white"}}className="fa fa-github"></i></a>
               </div>
            
           </div>
@@ -59,8 +59,8 @@ class Team extends Component {
               <div className="caption text-center">
                 <strong>Noreen Madden</strong>
                 <p>Developer</p>
-                <a href="https://www.linkedin.com/in/nmaddenling/" style={fiStyle}><i style={{color:"white"}}class="fa fa-linkedin"></i></a>
-                <a href="https://github.com/Norby257"style={fiStyle}><i style={{color:"white"}}class="fa fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/nmaddenling/" style={fiStyle}><i style={{color:"white"}}className="fa fa-linkedin"></i></a>
+                <a href="https://github.com/Norby257"style={fiStyle}><i style={{color:"white"}}className="fa fa-github"></i></a>
               </div>
           </div>
         </div>
@@ -72,8 +72,8 @@ class Team extends Component {
               <div className="caption text-center">
                 <strong>Aditi Mishra</strong>
                 <p>Developer</p>
-                <a href="https://www.linkedin.com/in/asmishra/"style={fiStyle}><i style={{color:"white"}}class="fa fa-linkedin"></i></a>
-                <a href="https://github.com/asmishra17"style={fiStyle}><i style={{color:"white"}}class="fa fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/asmishra/"style={fiStyle}><i style={{color:"white"}}className="fa fa-linkedin"></i></a>
+                <a href="https://github.com/asmishra17"style={fiStyle}><i style={{color:"white"}}className="fa fa-github"></i></a>
               </div>
           </div>
         </div>
@@ -87,8 +87,8 @@ class Team extends Component {
               <div className="caption text-center">
                 <strong>Priya Shah</strong>
                 <p>Developer</p>
-                <a href="https://www.linkedin.com/in/priya-shah-192972108/"style={fiStyle}><i style={{color:"white"}}class="fa fa-linkedin"></i></a>
-                <a href="https://github.com/PriyaDoIT"style={fiStyle}><i style={{color:"white"}}class="fa fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/priya-shah-192972108/"style={fiStyle}><i style={{color:"white"}}className="fa fa-linkedin"></i></a>
+                <a href="https://github.com/PriyaDoIT"style={fiStyle}><i style={{color:"white"}}className="fa fa-github"></i></a>
               </div>
            
           </div>
@@ -101,8 +101,8 @@ class Team extends Component {
               <div className="caption text-center">
                 <strong>Eddie Zhao</strong>
                 <p>Developer</p>
-                <a href="https://www.linkedin.com/in/eddiezhaor/"style={fiStyle}><i style={{color:"white"}}class="fa fa-linkedin"></i></a>
-                <a href="https://github.com/eddiezhaor"style={fiStyle}><i style={{color:"white"}}class="fa fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/eddiezhaor/"style={fiStyle}><i style={{color:"white"}}className="fa fa-linkedin"></i></a>
+                <a href="https://github.com/eddiezhaor"style={fiStyle}><i style={{color:"white"}}className="fa fa-github"></i></a>
               </div>
            
           </div>
@@ -115,8 +115,8 @@ class Team extends Component {
               <div className="caption text-center">
                 <strong>Jennifer White</strong>
                 <p>Developer</p>
-                <a href="https://www.linkedin.com/in/jennifer-white-443b3a131/"style={fiStyle}><i style={{color:"white"}}class="fa fa-linkedin"></i></a>
-                <a href="https://github.com/jennyannewhite"style={fiStyle}><i style={{color:"white"}}class="fa fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/jennifer-white-443b3a131/"style={fiStyle}><i style={{color:"white"}}className="fa fa-linkedin"></i></a>
+                <a href="https://github.com/jennyannewhite"style={fiStyle}><i style={{color:"white"}}className="fa fa-github"></i></a>
               </div>
            
           </div>

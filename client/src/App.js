@@ -28,6 +28,7 @@ import "./css/linearicons.css"
 import "./css/magnific-popup.css"
 import "./css/nice-select.css"
 import "./css/owl.carousel.css"
+import Propertyinfor from "./components/Propertyinfor/Propertyinfor";
 
 // //unused in App.js
 // import Chatbox from "./components/Chatbox"
@@ -156,6 +157,13 @@ class App extends Component {
                   authenticated={this.state.authenticated}
                   item={this.state.authenticated}
                   component={Home}
+                   /> 
+                   <AuthenticatedRoute
+                  exact
+                  path="/property"
+                  authenticated={this.state.authenticated}
+                  item={this.state.authenticated}
+                  component={Propertyinfor}
                    /> 
                   <Route exact path="/" render={(props)=>{
                     return <Home2 item={this.state.authenticated}></Home2>
