@@ -10,6 +10,10 @@
 
 **The best part?** We assist you with all elements of the swap. Search for an apartment that fits your needs by location, size, and date available. Message users and request swaps while only sharing your location specifics with users you approve.
 
+**Get started by accessing our heroku deployed site**
+
+https://holiday-apartment-swap.herokuapp.com/
+
 ## Authors
 
 * **Cecily Grossmann** - *Github* - (https://github.com/grssmnn2)
