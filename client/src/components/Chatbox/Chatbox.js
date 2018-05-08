@@ -50,11 +50,14 @@ class Chatbox extends Component {
       console.log(data)
     
       if(data.receiver===sender){
-        notification.open({
-          message: 'Messages',
-          description: data.name+" send you a message",
-          duration: 0,
-        });
+        if(this.state.className==="hide"){
+          notification.open({
+            message: 'Messages',
+            description: data.name+" send you a message",
+            duration: 0,
+          });
+          this.props.addNumber(data.name)
+        }
         this.setState({
           receiver:data.name,
           messages: [...this.state.messages,data]

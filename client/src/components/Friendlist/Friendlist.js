@@ -122,12 +122,20 @@ class Friendlist extends React.Component {
       })
     }).catch(err => console.log(err))
   }
+  addNumber=(name)=>{
+    const readMessage=this.state.unreadUser;
+    readMessage[name]=true
+    this.setState({
+      messageNumber:this.state.messageNumber+1,
+      unreadUser:readMessage,
+    })
+  }
   render() {
     const {unreadUser}=this.state;
     return (
       <div>
       <Navbar number={this.state.messageNumber} authenticated={this.props.authenticated} click={this.display}></Navbar>
-      <Chatbox authenticated={this.props.authenticated} messages={this.state.messages} isOpen={this.state.historyMessage} email={this.props.email} receiver={this.state.receiver}  name={this.state.className}></Chatbox>
+      <Chatbox addNumber={(name)=>this.addNumber(name)}authenticated={this.props.authenticated} messages={this.state.messages} isOpen={this.state.historyMessage} email={this.props.email} receiver={this.state.receiver}  name={this.state.className}></Chatbox>
       <Collapse isOpened={this.state.isOpened} fixedHeight={400}>
       <GoX onClick={this.display} style={{fontSize:30,float:"right"}}></GoX>
       <div className="demo-infinite-container">

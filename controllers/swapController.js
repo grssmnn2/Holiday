@@ -33,9 +33,9 @@ module.exports={
         .then(result=>{
             if(result.senderComplete===true&&result.receiverComplete===true){
             console.log(result)
-            res.json("completed")
+            res.json({result:result,data:"completed"})
             }else{
-                res.json("Please wait for the other user to complete the trip!")
+                res.json({result:result,data:"Please wait for the other user to complete the trip!"})
             }
         })
     },
