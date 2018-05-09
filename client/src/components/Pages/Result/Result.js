@@ -43,7 +43,7 @@ class Result extends Component {
       .then(res => {
         console.log(res);
         this.setState({
-          results: this.props.Name
+          results: res.data.name
         });
         console.log(this.state);
       })

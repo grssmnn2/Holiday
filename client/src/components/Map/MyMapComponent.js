@@ -28,12 +28,8 @@ const MyMapComponent = withScriptjs(
 
     {console.log(props.data.lat)}
     {console.log(props.data)}
-      {markers.map(marker => {
-        {
-          props.isMarkerShown && (
-            <Marker position={{lat: props.data.lat, lng: props.data.lng}} />
-          )
-        }
+      {markers.map((marker, i) => {
+        
         return (
           <Circle
             radius={200.72}
