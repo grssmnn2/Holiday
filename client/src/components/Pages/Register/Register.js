@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom'
 import { Alert } from 'antd';
 import API from "../../../utils/API"
 import "./Register.css"
-// import Imageuploder from "../../ImageUploader"
 import { DatePicker } from 'antd';
 const { RangePicker } = DatePicker;
 
@@ -84,7 +83,15 @@ class Register extends Component {
                                     </div>
                                 </div>
                             </div>
-
+                            <div className="form-group">
+                                <label htmlFor="name" className="cols-sm-2 control-label">Description of Property</label>
+                                <div className="cols-sm-10">
+                                    <div className="input-group">
+                                        <span className="input-group-addon"><i className="fa-lg fa-user fa " aria-hidden="true"></i></span>
+                                        <textarea className="form-control" onChange={(e) => this.handleChange(e)} value={this.state.description} name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
                             <div className="form-group">
                                 <label htmlFor="address" className="cols-sm-2 control-label">Address</label>
                                 <div className="cols-sm-10">
@@ -208,9 +215,6 @@ class Register extends Component {
                                         </div>
                                     </div>
                                 </div>
-
-
-
                             </div>
                             <div className="form-group ">
                                 <button type="button" onClick={this.save} className="btn btn-primary btn-lg btn-block login-button">Register</button>
