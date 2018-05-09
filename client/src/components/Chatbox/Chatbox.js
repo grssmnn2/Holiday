@@ -32,12 +32,11 @@ class Chatbox extends Component {
   }
   console.log(nextProps.name)
   if(this.props.name!==nextProps.name){
-    console.log(nextProps.name)
     this.setState({
       className:null
     })
   }
-  if(this.state.messages!==nextProps.messages){
+  if(this.props.messages!==nextProps.messages){
     this.setState({
       messages:nextProps.messages
     })
@@ -82,7 +81,7 @@ class Chatbox extends Component {
     const { socket,receiver,sender } = this.state;
     socket.emit("SEND_MESSAGE", {
       sender: sender,
-      receiver:receiver,
+      receiver:this.props.receiver,
       messages: this.state.message,
     },(data)=>{
       console.log(data)
@@ -92,7 +91,8 @@ class Chatbox extends Component {
   saveMessage =(message)=>{
     API.storeMessage(message)
     .then(res=>{
-      console.log("hello")
+      console.log(message)
+      console.log(res)
       this.setState({
         message:""
       })
@@ -179,7 +179,7 @@ class Chatbox extends Component {
                     <i className="fa fa-camera" />
                   </a>
                 </span>
-                {/* <a>{this.props.receiver?this.props.receiver:null}</a> */}
+                <a>{this.props.receiver?this.props.receiver:null}</a>
                 {/* <input
                   type="text"
                   placeholder="Type a message"
