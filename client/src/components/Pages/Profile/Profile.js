@@ -90,7 +90,15 @@ class Profile extends Component {
                                     </div>
                                 </div>
                             </div>
-
+                            <div className="form-group">
+                                <label htmlFor="name" className="cols-sm-2 control-label">Description of Property</label>
+                                <div className="cols-sm-10">
+                                    <div className="input-group">
+                                        <span className="input-group-addon"><i className="fa-lg fa-user fa " aria-hidden="true"></i></span>
+                                        <textarea className="form-control" onChange={(e) => this.handleChange(e)} value={this.state.description} name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
                             <div className="form-group">
                                 <label htmlFor="address" className="cols-sm-2 control-label">Address</label>
                                 <div className="cols-sm-10">
@@ -204,7 +212,7 @@ class Profile extends Component {
                                     </div>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="confirm" className="cols-sm-2 control-label">Dates Available</label>
+                                    <label htmlFor="confirm" className="cols-sm-2 control-label">Next Available Date</label>
                                     <div className="cols-sm-10">
                                         <div className="input-group">
                                             <div>
