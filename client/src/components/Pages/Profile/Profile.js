@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ImageUploader from "../../Imageuploader"
 import { Redirect } from 'react-router-dom'
 import { Alert } from 'antd';
+import {Link} from "react-router-dom"
 import API from "../../../utils/API"
 import "./Profile.css"
 import { DatePicker } from 'antd';
@@ -22,7 +23,6 @@ class Profile extends Component {
         guest: "",
         wifi: "",
         date: [],
-        done: null
     }
     componentDidMount(){
         API.retrieveUserData(localStorage.getItem("user")).then(res=>{
@@ -49,26 +49,11 @@ class Profile extends Component {
         })
     }
     save = () => {
-        let finish = true;
-        Object.keys(this.state).forEach(key => {
-            if (this.state[key] === "" || this.state["date"].length === 0) {
-                finish = false;
-
-            }
-        })
-        if (finish) {
             let user = localStorage.getItem("user")
             API.updateUserData(user, this.state)
                 .then(data => {
-                    this.setState({
-                        done: true
-                    })
+                  console.log(data)
                 }).catch(err => console.log(err))
-        } else {
-            this.setState({
-                done: false
-            })
-        }
     }
     handleChange = (e) => {
 
@@ -228,7 +213,7 @@ class Profile extends Component {
                                 </div>
                             </div>
                             <div className="form-group ">
-                                <button type="button" onClick={this.save} className="btn btn-primary btn-lg btn-block login-button">Save Changes</button>
+                                <Link to="/home"><button type="button" onClick={this.save} className="btn btn-primary btn-lg btn-block login-button">Save Changes</button></Link>
                             </div>
 
                         </form>
