@@ -37,15 +37,15 @@ class Result extends Component {
     
 
 
-
+//  res.data
   displayResults = city => {
     API.getResults(city)
       .then(res => {
         console.log(res);
         this.setState({
-          results: res.data
+          results: this.props.Name
         });
-        
+        console.log(this.state);
       })
       .catch(err => console.log(err));
   };
@@ -57,9 +57,6 @@ class Result extends Component {
   //  for whatever option they picked, set state to geo coordinates 
   //  event handler is here 
 
-  //  handleFormSubmit = () => {
-
-  //}
   geocodeAddress = address => {
     const google = window.google
     var geocoder = new google.maps.Geocoder()
