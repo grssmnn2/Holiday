@@ -3,6 +3,7 @@ import Friendlist from "../../Friendlist"
 import Footer from "../../Footer";
 import { Modal, Button } from "antd";
 import API from "../../../utils/API";
+import {Rate} from "antd"
 // import './Result.css'
 import MyMapComponent from "../../Map";
 import { Card } from "antd";
@@ -17,26 +18,38 @@ class Result extends Component {
     },
     lat:"",
     lng:"",
-    isMap:true
+    isMap:true,
+
   };
 
 
 
   //  lifecycle methods
 
-  componentWillMount() {
-    this.geocodeAddress(this.state.address.city)
-    
-  }
-
   componentDidMount() {
+    this.getGeocode()
     this.displayResults(this.props.location.state.city);
+    this.geocodeAddress()
    
     }
 
     
 
-
+  getGeocode=()=>{
+    if(this.state.address.city==="Chicago"){
+      this.setState({
+        lat:41.881832,
+        lng:-87.623177,
+        isMap:false
+      })
+    }else if(this.state.address.city==="Hawaii"){
+      this.setState({
+        lat:21.315603,
+        lng: -157.858093,
+        isMap:false
+      })
+    }
+  }
 
   displayResults = city => {
     API.getResults(city)
@@ -62,12 +75,12 @@ class Result extends Component {
   //  handleFormSubmit = () => {
 
   //}
-  geocodeAddress = address => {
+  geocodeAddress = () => {
     const google = window.google
     var geocoder = new google.maps.Geocoder()
     var latitude;
     var longitude;
-    geocoder.geocode({ address: this.props.location.state.city}, (results, status)=> {
+    geocoder.geocode({ address: "530 S King St, Honolulu"}, (results, status)=> {
       if (status == google.maps.GeocoderStatus.OK) {
          latitude = parseFloat(results[0].geometry.location.lat())
          longitude = parseFloat(results[0].geometry.location.lng())
@@ -84,8 +97,6 @@ class Result extends Component {
       }
 
     })
-
-
   }
 
 
@@ -113,34 +124,37 @@ class Result extends Component {
       country: "United States"
     }
   ];
-
+    const {results}=this.state
     return (
       <div>
         <Friendlist authenticated={this.props.item} email={localStorage.getItem("user")?localStorage.getItem("user"):null}></Friendlist>
         <div className="main-content" style={{ padding: "5em" }}>
           <div className="workspace">
-          <div className="row">
+          <div style={{marginTop:"33px"}}className="row">
           <div className="col-md-6"> 
           
-          {friend.map(result => {
+          {results.map(result => {
               return (
                 <div className="row1">
                 <Card
                   hoverable
-                  style={{ width: 200, float: "left", marginBottom: 40, height: 373, marginRight: 30 }}
+                  style={{ width: 200, float: "left", marginBottom: 40, height: 306, marginRight: 30 }}
                   cover={
                     <img
+                    style={{height:"186px"}}
                       alt="example"
-                      src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                      src={result.imageLink[0].link}
                     />
                   }
                 >
                   <Meta
                     title={result.name}
                     description={
-                      "city:" + result.city 
+                      "city:" + result.city
                     }
+                    
                   />
+                  <Rate style={{marginTop:"10px"}} disabled defaultValue={Math.round(result.rating/result.numberOfRatings*2)/2} />
                 </Card>
                 </div>
                
@@ -148,11 +162,11 @@ class Result extends Component {
               
             })}
           </div>
-          <div className="col-md-6">  col 2 
+          <div style={{minHeight:"600px"}} className="col-md-6">
           {this.state.isMap?null:<MyMapComponent isMarkerShown={true}
    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZ0UrBlp4cZvjyvOfJthUB1jPyj1X4pn4&v=3.exp&libraries=geometry,drawing,places"
    loadingElement={<div style={{ height: `100%` }} />}
-   containerElement={<div style={{ width:`100%` ,position:"absoulte",height: `100%`, zIndex: 1 }} />}
+   containerElement={<div style={{width:`100%` ,position:"absoulte",height: `100%`, zIndex: 1 }} />}
    mapElement={<div style={{ height: `100%` }} />}
    data={this.state}
  />} </div>
