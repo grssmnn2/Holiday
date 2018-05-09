@@ -7,6 +7,7 @@ import API from "../../../utils/API"
 import Friendlist from "../../Friendlist"
 import "./Profile.css"
 import { DatePicker,message } from 'antd';
+import USstate from "./USstate.json"
 const { RangePicker } = DatePicker;
 
 
@@ -39,9 +40,6 @@ class Profile extends Component {
                 bedroom: res.data.bedroom,
                 guest: res.data.guest,
                 wifi: res.data.wifi,
-            },()=>{
-                console.log(this.state.date)
-                console.log(this.state.date.substring(0,10))
             })
         }).catch(err=>console.log(err))
     }
@@ -61,7 +59,7 @@ class Profile extends Component {
     handleChange = (e) => {
 
         this.setState({
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.name==="city"?e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1):e.target.value
         }, () => {
             console.log(this.state)
         })
@@ -124,7 +122,12 @@ class Profile extends Component {
                                 </div>
                                 <div className="form-group col-md-4" style={{ paddingRight: '35px' }}>
                                     <label htmlFor="state" className="cols-sm-2 control-label">State/Province</label>
-                                    <input id="inputState" className="form-control" onChange={(e) => this.handleChange(e)} value={this.state.state} name="state" placeholder={this.state.state} required />
+                                    {/* <input id="inputState" className="form-control" onChange={(e) => this.handleChange(e)} value={this.state.state} name="state" placeholder={this.state.state} required /> */}
+                                    <select style={{height:"34px"}}onChange={(e) => this.handleChange(e)} value={this.state.state} name="state" className="form-control">
+                                                {USstate.states.map(state=>{
+                                                    return <option>{state}</option>
+                                                })}
+                                    </select>
                                 </div>
                                 <div className="form-group col-md-2" style={{ paddingRight: '35px' }}>
                                     <label htmlFor="zip" className="cols-sm-2 control-label">Zip</label>

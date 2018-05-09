@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom'
 import { Alert } from 'antd';
 import API from "../../../utils/API"
 import "./Register.css"
+import USstate from "./USstate.json"
 import { DatePicker } from 'antd';
 const { RangePicker } = DatePicker;
 
@@ -52,9 +53,9 @@ class Register extends Component {
         }
     }
     handleChange = (e) => {
-
+        
         this.setState({
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.name==="city"?e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1):e.target.value
         }, () => {
             console.log(this.state)
         })
@@ -117,8 +118,11 @@ class Register extends Component {
                                 </div>
                                 <div className="form-group col-md-4" style={{ paddingRight: '35px' }}>
                                     <label htmlFor="state" className="cols-sm-2 control-label">State/Province</label>
-                                    <input id="inputState" className="form-control" onChange={(e) => this.handleChange(e)} value={this.state.state} name="state" placeholder="Enter Your State" required />
-                                </div>
+                                    <select style={{height:"34px"}}onChange={(e) => this.handleChange(e)} value={this.state.state} name="state" className="form-control">
+                                                {USstate.states.map(state=>{
+                                                    return <option>{state}</option>
+                                                })}
+                                    </select>                                </div>
                                 <div className="form-group col-md-2" style={{ paddingRight: '35px' }}>
                                     <label htmlFor="zip" className="cols-sm-2 control-label">Zip</label>
                                     <input type="text" className="form-control" onChange={(e) => this.handleChange(e)} value={this.state.zip} name="zip" id="inputZip" placeholder="12345" required />
