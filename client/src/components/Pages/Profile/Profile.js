@@ -4,8 +4,9 @@ import { Redirect } from 'react-router-dom'
 import { Alert } from 'antd';
 import {Link} from "react-router-dom"
 import API from "../../../utils/API"
+import Friendlist from "../../Friendlist"
 import "./Profile.css"
-import { DatePicker } from 'antd';
+import { DatePicker,message } from 'antd';
 const { RangePicker } = DatePicker;
 
 
@@ -21,11 +22,11 @@ class Profile extends Component {
         bathroom: "",
         bedroom: "",
         guest: "",
-        wifi: "",
-        date: [],
+        wifi: ""
     }
     componentDidMount(){
         API.retrieveUserData(localStorage.getItem("user")).then(res=>{
+            console.log(res)
             this.setState ({
                 name: res.data.name,
                 address: res.data.address,
@@ -38,7 +39,9 @@ class Profile extends Component {
                 bedroom: res.data.bedroom,
                 guest: res.data.guest,
                 wifi: res.data.wifi,
-               
+            },()=>{
+                console.log(this.state.date)
+                console.log(this.state.date.substring(0,10))
             })
         }).catch(err=>console.log(err))
     }
@@ -52,7 +55,7 @@ class Profile extends Component {
             let user = localStorage.getItem("user")
             API.updateUserData(user, this.state)
                 .then(data => {
-                  console.log(data)
+                   message.success("You have saved your changes");
                 }).catch(err => console.log(err))
     }
     handleChange = (e) => {
@@ -65,9 +68,9 @@ class Profile extends Component {
     }
     render() {
         return (
+            <div>
+             <Friendlist authenticated={this.props.item} email={localStorage.getItem("user")?localStorage.getItem("user"):null}></Friendlist>
             <div className={this.props.Name} >
-                {this.state.done === false ? <Alert message="Please fill all fields" type="error" /> : null}
-                {this.state.done === true ? <Redirect to="/home"></Redirect> : null}
                 <div className="container" style={{ paddingLeft: '65px', paddingRight: "65px", paddingTop: "100px" }}>
                     <div className="row main"></div>
                     <div className="panel-heading"></div>
@@ -213,14 +216,14 @@ class Profile extends Component {
                                 </div>
                             </div>
                             <div className="form-group ">
-                                <Link to="/home"><button type="button" onClick={this.save} className="btn btn-primary btn-lg btn-block login-button">Save Changes</button></Link>
+                               <button type="button" onClick={this.save} className="btn btn-primary btn-lg btn-block login-button">Save Changes</button>
                             </div>
 
                         </form>
                     </div>
                 </div >
             </div >
-
+            </div>
         )
     }
 }
