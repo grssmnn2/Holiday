@@ -126,15 +126,15 @@ class Result extends Component {
         <Friendlist authenticated={this.props.item} email={localStorage.getItem("user")?localStorage.getItem("user"):null}></Friendlist>
         <div className="main-content" style={{ padding: "5em" }}>
           <div className="workspace">
-          <div className="mainContent">
-          <div className="cardContent row">
+          <div className="row">
           <div className="col"> 
+          
           {friend.map(result => {
               return (
-                <div className="row">
+                <div className="row1">
                 <Card
                   hoverable
-                  style={{ width: 150, float: "left", marginBottom: 40, height: 373, marginRight: 30 }}
+                  style={{ width: 200, float: "left", marginBottom: 40, height: 373, marginRight: 30 }}
                   cover={
                     <img
                       alt="example"
@@ -155,7 +155,14 @@ class Result extends Component {
               
             })}
           </div>
-          <div className="col">  col 2  </div>
+          <div className="col">  col 2 
+          {this.state.isMap?null:<MyMapComponent isMarkerShown={true}
+   googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZ0UrBlp4cZvjyvOfJthUB1jPyj1X4pn4&v=3.exp&libraries=geometry,drawing,places"
+   loadingElement={<div style={{ height: `100%` }} />}
+   containerElement={<div style={{ width:"200px" ,position:"fixed",height: `500px` }} />}
+   mapElement={<div style={{ height: `100%` }} />}
+   data={this.state}
+ />} </div>
 
 
 
@@ -184,14 +191,13 @@ class Result extends Component {
               
             })} */}
 
-             </div>
-            {this.state.isMap?null:<MyMapComponent isMarkerShown={true}
+            {/* {this.state.isMap?null:<MyMapComponent isMarkerShown={true}
    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZ0UrBlp4cZvjyvOfJthUB1jPyj1X4pn4&v=3.exp&libraries=geometry,drawing,places"
    loadingElement={<div style={{ height: `100%` }} />}
    containerElement={<div style={{ width:"200px" ,position:"fixed",height: `500px` }} />}
    mapElement={<div style={{ height: `100%` }} />}
    data={this.state}
- />}
+ />} */}
           </div>
         </div>
       </div>
