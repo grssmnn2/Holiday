@@ -63,6 +63,9 @@ var listingSchema = new Schema ({
     date:{
         type: String
     },
+    description:{
+        type: String
+    },
     review:[{
         type:String
     }]
