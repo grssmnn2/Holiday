@@ -24,7 +24,7 @@ const MyMapComponent = withScriptjs(
 
 
    
-    <GoogleMap defaultZoom={14} defaultCenter={{lat: props.data.lat, lng: props.data.lng}}>
+    <GoogleMap defaultZoom={12} defaultCenter={{lat: props.data.lat, lng: props.data.lng}}>
 
     {console.log(props.data.lat)}
     {console.log(props.data)}

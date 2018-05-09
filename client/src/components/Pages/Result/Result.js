@@ -54,8 +54,6 @@ class Result extends Component {
   //   const
   // }
 
-
-
   //  for whatever option they picked, set state to geo coordinates 
   //  event handler is here 
 
