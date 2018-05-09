@@ -60,6 +60,9 @@ var listingSchema = new Schema ({
         type:Number,
         default:1
     },
+    date:{
+        type: String
+    },
     review:[{
         type:String
     }]

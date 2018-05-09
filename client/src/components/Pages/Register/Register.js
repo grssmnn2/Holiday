@@ -8,9 +8,6 @@ import "./Register.css"
 import { DatePicker } from 'antd';
 const { RangePicker } = DatePicker;
 
-
-
-
 class Register extends Component {
     state = {
         name: "",
@@ -24,7 +21,7 @@ class Register extends Component {
         bedroom: "",
         guest: "",
         wifi: "",
-        date: [],
+        date:[],
         done: null
     }
     onChange = (date, dateString) => {
