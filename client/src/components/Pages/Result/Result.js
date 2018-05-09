@@ -159,7 +159,7 @@ class Result extends Component {
           {this.state.isMap?null:<MyMapComponent isMarkerShown={true}
    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZ0UrBlp4cZvjyvOfJthUB1jPyj1X4pn4&v=3.exp&libraries=geometry,drawing,places"
    loadingElement={<div style={{ height: `100%` }} />}
-   containerElement={<div style={{ width:"200px" ,position:"fixed",height: `500px` }} />}
+   containerElement={<div style={{ width:`100%` ,position:"absoulte",height: `100%`, zIndex: 1 }} />}
    mapElement={<div style={{ height: `100%` }} />}
    data={this.state}
  />} </div>
