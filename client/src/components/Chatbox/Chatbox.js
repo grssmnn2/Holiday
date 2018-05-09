@@ -32,17 +32,13 @@ class Chatbox extends Component {
   }
   console.log(nextProps.name)
   if(this.props.name!==nextProps.name){
-    console.log(nextProps.name)
     this.setState({
       className:null
     })
   }
   if(this.props.messages!==nextProps.messages){
-    console.log("next happend")
     this.setState({
       messages:nextProps.messages
-    },()=>{
-      console.log("next props:"+this.state.messages)
     })
   }
   }
@@ -64,14 +60,10 @@ class Chatbox extends Component {
         this.setState({
           receiver:data.name,
           messages: [...this.state.messages,data]
-        },()=>{
-          console.log(this.state.messages)
         })
       }else if(data.name===sender){
         this.setState({
           messages: [...this.state.messages,data]
-        },()=>{
-          console.log(this.state.messages)
         })
       }
     })
