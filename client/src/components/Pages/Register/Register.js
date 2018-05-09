@@ -38,8 +38,6 @@ function initAutocomplete () {
     console.log("Initialialized autocomplete");
 }
 
-initAutocomplete();
-
 function fillInAddress () {
     // Get the place details from the autocomplete object.
     var place = autocomplete.getPlace();
@@ -79,7 +77,7 @@ function geolocate () {
 
         console.log('Geolocate function running');
     }
-}
+}        
 
 class Register extends Component {
     state={
@@ -133,6 +131,11 @@ class Register extends Component {
             console.log(this.state)
         })
     }
+
+    componentDidMount = () => {
+        initAutocomplete();
+    }
+    
     render() {
         return (
             <div className={this.props.Name} >
