@@ -3,17 +3,10 @@ import Friendlist from "../../Friendlist"
 import Footer from "../../Footer";
 import { Modal, Button } from "antd";
 import API from "../../../utils/API";
-import './Result.css'
+// import './Result.css'
 import MyMapComponent from "../../Map";
 import { Card } from "antd";
 const { Meta } = Card;
-//  we can access the address using this.state.address 
-//  pass this into the geo coding?  - and putting the geo coding
-//  examples of passing state 
-//  so the home page is parent of result page
-//  and whatever result is passed, set state for result
-//  default can be chicago 
-//  this.props.location.state.city
 
 class Result extends Component {
   state = {
@@ -44,7 +37,6 @@ class Result extends Component {
     
 
 
-  //  this.req.params.listing.city => be
 
   displayResults = city => {
     API.getResults(city)
@@ -127,9 +119,12 @@ class Result extends Component {
         <Friendlist authenticated={this.props.item} email={localStorage.getItem("user")?localStorage.getItem("user"):null}></Friendlist>
         <div className="main-content" style={{ padding: "5em" }}>
           <div className="workspace">
-          <div className="mainContent">
-            {friend.map(result => {
+          <div className="row">
+          <div className="col-md-6"> 
+          
+          {friend.map(result => {
               return (
+                <div className="row1">
                 <Card
                   hoverable
                   style={{ width: 200, float: "left", marginBottom: 40, height: 373, marginRight: 30 }}
@@ -147,23 +142,27 @@ class Result extends Component {
                     }
                   />
                 </Card>
+                </div>
                
               );
               
             })}
-             </div>
-            {this.state.isMap?null:<MyMapComponent isMarkerShown={true}
+          </div>
+          <div className="col-md-6">  col 2 
+          {this.state.isMap?null:<MyMapComponent isMarkerShown={true}
    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZ0UrBlp4cZvjyvOfJthUB1jPyj1X4pn4&v=3.exp&libraries=geometry,drawing,places"
    loadingElement={<div style={{ height: `100%` }} />}
-   containerElement={<div style={{ width:"200px" ,position:"fixed",height: `373px` }} />}
+   containerElement={<div style={{ width:`100%` ,position:"absoulte",height: `100%`, zIndex: 1 }} />}
    mapElement={<div style={{ height: `100%` }} />}
    data={this.state}
- />}
+ />} </div>
+           </div>
+           
           </div>
         </div>
       </div>
     );
   }
-// }
+
 }
 export default Result;
