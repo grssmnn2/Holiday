@@ -37,9 +37,12 @@ class Chatbox extends Component {
       className:null
     })
   }
-  if(this.state.messages!==nextProps.messages){
+  if(this.props.messages!==nextProps.messages){
+    console.log("next happend")
     this.setState({
       messages:nextProps.messages
+    },()=>{
+      console.log("next props:"+this.state.messages)
     })
   }
   }
@@ -61,10 +64,14 @@ class Chatbox extends Component {
         this.setState({
           receiver:data.name,
           messages: [...this.state.messages,data]
+        },()=>{
+          console.log(this.state.messages)
         })
       }else if(data.name===sender){
         this.setState({
           messages: [...this.state.messages,data]
+        },()=>{
+          console.log(this.state.messages)
         })
       }
     })
@@ -82,7 +89,7 @@ class Chatbox extends Component {
     const { socket,receiver,sender } = this.state;
     socket.emit("SEND_MESSAGE", {
       sender: sender,
-      receiver:receiver,
+      receiver:this.props.receiver,
       messages: this.state.message,
     },(data)=>{
       console.log(data)
@@ -92,7 +99,8 @@ class Chatbox extends Component {
   saveMessage =(message)=>{
     API.storeMessage(message)
     .then(res=>{
-      console.log("hello")
+      console.log(message)
+      console.log(res)
       this.setState({
         message:""
       })
@@ -179,7 +187,7 @@ class Chatbox extends Component {
                     <i className="fa fa-camera" />
                   </a>
                 </span>
-                {/* <a>{this.props.receiver?this.props.receiver:null}</a> */}
+                <a>{this.props.receiver?this.props.receiver:null}</a>
                 {/* <input
                   type="text"
                   placeholder="Type a message"
