@@ -18,7 +18,7 @@ module.exports={
         })
     },
     retrieveUserData:(req,res)=>{
-        db.listing.findOne({email:req.params.emai}).then(dbresult=>{
+        db.listing.findOne({email:req.params.email}).then(dbresult=>{
             res.json(dbresult)
         })
     }

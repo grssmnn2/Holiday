@@ -29,7 +29,21 @@ class Profile extends Component {
     }
     componentDidMount(){
         API.retrieveUserData(localStorage.getItem("user")).then(res=>{
-            console.log(res)
+            this.setState ({
+                name: res.data.name,
+                address: res.data.address,
+                country: res.data.country,
+                city: res.data.city,
+                state: res.data.state,
+                zip: res.data.zip,
+                pets: res.data.pets,
+                bathroom: res.data.bathroom,
+                bedroom: res.data.bedroom,
+                guest: res.data.guest,
+                wifi: res.data.wifi,
+                date: res.data.date[0]
+               
+            })
         }).catch(err=>console.log(err))
     }
     onChange = (date, dateString) => {
@@ -210,7 +224,7 @@ class Profile extends Component {
                                     <div className="cols-sm-10">
                                         <div className="input-group">
                                             <div>
-                                                <RangePicker onChange={this.onChange} />
+                                                <RangePicker onChange={this.onChange}  />
                                                 <ImageUploader email={localStorage.getItem("user")}></ImageUploader>
                                             </div>
                                         </div>
