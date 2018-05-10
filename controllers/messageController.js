@@ -23,9 +23,10 @@ module.exports = {
     })
   },
   addFriend: (req,res) =>{
-    db.listing.findOneAndUpdate({email:req.params.name},{$push:{friendlist:req.body}},{new:true})
+    console.log(req.params.userName,req.body.friendlist.email)
+    db.listing.findOneAndUpdate({email:req.params.name},{$push:req.body},{new:true})
     .then(dbdata=>{
-        return db.listing.findOneAndUpdate({email:req.body.email},{$push:{friendlist:{email:req.params.name}}},{new:true}).then(dbresult=>{
+        return db.listing.findOneAndUpdate({email:req.body.friendlist.email},{$push:{friendlist:{name:req.params.userName,email:req.params.name}}},{new:true}).then(dbresult=>{
           res.json(dbdata)
         })
      

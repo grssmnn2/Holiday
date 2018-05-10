@@ -9,7 +9,7 @@ class Home2 extends Component {
 		// code to open modal
 		// state = { visible: false }
 		state={
-			city:null,
+			stateName:null,
 			isredirect:false,
 			email:localStorage.getItem("user")
 		}
@@ -17,9 +17,9 @@ class Home2 extends Component {
 			event.preventDefault()
 		  this.setState({
 		// 	visible: true,
-			city: event.target.value 
+			stateName: event.target.value 
 		  },()=>{
-			  console.log(this.state.city)
+			  console.log(this.state.stateName)
 		  });
 		}
 		displayResults =()=>{
@@ -32,7 +32,7 @@ class Home2 extends Component {
 		console.log(this.props.item)
 		console.log(this.state.email)
 		if(this.state.isredirect){
-			return <Redirect to={{pathname:"/result",state:{city:this.state.city}}}></Redirect>
+			return <Redirect to={{pathname:"/result",state:{stateName:this.state.stateName}}}></Redirect>
 		}
         return (
             <div style={{minWidth:900+"px"}}>
@@ -60,7 +60,7 @@ class Home2 extends Component {
                                             <div className="col-lg-12 col-md-12 col-xs-12">
                                                 <select name="location" onChange={this.resultsPage} className="app-select form-control" required style={{fontSize: "15px", height: "40px"}}>
                                                     <option data-display="Choose locations">Choose locations</option>
-                                                    <option className="Chicago">Chicago</option>
+                                                    <option className="Chicago">Illinois</option>
                                                     <option className="Hawaii">Hawaii</option>
 
                                                 </select>
@@ -140,7 +140,7 @@ class Home2 extends Component {
 							</p>
 						</div>
 					</div>
-					<Events />
+					{/* <Events /> */}
 				</div>	
 			</section>
 		</div>

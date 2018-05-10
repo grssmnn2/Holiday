@@ -14,6 +14,7 @@ const { RangePicker } = DatePicker;
 class Profile extends Component {
     state = {
         name: "",
+        description:"",
         address: "",
         country: "",
         city: "",
@@ -36,6 +37,7 @@ class Profile extends Component {
                 state: res.data.state,
                 zip: res.data.zip,
                 pets: res.data.pets,
+                description:res.data.description,
                 bathroom: res.data.bathroom,
                 bedroom: res.data.bedroom,
                 guest: res.data.guest,
@@ -124,8 +126,8 @@ class Profile extends Component {
                                     <label htmlFor="state" className="cols-sm-2 control-label">State/Province</label>
                                     {/* <input id="inputState" className="form-control" onChange={(e) => this.handleChange(e)} value={this.state.state} name="state" placeholder={this.state.state} required /> */}
                                     <select style={{height:"34px"}}onChange={(e) => this.handleChange(e)} value={this.state.state} name="state" className="form-control">
-                                                {USstate.states.map(state=>{
-                                                    return <option>{state}</option>
+                                                {USstate.states.map((state,i)=>{
+                                                    return <option key={i}>{state}</option>
                                                 })}
                                     </select>
                                 </div>

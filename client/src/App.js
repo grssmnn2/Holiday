@@ -176,8 +176,6 @@ class App extends Component {
                      <div style={{marginTop: 10+"%"}}className="workspace">
                     <Team/></div></div></div>
                 }} />
-               
-                  <Navbar authenticated={this.state.authenticated}/>
                   <AuthenticatedRoute
                   exact
                   path="/profile"

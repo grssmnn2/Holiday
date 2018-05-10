@@ -2,12 +2,11 @@
     border: 1px solid #e8e8e8;
     border-radius: 4px;
     background: white;
-    margin-top: 119px;
-    margin-left: 974px;
+    margin-left: 954px;
     overflow: auto;
-    padding: 8px 24px;
-    height: 400px;
-    width:221px;
+    padding: 8px -8px;
+    height: 300px;
+    width:235px;
   }
   .demo-loading-container {
     position: absolute;
@@ -16,6 +15,11 @@
     text-align: center;
   }
   .ReactCollapse--collapse{
+    margin-top:114px;
     position:fixed;
     z-index:1
+  }
+  .ant-list-item-meta-avatar{
+    margin-left:4px;
+    margin-right:5px
   }

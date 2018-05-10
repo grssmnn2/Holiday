@@ -137,7 +137,7 @@ class Login extends Component {
           ) : null
         }
       </div>
-      <Particles style={{position:"absolute", height: "100vh !important"}}
+      <Particles
     params={{
       particles: {
         line_linked: {
@@ -154,7 +154,8 @@ class Login extends Component {
     style={{
       width: '100%',
       position:"absolute",
-      zIndex:-1
+      zIndex:-1,
+      height: "100vh !important"
       // backgroundImage: `url(${logo})` 
     }}
   />;

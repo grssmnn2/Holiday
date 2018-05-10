@@ -41,7 +41,7 @@ module.exports={
     },
     addReview: (req,res) =>{
         console.log(req.body.data.review)
-        db.listing.findOneAndUpdate({email:req.params.user},{$push:{review:req.body.data.review}},{new:true}).then(dbresult=>{
+        db.listing.findOneAndUpdate({email:req.params.user},{$push:{review:{name:req.body.data.name,content:req.body.data.review,score:req.body.data.score}}},{new:true}).then(dbresult=>{
             const num=dbresult.rating+req.body.data.score
             return db.listing.findOneAndUpdate({email:req.params.user},{$set:{rating:num,numberOfRatings:dbresult.numberOfRatings+1}},{new:true}).then(result=>{
                 res.json(result)
