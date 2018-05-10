@@ -32,7 +32,9 @@ class Navbar extends Component {
     review:null,
     rate:false,
     userReview:"",
-    current:""
+    current:"",
+    start:"",
+    end:""
   };
   handleEdit =(e)=>{
     this.setState({
@@ -100,7 +102,9 @@ class Navbar extends Component {
       id:data.id,
       sender:data.sender,
       review:data.review,
-      current:data.current
+      current:data.current,
+      start:data.start,
+      end:data.end
     });
   }
   handleOk = (e) => {
@@ -272,29 +276,29 @@ class Navbar extends Component {
         <Menu.Item style={{color:"black",fontFamily: 'Card,serif'}} disabled key="1">Pending Trips <FaHourglass style={{fontSize:25,color:"gold"}}></FaHourglass></Menu.Item>
         <Menu.Divider />
         {pending.map((trip,i)=>{
-           return (<Menu.Item  style={{color:"grey"}}key={"pending"+i} ><a onClick={()=>this.showModal({title:"Pending Trips",name:"Please wait for "+trip.receiver+" to confirm the trip!",button:false,confirmBtn:null,id:null,sender:null,review:null,current:null})}>{trip.receiver}</a></Menu.Item>)
+           return (<Menu.Item  style={{color:"grey"}}key={"pending"+i} ><a onClick={()=>this.showModal({title:"Pending Trips",name:"Please wait for "+trip.receiver+" to confirm the trip!",button:false,confirmBtn:null,id:null,sender:null,review:null,current:null,start:trip.start,end:trip.end})}>{trip.receiver}</a></Menu.Item>)
         })}
         <Menu.Item  style={{color:"black",fontFamily: 'Card,serif'}}disabled key="0">Received Requests <FaSubway style={{fontSize:25,color:"gold"}}/></Menu.Item>
         <Menu.Divider />
         {swapRequest.map((trip,i)=>{
-           return (<Menu.Item  style={{color:"grey"}}key={"request"+i} ><a onClick={()=>this.showModal({title:"Swap Requests",name:"Please Confirm the swap request from "+trip.sender, button:true,confirmBtn:null,id:trip._id,sender:null,review:null,current:null})}>{trip.receiver}</a></Menu.Item>)
+           return (<Menu.Item  style={{color:"grey"}}key={"request"+i} ><a onClick={()=>this.showModal({title:"Swap Requests",name:"Please Confirm the swap request from "+trip.sender, button:true,confirmBtn:null,id:trip._id,sender:null,review:null,current:null,start:trip.start,end:trip.end})}>{trip.sender}</a></Menu.Item>)
         })}
         <Menu.Item  style={{color:"black",fontFamily: 'Card,serif'}}disabled key="6">Upcoming Trips <FaSuitcase style={{fontSize:25,color:"gold"}}></FaSuitcase></Menu.Item>
         <Menu.Divider />
         {upcoming.map((trip,i)=>{
           if(trip.sender===userName){
-           return (<Menu.Item  style={{color:"grey"}}key={"upcoming"+i} ><a onClick={()=>this.showModal({title:"Upcoming Trips",name:"Wait for both users to complete the trip",button:false,confirmBtn:trip.senderComplete,id:trip._id,sender:trip.sender,review:null,current:null})}>{trip.receiver}</a></Menu.Item>)
+           return (<Menu.Item  style={{color:"grey"}}key={"upcoming"+i} ><a onClick={()=>this.showModal({title:"Upcoming Trips",name:"Wait for both users to complete the trip",button:false,confirmBtn:trip.senderComplete,id:trip._id,sender:trip.sender,review:null,current:null,start:trip.start,end:trip.end})}>{trip.receiver}</a></Menu.Item>)
           }else{
-            return (<Menu.Item  style={{color:"grey"}}key={"upcoming"+i} ><a onClick={()=>this.showModal({title:"Upcoming Trips",name:"Wait for both users to complete the trip",button:false,confirmBtn:trip.receiverComplete,id:trip._id,sender:trip.sender,review:null,current:null})}>{trip.receiver}</a></Menu.Item>)
+            return (<Menu.Item  style={{color:"grey"}}key={"upcoming"+i} ><a onClick={()=>this.showModal({title:"Upcoming Trips",name:"Wait for both users to complete the trip",button:false,confirmBtn:trip.receiverComplete,id:trip._id,sender:trip.sender,review:null,current:null,start:trip.start,end:trip.end})}>{trip.sender}</a></Menu.Item>)
           }
           })}
         <Menu.Item  style={{color:"black",fontFamily: 'Card,serif'}}disabled key="7">Complete Trips <FaAngellist style={{fontSize:25,color:"gold"}}></FaAngellist></Menu.Item>
         <Menu.Divider />
         {complete.map((trip,i)=>{
           if(trip.sender===userName){
-           return (<Menu.Item style={{color:"grey"}} key={"complete"+i} ><a onClick={()=>this.showModal({title:"Complete Trips",name:trip.senderRated===true?"You have added reviews for "+trip.receiver:"You can add reviews for "+trip.receiver, button:false,confirmBtn:true,id:trip._id,sender:trip.receiver,review:trip.senderRated,current:trip.sender})}>{trip.receiver}</a></Menu.Item>)
+           return (<Menu.Item style={{color:"grey"}} key={"complete"+i} ><a onClick={()=>this.showModal({title:"Complete Trips",name:trip.senderRated===true?"You have added reviews for "+trip.receiver:"You can add reviews for "+trip.receiver, button:false,confirmBtn:true,id:trip._id,sender:trip.receiver,review:trip.senderRated,current:trip.sender,start:trip.start,end:trip.end})}>{trip.receiver}</a></Menu.Item>)
         }else{
-          return (<Menu.Item  style={{color:"grey"}}key={"complete"+i} ><a onClick={()=>this.showModal({title:"Complete Trips",name:trip.receiverRated?"You have added reviews for "+trip.sender:"You can add reviews for "+trip.sender, button:false,confirmBtn:true,id:trip._id,sender:trip.sender,review:trip.receiverRated,current:trip.sender})}>{trip.receiver}</a></Menu.Item>)
+          return (<Menu.Item  style={{color:"grey"}}key={"complete"+i} ><a onClick={()=>this.showModal({title:"Complete Trips",name:trip.receiverRated?"You have added reviews for "+trip.sender:"You can add reviews for "+trip.sender, button:false,confirmBtn:true,id:trip._id,sender:trip.sender,review:trip.receiverRated,current:trip.sender,start:trip.start,end:trip.end})}>{trip.sender}</a></Menu.Item>)
 
         }}
       )}
@@ -361,9 +365,9 @@ class Navbar extends Component {
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
-          <p>Start Date:</p>
-          <p>End Date:</p>
-          <p>{this.state.name}</p>
+          <p style={{fontFamily: 'Asap,sans-serif'}}>Start Date:{" "+this.state.start}</p>
+          <p style={{fontFamily: 'Asap,sans-serif'}}>End Date:{" "+this.state.end}</p>
+          <p style={{fontFamily: 'Asap,sans-serif'}}>{this.state.name}</p>
           {this.state.button?<Billingform refresh={(result,id)=>this.reload(result,id)}id={this.state.id}></Billingform>:null}
           {this.state.confirmBtn===false?<Button onClick={this.completeTrip} type="primary">Complete</Button>:null}
           {this.state.review===false?<div><Rate  allowHalf onChange={this.handleChange}  style={{ color: 'gold!important'}} value={value} />
