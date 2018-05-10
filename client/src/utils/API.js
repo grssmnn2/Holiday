@@ -20,5 +20,7 @@ export default {
     updateRateStatus:(id,data)=>axios.put("/api/updatestatus/"+id,data),
     retrieveUnreadMessage:(email)=>axios.get("/api/unread/"+email),
     updateMessage:(email,receiver) =>axios.put("/api/updatemessage/"+email,{data:receiver}),
-    retrieveUserData:(email)=>axios.get("/api/userInfor/"+email)
+    retrieveUserData:(email)=>axios.get("/api/userInfor/"+email),
+    addTofavorites:(email,data)=>axios.post("/api/favorites/"+email,{useremail:data.email,link:data.link,name:data.name}),
+    removeFavorites:(email,emailWillDelete)=>axios.put("/api/favorites/"+email+"/"+emailWillDelete)
 }

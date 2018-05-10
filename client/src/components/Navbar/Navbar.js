@@ -338,7 +338,9 @@ class Navbar extends Component {
                  </a>
                </Dropdown>
               ):null}
-                <Link to="/profile">Profile</Link>
+                {this.props.authenticated ? 
+                <Link to="/profile">Profile</Link>:null}
+                
 
                 {this.props.authenticated ? (
                   

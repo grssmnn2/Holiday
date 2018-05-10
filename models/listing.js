@@ -71,6 +71,11 @@ var listingSchema = new Schema ({
         content:String,
         score:Number
     }],
+    favorites:[{
+        name:String,
+        link:String,
+        email:String
+    }]
 })
 var listing = mongoose.model("listing",listingSchema)
 module.exports =listing;

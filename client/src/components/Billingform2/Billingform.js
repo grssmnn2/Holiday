@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Modal, Button } from "antd";
 import Cards from "react-credit-cards";
-import { Timeline, Cascader, Select,message } from "antd";
+import { Timeline, Cascader, Select, message } from "antd";
 import "react-credit-cards/es/styles-compiled.css";
 import "./Billingform.css";
-import API from "../../utils/API"
+import API from "../../utils/API";
 import state from "./state.json";
 const confirm = Modal.confirm;
 // const Option = Select.Option;
@@ -19,12 +19,12 @@ class Billingform extends Component {
     expiry: "",
     cvc: "",
     focused: "",
-    text:true,
+    text: true,
     step1: "green",
     step2: "red",
     step3: "red",
     billing: false,
-    complete:false
+    complete: false
   };
   handleInputFocus = ({ target }) => {
     this.setState({
@@ -64,12 +64,12 @@ class Billingform extends Component {
       }
     });
   };
-  showConfirm2 = (cb) => {
+  showConfirm2 = cb => {
     confirm({
       title: "Do you Want to leave this page?",
       content: "You have not completed your payment yet",
       onOk() {
-        cb()
+        cb();
         console.log("OK");
       },
       onCancel() {
@@ -84,74 +84,87 @@ class Billingform extends Component {
   };
   handleOk = () => {
     const cb = () => {
-      this.setState({ 
+      this.setState({
         loading: true,
-        step3:"green"
-       });
-       console.log(this.props.id)
-       API.confirmTrip(this.props.id).then(result=>{
-         console.log(result)
-        this.props.refresh(result.data,this.props.id)
-       }).catch(err=>console.log(err))
+        step3: "green"
+      });
+      console.log(this.props.id);
+      API.confirmTrip(this.props.id)
+        .then(result => {
+          console.log(result);
+          this.props.refresh(result.data, this.props.id);
+        })
+        .catch(err => console.log(err));
       setTimeout(() => {
-        this.setState({ loading: false, visible: false,
-        number: "",
-        name: "",
-        expiry: "",
-        cvc: "",
-        focused: "",
-        text:true,
-        step1: "green",
-        step2: "red",
-        step3: "red",
-        billing: false,
-        complete:false })
+        this.setState({
+          loading: false,
+          visible: false,
+          number: "",
+          name: "",
+          expiry: "",
+          cvc: "",
+          focused: "",
+          text: true,
+          step1: "green",
+          step2: "red",
+          step3: "red",
+          billing: false,
+          complete: false
+        });
         message.config({
           duration: 3
-        })
-        message.success('Reservation confirmed! You will receive a confirmation email in 5 minutes!');;
+        });
+        message.success(
+          "Reservation confirmed! You will receive a confirmation email in 5 minutes!"
+        );
       }, 3000);
     };
     this.showConfirm(cb);
   };
 
   handleCancel = () => {
-    const cb =()=>{
-      this.setState({ visible: false,
+    const cb = () => {
+      this.setState({
+        visible: false,
         number: "",
         name: "",
         expiry: "",
         cvc: "",
         focused: "",
-        text:true,
+        text: true,
         step1: "green",
         step2: "red",
         step3: "red",
         billing: false,
-        complete:false });
+        complete: false
+      });
     };
-    this.showConfirm2(cb)
-  }
+    this.showConfirm2(cb);
+  };
   Billing = () => {
-    if(!this.state.complete){
-    this.setState({
-      billing: true,
-      step1: "green",
-      step2:"green",
-      text:false,
-      complete:true
-    });
-  }
-  else if(this.state.complete){
-    this.handleOk();
-  }
+    if (!this.state.complete) {
+      this.setState({
+        billing: true,
+        step1: "green",
+        step2: "green",
+        text: false,
+        complete: true
+      });
+    } else if (this.state.complete) {
+      this.handleOk();
+    }
   };
   render() {
     const { visible, loading } = this.state;
     const { billing, name, number, expiry, cvc, focused } = this.state;
     const Card = billing ? (
-      <form style={{ marginLeft: 130+"px",
-        marginTop: -9+"%",display:"inline-block"}}>
+      <form
+        style={{
+          marginLeft: 130 + "px",
+          marginTop: -9 + "%",
+          display: "inline-block"
+        }}
+      >
         <div>
           <div>Billing Address</div>
           <input
@@ -182,10 +195,22 @@ class Billingform extends Component {
           <div style={{ display: "inline-block", marginTop: 3 + "px" }}>
             City
           </div>
-          <div style={{ display: "inline-block", marginTop: 3 + "px", marginLeft:30+"%" }}>
+          <div
+            style={{
+              display: "inline-block",
+              marginTop: 3 + "px",
+              marginLeft: 30 + "%"
+            }}
+          >
             State
           </div>
-          <div style={{ display: "inline-block", marginTop: 3 + "px", marginLeft:28+"%" }}>
+          <div
+            style={{
+              display: "inline-block",
+              marginTop: 3 + "px",
+              marginLeft: 28 + "%"
+            }}
+          >
             Zip
           </div>
           <div style={{ clear: "both" }} />
@@ -202,10 +227,10 @@ class Billingform extends Component {
             onKeyUp={this.handleInputChange}
             onFocus={this.handleInputFocus}
           />
-            <Cascader
+          <Cascader
             style={{
-              width:160+"px",
-              marginRight:20+"px",
+              width: 160 + "px",
+              marginRight: 20 + "px"
             }}
             options={options}
             placeholder="Select State"
@@ -214,7 +239,7 @@ class Billingform extends Component {
             style={{
               border: "1px solid black",
               borderRadius: 4 + "px",
-              width: 160 + "px",
+              width: 160 + "px"
             }}
             type="number"
             name="zip"
@@ -223,12 +248,31 @@ class Billingform extends Component {
             onFocus={this.handleInputFocus}
           />
         </div>
-        <div style={{marginTop: 20+"px",color:"black",
-    marginLeft: 65+"%"}}>Security Deposit: $1000.00</div>
-        <div style={{
-    marginLeft: 86+"%",color:"black",}}>Tax: $0.00</div>
-        <div style={{
-    marginLeft: 80+"%",color:"black",}}>Total: $1000.00</div>
+        <div
+          style={{
+            marginTop: 20 + "px",
+            color: "black",
+            marginLeft: 65 + "%"
+          }}
+        >
+          Security Deposit: $1000.00
+        </div>
+        <div
+          style={{
+            marginLeft: 86 + "%",
+            color: "black"
+          }}
+        >
+          Tax: $0.00
+        </div>
+        <div
+          style={{
+            marginLeft: 80 + "%",
+            color: "black"
+          }}
+        >
+          Total: $1000.00
+        </div>
       </form>
     ) : (
       <div style={{ display: "inline-block" }}>
@@ -329,7 +373,7 @@ class Billingform extends Component {
               loading={loading}
               onClick={this.Billing}
             >
-             {this.state.text?"Next":"Submit"}
+              {this.state.text ? "Next" : "Submit"}
             </Button>
           ]}
         >
