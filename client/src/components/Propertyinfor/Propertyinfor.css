@@ -36,3 +36,12 @@ height: 163px
   max-height:400px;
   word-wrap: break-word
 }
+.saveIcon{
+  position: absolute;
+    margin-top: 5%;
+    margin-left: 77%;
+    color: gold!important;
+    font-weight: 400;
+    z-index: 20;
+    font-size: 27px;
+}

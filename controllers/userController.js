@@ -21,5 +21,17 @@ module.exports={
         db.listing.findOne({email:req.params.email}).then(dbresult=>{
             res.json(dbresult)
         })
+    },
+    addTofavorites:(req,res)=>{
+        db.listing.findOneAndUpdate({email:req.params.email},{$push:{favorites:{email:req.body.useremail,name:req.body.name,link:req.body.link}}},{new:true})
+        .then(dbfavorites=>{
+            res.json(dbfavorites)
+        })
+    },
+    removeFavorites:(req,res)=>{
+        db.listing.findOneAndUpdate({email:req.params.email},{$pull:{favorites:{email:req.params.emailWillDelete}}},{new:true})
+        .then(dbresult=>{
+            res.json(dbresult)
+        })
     }
 }

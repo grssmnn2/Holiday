@@ -1,0 +1,31 @@
+.ant-tabs-top{
+    padding-right: 16px;
+    padding-left: 31px;
+}
+.MainContainer{
+    /* display: -ms-flexbox; */
+    display: flex;
+    min-height: 300px;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding-bottom: 50px;
+    width: 100%;
+    margin: 0 auto;
+}
+.click-item{
+    background-size: cover;
+    background-position: 50%;
+    height: 170px;
+    width: 217px;
+    margin-right: 18px;
+    border: 5px solid #f1f1f1;
+    border-radius: 3px;
+    box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+    cursor: pointer;
+}
+.click-item:hover{
+    transform: scale(1.2, 1.2);
+    transition: 0.3s ease;
+}
