@@ -179,7 +179,6 @@ class Chatbox extends Component {
                     <i className="fa fa-camera" />
                   </a>
                 </span>
-                <a>{this.props.receiver?this.props.receiver:null}</a>
                 {/* <input
                   type="text"
                   placeholder="Type a message"

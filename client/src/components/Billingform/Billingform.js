@@ -88,8 +88,11 @@ class Billingform extends Component {
         loading: true,
         step3:"green"
        });
-      //  API.confirmTrip().then(result=>{
-      //  }).catch(err=>console.log(err))
+      API.createRequest({sender:localStorage.getItem("user"),receiver:this.props.user,start:this.props.date[0],end:this.props.date[1]}).then(result=>{
+        this.props.newTrip(result.data)
+      }).catch(err=>{
+        console.log(err)
+      })
       setTimeout(() => {
         this.setState({ loading: false, visible: false,
         number: "",

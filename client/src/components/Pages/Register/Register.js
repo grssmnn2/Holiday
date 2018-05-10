@@ -119,8 +119,8 @@ class Register extends Component {
                                 <div className="form-group col-md-4" style={{ paddingRight: '35px' }}>
                                     <label htmlFor="state" className="cols-sm-2 control-label">State/Province</label>
                                     <select style={{height:"34px"}}onChange={(e) => this.handleChange(e)} value={this.state.state} name="state" className="form-control">
-                                                {USstate.states.map(state=>{
-                                                    return <option>{state}</option>
+                                                {USstate.states.map((state,i)=>{
+                                                    return <option key={i}>{state}</option>
                                                 })}
                                     </select>                                </div>
                                 <div className="form-group col-md-2" style={{ paddingRight: '35px' }}>

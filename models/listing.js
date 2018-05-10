@@ -67,8 +67,10 @@ var listingSchema = new Schema ({
         type: String
     },
     review:[{
-        type:String
-    }]
+        name:String,
+        content:String,
+        score:Number
+    }],
 })
 var listing = mongoose.model("listing",listingSchema)
 module.exports =listing;

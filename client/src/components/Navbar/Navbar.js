@@ -42,30 +42,46 @@ class Navbar extends Component {
   submitReview =()=>{
     const user=localStorage.getItem("user")
     console.log(user)
-    API.addReview(this.state.sender,{review:this.state.userReview,score:this.state.value}).then(result=>{
+    API.addReview(this.state.sender,{name:user,review:this.state.userReview,score:this.state.value}).then(result=>{
     }).catch(err=>{
       console.log(err)
     })
     if(this.state.current===user){
       console.log(this.state.id+"first")
       API.updateRateStatus(this.state.id,{senderRated:true}).then(result=>{
-        this.setState({
-          open:false,
-          review:true
-        },()=>{
-          console.log(this.state.review)
+        let completeArray=[];
+        this.state.complete.forEach(element=>{
+          if(element._id===this.state.id){
+            element.senderRated=true
+          }
+          completeArray.push(element)
         })
+        this.setState({
+          review:true,
+          open:false,
+          complete:completeArray,
+          userReview:""
+        })
+       
+       
       }).catch(err=>{
         console.log(err)
       })
     }else{
       console.log(this.state.id+"second")
       API.updateRateStatus(this.state.id,{receiverRated:true}).then(result=>{
+        let completeArray=[];
+        this.state.complete.forEach(element=>{
+          if(element._id===this.state.id){
+            element.receiverRated=true
+          }
+          completeArray.push(element)
+        })
         this.setState({
+          review:true,
           open:false,
-          review:true
-        },()=>{
-          console.log(this.state.review)
+          complete:completeArray,
+          userReview:""
         })
       }).catch(err=>{
         console.log(err)
@@ -74,16 +90,16 @@ class Navbar extends Component {
   }
   showModal = (data) => {
     console.log(data)
-    
+    console.log(this.state)
     this.setState({
       open: true,
       title:data.title,
       name:data.name,
       button:data.button,
-      confirmBtn:this.state.confirmBtn===true?true:data.confirmBtn,
+      confirmBtn:data.confirmBtn,
       id:data.id,
       sender:data.sender,
-      review:this.state.review===true?true:data.review,
+      review:data.review,
       current:data.current
     });
   }
@@ -100,6 +116,14 @@ class Navbar extends Component {
 
   componentDidMount(){
     this.showTripDetails()
+  }
+  componentWillReceiveProps(nextProps){
+    if(this.props.pendingTrip!==nextProps.pendingTrip){
+      console.log(nextProps.pendingTrip)
+      this.setState({
+        pending:[...this.state.pending,nextProps.pendingTrip]
+      })
+    }
   }
   showTripDetails=()=>{
       if(this.props.authenticated){
@@ -139,12 +163,25 @@ class Navbar extends Component {
           duration: 2,
           maxCount: 3,
         });
+        let completeArray=[];
+        this.state.upcoming.forEach(element=>{
+          if(element._id===this.state.id){
+            element.senderComplete=true
+          }
+          completeArray.push(element)
+        })
+        message.success(result.data.data)
+        this.setState({
+          confirmBtn:true,
+          open:false,
+          upcoming:completeArray 
+        })
         if(result.data.data==="completed"){
           let {upcoming}=this.state
           console.log(upcoming)
           upcoming = upcoming.filter(function( obj ) {
             console.log(obj)
-            return obj.sender !== result.data.result.sender;
+            return obj._id !== result.data.result._id;
         });
         console.log(upcoming)
         this.setState({
@@ -152,14 +189,7 @@ class Navbar extends Component {
           complete:[...this.state.complete,result.data.result]
         })
         }
-        message.success(result.data.data)
-        this.setState({
-          confirmBtn:true,
-          open:false
-          
-        },()=>{
-          console.log(this.state.confirmBtn)
-        })
+    
       }).catch(err=>{
         console.log(err)
       })
@@ -176,7 +206,7 @@ class Navbar extends Component {
           console.log(upcoming)
           upcoming = upcoming.filter(function( obj ) {
             console.log(obj)
-            return obj.sender !== result.data.result.sender;
+            return obj._id !== result.data.result._id;
         });
         console.log(upcoming)
         this.setState({
@@ -184,10 +214,18 @@ class Navbar extends Component {
           complete:[...this.state.complete,result.data.result]
         })
         }
+        let completeArray=[];
+        this.state.upcoming.forEach(element=>{
+          if(element._id===this.state.id){
+            element.receiverComplete=true
+          }
+          completeArray.push(element)
+        })
         message.success(result.data.data)
         this.setState({
           confirmBtn:true,
-          open:false
+          open:false,
+          upcoming:completeArray 
         })
       }).catch(err=>{
         console.log(err)
@@ -254,9 +292,9 @@ class Navbar extends Component {
         <Menu.Divider />
         {complete.map((trip,i)=>{
           if(trip.sender===userName){
-           return (<Menu.Item style={{color:"grey"}} key={"complete"+i} ><a onClick={()=>this.showModal({title:"Complete Trips",name:this.state.review===true?"You have added reviews for "+trip.receiver:"You can add reviews for "+trip.receiver, button:false,confirmBtn:true,id:trip._id,sender:trip.receiver,review:trip.senderRated,current:trip.sender})}>{trip.receiver}</a></Menu.Item>)
+           return (<Menu.Item style={{color:"grey"}} key={"complete"+i} ><a onClick={()=>this.showModal({title:"Complete Trips",name:trip.senderRated===true?"You have added reviews for "+trip.receiver:"You can add reviews for "+trip.receiver, button:false,confirmBtn:true,id:trip._id,sender:trip.receiver,review:trip.senderRated,current:trip.sender})}>{trip.receiver}</a></Menu.Item>)
         }else{
-          return (<Menu.Item  style={{color:"grey"}}key={"complete"+i} ><a onClick={()=>this.showModal({title:"Complete Trips",name:this.state.review?"You have added reviews for "+trip.sender:"You can add reviews for "+trip.sender, button:false,confirmBtn:true,id:trip._id,sender:trip.sender,review:trip.receiverRated,current:trip.sender})}>{trip.receiver}</a></Menu.Item>)
+          return (<Menu.Item  style={{color:"grey"}}key={"complete"+i} ><a onClick={()=>this.showModal({title:"Complete Trips",name:trip.receiverRated?"You have added reviews for "+trip.sender:"You can add reviews for "+trip.sender, button:false,confirmBtn:true,id:trip._id,sender:trip.sender,review:trip.receiverRated,current:trip.sender})}>{trip.receiver}</a></Menu.Item>)
 
         }}
       )}

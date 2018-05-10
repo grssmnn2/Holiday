@@ -44,6 +44,13 @@ class Friendlist extends React.Component {
       console.log(err)
     })
   }
+  componentWillReceiveProps(nextProps){
+    if(this.props.friendlist!=nextProps.friendlist){
+      this.setState({
+        data:nextProps.friendlist
+      })
+    }
+  }
   // retriveList = (user) =>{
   //   API.retrieveFriendList(user)
   //   .then(data=>this.setState({data}))
@@ -134,7 +141,7 @@ class Friendlist extends React.Component {
     const {unreadUser}=this.state;
     return (
       <div>
-      <Navbar number={this.state.messageNumber} authenticated={this.props.authenticated} click={this.display}></Navbar>
+      <Navbar pendingTrip={this.props.pendingTrip}number={this.state.messageNumber} authenticated={this.props.authenticated} click={this.display}></Navbar>
       <Chatbox addNumber={(name)=>this.addNumber(name)}authenticated={this.props.authenticated} messages={this.state.messages} isOpen={this.state.historyMessage} email={this.props.email} receiver={this.state.receiver}  name={this.state.className}></Chatbox>
       <Collapse isOpened={this.state.isOpened} fixedHeight={400}>
       <GoX onClick={this.display} style={{fontSize:30,float:"right"}}></GoX>
@@ -151,7 +158,7 @@ class Friendlist extends React.Component {
             renderItem={item => (
               <List.Item >
                 <List.Item.Meta
-                  avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                  avatar={<Avatar src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWGh_yZxpnGqUgbbGQsbXVK0RQWVWr_Qgz3hlAKzZJZiOvFN8m" />}
                   title={<a href="https://ant.design">{item.name}</a>}
                   description={item.email}
                 />
@@ -159,11 +166,6 @@ class Friendlist extends React.Component {
               </List.Item>
             )}
           >
-            {this.state.loading && this.state.hasMore && (
-              <div className="demo-loading-container">
-                <Spin />
-              </div>
-            )}
           </List>
         </InfiniteScroll>
       </div>

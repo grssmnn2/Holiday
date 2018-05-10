@@ -14,11 +14,22 @@ class Events extends Component {
     componentDidMount() {
         let num=Math.floor(Math.random()*2)
         const location=["Chicago","Honolulu"];
-        fetch(`https://www.triposo.com/api/20180223/local_event.json?location_id=${location[num]}&count=6&account=2JSJ6C5C&token=77b4rd1cpzck05y81wgao0o1x54khes9`)
+        fetch(`https://www.triposo.com/api/20180223/local_event.json?location_id=${location[num]}&count=12&account=2JSJ6C5C&token=77b4rd1cpzck05y81wgao0o1x54khes9`)
             .then(results => {
                 return results.json();
             }).then(data => {
-                let pictures = data.results.map((pic, index) => {
+                 console.log(data)
+                let newArry=data.results
+                var elements = newArry.reduce(function(previous, current) {
+
+                    var object = previous.filter(object => object.name === current.name);
+                    if (object.length == 0) {
+                      previous.push(current);
+                    }
+                    return previous;
+                  }, [])
+                  elements=elements.slice(0,6)
+                let pictures = elements.map((pic, index) => {
                     return (
                         <div key={pic.external_image_url} className="col-lg-4">
                             <div style={{height:"365px",marginTop:"10px"}}className="single-property">
