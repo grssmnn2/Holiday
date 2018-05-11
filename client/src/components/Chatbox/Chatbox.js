@@ -73,7 +73,7 @@ class Chatbox extends Component {
     }
   }
   initSocket = () => {
-    const socket = io("http://localhost:3001");
+    const socket = io("https://holiday-apartment-swap.herokuapp.com/");
     this.setState({
       socket: socket,
       sender: this.props.email
