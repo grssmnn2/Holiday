@@ -1,8 +1,8 @@
 {
-  "main.css": "static/css/main.9dd4fb40.css",
-  "main.css.map": "static/css/main.9dd4fb40.css.map",
-  "main.js": "static/js/main.59085866.js",
-  "main.js.map": "static/js/main.59085866.js.map",
+  "main.css": "static/css/main.98fd2c67.css",
+  "main.css.map": "static/css/main.98fd2c67.css.map",
+  "main.js": "static/js/main.59802b52.js",
+  "main.js.map": "static/js/main.59802b52.js.map",
   "static/media/Linearicons-Free.eot": "static/media/Linearicons-Free.b9b7f23c.eot",
   "static/media/Linearicons-Free.svg?w118d": "static/media/Linearicons-Free.2781bf54.svg",
   "static/media/Linearicons-Free.ttf?w118d": "static/media/Linearicons-Free.2f3e9f80.ttf",
@@ -14,8 +14,5 @@
   "static/media/fontawesome-webfont.ttf?v=4.7.0": "static/media/fontawesome-webfont.b06871f2.ttf",
   "static/media/fontawesome-webfont.woff2?v=4.7.0": "static/media/fontawesome-webfont.af7ae505.woff2",
   "static/media/fontawesome-webfont.woff?v=4.7.0": "static/media/fontawesome-webfont.fee66e71.woff",
-  "static/media/s1.jpg": "static/media/s1.14cc0710.jpg",
-  "static/media/s2.jpg": "static/media/s2.37f1dd40.jpg",
-  "static/media/s3.jpg": "static/media/s3.60495022.jpg",
   "static/media/service-bg.jpg": "static/media/service-bg.6f208361.jpg"
 }
